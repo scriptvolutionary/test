@@ -1,6 +1,6 @@
 import { createRoute } from '@tanstack/react-router'
 
-import { protectedRoute } from '@/platform/router'
+import { protectedRoute } from '@/platform/routes'
 
 const agroRootRoute = createRoute({
 	getParentRoute: () => protectedRoute,

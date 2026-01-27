@@ -3,11 +3,11 @@ import './styles.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { initTheme } from '@/platform/inits'
+import { bootstrapTheme } from '@/platform/bootstrap'
 
 import { NexusProviders } from './providers'
 
-initTheme()
+bootstrapTheme()
 
 function Bootstrap() {
 	return <NexusProviders />

@@ -1,13 +1,14 @@
 import { createRouter } from '@tanstack/react-router'
 
 import { isModuleEnabled } from '@/platform/config'
-import { protectedRoute, rootRoute } from '@/platform/router'
+import { protectedRoute, rootRoute } from '@/platform/routes'
 import type { Module } from '@/platform/state'
+
+import { NotFoundPageComponent } from '@/app/pages/not-found'
 
 import { agroRouteTree } from '@/modules/agro'
 import { csooRouteTree } from '@/modules/csoo'
 
-import { NotFoundPageComponent } from '../pages/not-found'
 import { loginRoute } from './routes'
 
 const enabledModules = [

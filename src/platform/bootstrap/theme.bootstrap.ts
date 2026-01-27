@@ -12,7 +12,7 @@ export const applyTheme = (theme: 'light' | 'dark' | 'system') => {
 	root.setAttribute('data-theme', resolved)
 }
 
-export const initTheme = () => {
+export const bootstrapTheme = () => {
 	applyTheme(useNexusState.getState().theme)
 
 	useNexusState.subscribe((state, prev) => {
