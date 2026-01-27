@@ -1,8 +1,8 @@
 import { createRoute, redirect } from '@tanstack/react-router'
 import { z } from 'zod'
 
+import { rootRoute } from '@/platform/app/routes'
 import { useAuthStore } from '@/platform/auth/store'
-import { rootRoute } from '@/platform/routes'
 
 import { LoginPageComponent } from '@/app/pages/login'
 

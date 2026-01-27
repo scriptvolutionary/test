@@ -1,7 +1,8 @@
 import { createRoute, Outlet, redirect } from '@tanstack/react-router'
 
-import { useAuthStore } from '../auth/store'
-import { rootRoute } from './root-route'
+import { useAuthStore } from '@/platform/auth/store'
+
+import { rootRoute } from './root.route'
 
 export const protectedRoute = createRoute({
 	getParentRoute: () => rootRoute,

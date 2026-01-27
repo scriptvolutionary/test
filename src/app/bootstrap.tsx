@@ -3,7 +3,7 @@ import './styles.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { bootstrapTheme } from '@/platform/bootstrap'
+import { bootstrapTheme } from '@/platform/app/bootstrap'
 
 import { NexusProviders } from './providers'
 

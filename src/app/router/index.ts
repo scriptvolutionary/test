@@ -1,8 +1,7 @@
 import { createRouter } from '@tanstack/react-router'
 
-import { isModuleEnabled } from '@/platform/config'
-import { protectedRoute, rootRoute } from '@/platform/routes'
-import type { Module } from '@/platform/state'
+import { protectedRoute, rootRoute } from '@/platform/app/routes'
+import { isModuleEnabled, type Module } from '@/platform/infra/config'
 
 import { NotFoundPageComponent } from '@/app/pages/not-found'
 

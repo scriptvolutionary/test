@@ -1,4 +1,4 @@
-import { useNexusState } from '../state/nexus.state'
+import { useNexusState } from '../state'
 
 export const applyTheme = (theme: 'light' | 'dark' | 'system') => {
 	const root = document.documentElement

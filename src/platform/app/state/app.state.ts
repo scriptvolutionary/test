@@ -1,10 +1,9 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-import { enabledModuleKeys } from '@/platform/config/runtime'
+import { enabledModuleKeys, type Module } from '@/platform/infra/config'
 
 export type Theme = 'light' | 'dark' | 'system'
-export type Module = 'agro' | 'csoo'
 export type Locale = 'ru' | 'en'
 
 interface SettingsSlice {
@@ -20,7 +19,7 @@ interface SessionSlice {
 	setModule: (module: Module) => void
 }
 
-export type NexusState = SettingsSlice & SessionSlice
+export type AppState = SettingsSlice & SessionSlice
 
 const createSettingsSlice = persist<SettingsSlice>(
 	set => ({
@@ -31,7 +30,7 @@ const createSettingsSlice = persist<SettingsSlice>(
 		setLocale: locale => set({ locale })
 	}),
 	{
-		name: 'nexus-settings',
+		name: 'settings',
 		storage: createJSONStorage(() => localStorage),
 		onRehydrateStorage: () => state => {
 			if (state) {
@@ -58,7 +57,7 @@ const createSessionSlice = persist<SessionSlice>(
 	}
 )
 
-export const useNexusState = create<NexusState>()((...a) => ({
+export const useNexusState = create<AppState>()((...a) => ({
 	...createSettingsSlice(...a),
 	...createSessionSlice(...a)
 }))

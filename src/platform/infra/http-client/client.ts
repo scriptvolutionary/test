@@ -1,12 +1,14 @@
 import axios from 'axios'
 
-import { runtime } from '@/platform/config/runtime'
-import { useNexusState } from '@/platform/state/nexus.state'
+import { useNexusState } from '@/platform/app/state'
 
-export const http = axios.create({
+import { runtime } from '../config'
+
+export const baseHttp = axios.create({
 	baseURL: runtime.apiUrl,
 	withCredentials: true
 })
+export const http = baseHttp
 
 http.interceptors.request.use(config => {
 	const key = useNexusState.getState().module
