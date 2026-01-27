@@ -1,21 +1,21 @@
-import { createRoute, Outlet, redirect } from '@tanstack/react-router'
+import { createRoute, Outlet, redirect } from "@tanstack/react-router";
 
-import { useAuthStore } from '@/platform/auth/store'
+import { useAuthStore } from "@/platform/auth/store";
 
-import { rootRoute } from './root.route'
+import { rootRoute } from "./root.route";
 
 export const protectedRoute = createRoute({
 	getParentRoute: () => rootRoute,
-	path: '/',
+	path: "/",
 	beforeLoad: async ({ location }) => {
-		const { user } = useAuthStore.getState()
+		const { user } = useAuthStore.getState();
 
 		if (user === null) {
 			return redirect({
-				to: '/login',
-				search: { redirect: location.pathname }
-			})
+				to: "/login",
+				search: { redirect: location.pathname },
+			});
 		}
 	},
-	component: Outlet
-})
+	component: Outlet,
+});

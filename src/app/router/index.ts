@@ -1,30 +1,30 @@
-import { createRouter } from '@tanstack/react-router'
+import { createRouter } from "@tanstack/react-router";
 
-import { protectedRoute, rootRoute } from '@/platform/app/routes'
-import { isModuleEnabled, type Module } from '@/platform/infra/config'
+import { protectedRoute, rootRoute } from "@/platform/app/routes";
+import { isModuleEnabled, type Module } from "@/platform/infra/config";
 
-import { NotFoundPageComponent } from '@/app/pages/not-found'
+import { NotFoundPageComponent } from "@/app/pages/not-found";
 
-import { agroRouteTree } from '@/modules/agro'
-import { csooRouteTree } from '@/modules/csoo'
+import { agroRouteTree } from "@/modules/agro";
+import { csooRouteTree } from "@/modules/csoo";
 
-import { loginRoute } from './routes'
+import { loginRoute } from "./routes";
 
 const enabledModules = [
-	{ key: 'agro' as Module, route: agroRouteTree },
-	{ key: 'csoo' as Module, route: csooRouteTree }
-].filter(m => isModuleEnabled(m.key))
+	{ key: "agro" as Module, route: agroRouteTree },
+	{ key: "csoo" as Module, route: csooRouteTree },
+].filter((m) => isModuleEnabled(m.key));
 
 const routeTree = rootRoute.addChildren([
 	loginRoute,
-	protectedRoute.addChildren(enabledModules.map(m => m.route))
-])
+	protectedRoute.addChildren(enabledModules.map((m) => m.route)),
+]);
 
 export const router = createRouter({
 	routeTree,
-	defaultPreload: 'intent',
+	defaultPreload: "intent",
 	defaultPreloadStaleTime: 0,
 	scrollRestoration: true,
 	context: undefined!,
-	defaultNotFoundComponent: NotFoundPageComponent
-})
+	defaultNotFoundComponent: NotFoundPageComponent,
+});

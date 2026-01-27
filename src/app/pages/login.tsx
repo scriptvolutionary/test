@@ -1,19 +1,19 @@
-import { useNavigate, useSearch } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useState } from "react";
 
-import { useAuthStore } from '@/platform/auth/store'
+import { useAuthStore } from "@/platform/auth/store";
 
 export function LoginPageComponent() {
-	const [name, setName] = useState('')
-	const { redirect } = useSearch({ from: '/login' })
-	const login = useAuthStore(state => state.login)
+	const [name, setName] = useState("");
+	const { redirect } = useSearch({ from: "/login" });
+	const login = useAuthStore((state) => state.login);
 
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	const handleLogin = () => {
-		login({ name })
-		navigate({ to: redirect || '/' })
-	}
+		login({ name });
+		navigate({ to: redirect || "/" });
+	};
 
 	return (
 		<div className="p-8">
@@ -22,7 +22,7 @@ export function LoginPageComponent() {
 				type="text"
 				placeholder="Enter name"
 				value={name}
-				onChange={e => setName(e.target.value)}
+				onChange={(e) => setName(e.target.value)}
 				className="border p-2"
 			/>
 			<button
@@ -32,5 +32,5 @@ export function LoginPageComponent() {
 				Login
 			</button>
 		</div>
-	)
+	);
 }

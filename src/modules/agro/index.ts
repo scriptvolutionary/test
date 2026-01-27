@@ -1,1 +1,1 @@
-export * from './module/routes'
+export * from "./module/routes";

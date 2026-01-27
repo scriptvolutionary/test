@@ -1,15 +1,15 @@
-import { Link } from '@tanstack/react-router'
-import { LayoutDashboard, MessageSquareShare, Signpost } from 'lucide-react'
+import { Link } from "@tanstack/react-router";
+import { LayoutDashboard, MessageSquareShare, Signpost } from "lucide-react";
 
-import { Button } from '@/shared/ui/primitives/button'
+import { Button } from "@/shared/ui/primitives/button";
 import {
 	Empty,
 	EmptyContent,
 	EmptyDescription,
 	EmptyHeader,
 	EmptyMedia,
-	EmptyTitle
-} from '@/shared/ui/primitives/empty'
+	EmptyTitle,
+} from "@/shared/ui/primitives/empty";
 
 export function NotFoundPageComponent() {
 	return (
@@ -48,5 +48,5 @@ export function NotFoundPageComponent() {
 				</EmptyContent>
 			</Empty>
 		</main>
-	)
+	);
 }
