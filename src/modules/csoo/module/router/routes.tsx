@@ -2,10 +2,8 @@ import { createRoute } from "@tanstack/react-router";
 
 import { protectedRoute } from "@/platform/app/routes";
 
-const agroRootRoute = createRoute({
+export const rootRoute = createRoute({
 	getParentRoute: () => protectedRoute,
-	path: "/agro",
-	component: () => <div>AGRO</div>,
+	path: "csoo",
+	component: () => <div>CSOO</div>,
 });
-
-export const agroRouteTree = agroRootRoute;

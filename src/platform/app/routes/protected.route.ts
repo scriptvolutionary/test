@@ -6,13 +6,13 @@ import { rootRoute } from "./root.route";
 
 export const protectedRoute = createRoute({
 	getParentRoute: () => rootRoute,
-	path: "/",
+	id: "protected",
 	beforeLoad: async ({ location }) => {
 		const { user } = useAuthStore.getState();
 
 		if (user === null) {
 			return redirect({
-				to: "/login",
+				to: "/log-in",
 				search: { redirect: location.pathname },
 			});
 		}

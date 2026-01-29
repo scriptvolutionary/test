@@ -1,4 +1,4 @@
-import { useNexusState } from "@/platform/app/state/app.state";
+import { useNexusState } from "@/platform/app/state";
 
 export const useTheme = () => {
 	const theme = useNexusState((s) => s.theme);

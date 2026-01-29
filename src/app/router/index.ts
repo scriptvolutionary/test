@@ -1,23 +1,19 @@
 import { createRouter } from "@tanstack/react-router";
 
 import { protectedRoute, rootRoute } from "@/platform/app/routes";
-import { isModuleEnabled, type Module } from "@/platform/infra/config";
 
-import { NotFoundPageComponent } from "@/app/pages/not-found";
+import { getEnabledModules } from "@/app/modules";
 
-import { agroRouteTree } from "@/modules/agro";
-import { csooRouteTree } from "@/modules/csoo";
+import { ErrorPageComponent } from "../pages/error";
+import { NotFoundPageComponent } from "../pages/not-found";
+import { forbiddenRoute, loginRoute } from "./routes";
 
-import { loginRoute } from "./routes";
-
-const enabledModules = [
-	{ key: "agro" as Module, route: agroRouteTree },
-	{ key: "csoo" as Module, route: csooRouteTree },
-].filter((m) => isModuleEnabled(m.key));
+const enabledModules = getEnabledModules();
 
 const routeTree = rootRoute.addChildren([
 	loginRoute,
-	protectedRoute.addChildren(enabledModules.map((m) => m.route)),
+	forbiddenRoute,
+	protectedRoute.addChildren(enabledModules.map((m) => m.routeTree)),
 ]);
 
 export const router = createRouter({
@@ -27,4 +23,5 @@ export const router = createRouter({
 	scrollRestoration: true,
 	context: undefined!,
 	defaultNotFoundComponent: NotFoundPageComponent,
+	defaultErrorComponent: ErrorPageComponent,
 });

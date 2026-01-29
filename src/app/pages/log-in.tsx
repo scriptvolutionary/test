@@ -5,7 +5,7 @@ import { useAuthStore } from "@/platform/auth/store";
 
 export function LoginPageComponent() {
 	const [name, setName] = useState("");
-	const { redirect } = useSearch({ from: "/login" });
+	const { redirect } = useSearch({ from: "/log-in" });
 	const login = useAuthStore((state) => state.login);
 
 	const navigate = useNavigate();

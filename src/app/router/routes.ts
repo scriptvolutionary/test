@@ -4,11 +4,13 @@ import { z } from "zod";
 import { rootRoute } from "@/platform/app/routes";
 import { useAuthStore } from "@/platform/auth/store";
 
-import { LoginPageComponent } from "@/app/pages/login";
+import { LoginPageComponent } from "@/app/pages/log-in";
+
+import { ForbiddenPageComponent } from "../pages/forbidden";
 
 export const loginRoute = createRoute({
 	getParentRoute: () => rootRoute,
-	path: "/login",
+	path: "log-in",
 	validateSearch: z.object({
 		redirect: z.string().optional(),
 	}),
@@ -20,4 +22,13 @@ export const loginRoute = createRoute({
 		}
 	},
 	component: LoginPageComponent,
+});
+
+export const forbiddenRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "forbidden",
+	validateSearch: z.object({
+		from: z.string().optional(),
+	}),
+	component: ForbiddenPageComponent,
 });

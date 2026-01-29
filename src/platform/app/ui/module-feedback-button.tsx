@@ -1,0 +1,28 @@
+import { useMemo } from "react";
+
+import { useNexusState } from "@/platform/app/state";
+
+import { buildSupportMessage, type SupportReport } from "@/shared/lib/utils";
+import { TelegramFeedbackButton } from "@/shared/ui/telegram-feedback-button";
+
+interface ModuleFeedbackButtonProps {
+	url?: string;
+	report: Omit<SupportReport, "url" | "module"> & { module?: string };
+}
+
+export function ModuleFeedbackButton({
+	url,
+	report,
+}: ModuleFeedbackButtonProps) {
+	const module = useNexusState((s) => s.module);
+
+	const message = useMemo(() => {
+		return buildSupportMessage({
+			...report,
+			url,
+			module: report.module ?? module ?? undefined,
+		});
+	}, [report, url, module]);
+
+	return <TelegramFeedbackButton message={message} />;
+}

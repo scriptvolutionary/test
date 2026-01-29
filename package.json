@@ -7,6 +7,7 @@
 		"dev": "vite",
 		"build": "tsc -b && vite build",
 		"preview": "vite preview",
+		"typecheck": "tsc -b",
 		"format:fix": "biome format --write",
 		"lint:fix": "biome lint --write",
 		"check:fix": "biome check --write"
@@ -17,6 +18,7 @@
 		"@tanstack/react-query": "^5.90.20",
 		"@tanstack/react-query-devtools": "^5.91.2",
 		"@tanstack/react-router": "^1.157.16",
+		"@tanstack/react-router-devtools": "^1.157.16",
 		"axios": "^1.13.3",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
