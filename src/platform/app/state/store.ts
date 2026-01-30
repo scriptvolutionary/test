@@ -19,7 +19,7 @@ interface SessionSlice {
 	setModule: (module: Module) => void;
 }
 
-export type AppState = SettingsSlice & SessionSlice;
+export type AppStoreState = SettingsSlice & SessionSlice;
 
 const createSettingsSlice = persist<SettingsSlice>(
 	(set) => ({
@@ -30,7 +30,7 @@ const createSettingsSlice = persist<SettingsSlice>(
 		setLocale: (locale) => set({ locale }),
 	}),
 	{
-		name: "settings",
+		name: "settings-store",
 		storage: createJSONStorage(() => localStorage),
 		onRehydrateStorage: () => (state) => {
 			if (state) {
@@ -47,7 +47,7 @@ const createSessionSlice = persist<SessionSlice>(
 		setModule: (module) => set({ module }),
 	}),
 	{
-		name: "nexus-session",
+		name: "session-store",
 		storage: createJSONStorage(() => sessionStorage),
 		onRehydrateStorage: () => (state) => {
 			if (state) {
@@ -57,7 +57,7 @@ const createSessionSlice = persist<SessionSlice>(
 	},
 );
 
-export const useNexusState = create<AppState>()((...a) => ({
+export const useAppStore = create<AppStoreState>()((...a) => ({
 	...createSettingsSlice(...a),
 	...createSessionSlice(...a),
 }));

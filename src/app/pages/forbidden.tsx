@@ -1,5 +1,5 @@
 import { useSearch } from "@tanstack/react-router";
-import { Lock } from "lucide-react";
+import { ShieldAlertIcon } from "lucide-react";
 
 import { ModuleFeedbackButton } from "@/platform/app/ui/module-feedback-button";
 
@@ -10,7 +10,7 @@ export function ForbiddenPageComponent() {
 
 	return (
 		<StatusPage
-			icon={<Lock />}
+			icon={<ShieldAlertIcon />}
 			title="403 — Доступ запрещён"
 			description="У вас нет прав для просмотра этой страницы. Если вы считаете, что это ошибка — обратитесь в поддержку."
 			feedbackButton={

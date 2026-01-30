@@ -3,18 +3,14 @@ import "./styles.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import { bootstrapTheme } from "@/platform/app/bootstrap";
+import { initThemeSync } from "@/platform/app/init";
 
-import { NexusProviders } from "./providers";
+import { AppProviders } from "./providers";
 
-bootstrapTheme();
-
-function Bootstrap() {
-	return <NexusProviders />;
-}
+initThemeSync();
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<Bootstrap />
+		<AppProviders />
 	</StrictMode>,
 );

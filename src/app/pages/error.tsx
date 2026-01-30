@@ -1,3 +1,4 @@
+import { useLocation } from "@tanstack/react-router";
 import { AlertTriangleIcon } from "lucide-react";
 
 import { ModuleFeedbackButton } from "@/platform/app/ui/module-feedback-button";
@@ -9,6 +10,7 @@ interface ErrorPageComponentProps {
 }
 
 export function ErrorPageComponent({ error }: ErrorPageComponentProps) {
+	const location = useLocation();
 	const message = getErrorMessage(error);
 
 	return (

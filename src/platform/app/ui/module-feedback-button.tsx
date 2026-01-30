@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
-import { useNexusState } from "@/platform/app/state";
+import { useAppStore } from "@/platform/app/state";
 
-import { buildSupportMessage, type SupportReport } from "@/shared/lib/utils";
+import { buildSupportMessage, type SupportReport } from "@/shared/lib/cn";
 import { TelegramFeedbackButton } from "@/shared/ui/telegram-feedback-button";
 
 interface ModuleFeedbackButtonProps {
@@ -14,7 +14,7 @@ export function ModuleFeedbackButton({
 	url,
 	report,
 }: ModuleFeedbackButtonProps) {
-	const module = useNexusState((s) => s.module);
+	const module = useAppStore((s) => s.module);
 
 	const message = useMemo(() => {
 		return buildSupportMessage({

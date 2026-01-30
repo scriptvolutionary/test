@@ -1,1 +1,1 @@
-export * from "./nexus-providers";
+export * from "./app-providers";
