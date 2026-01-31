@@ -2,13 +2,13 @@ import type { AnyRoute } from "@tanstack/react-router";
 
 import { isModuleEnabled, type Module } from "@/platform/sdk/modules";
 
-import { routeTree as agroTree } from "@/modules/agro";
+import { routeTree as agroserviceTree } from "@/modules/agroservice";
 import { routeTree as csooTree } from "@/modules/csoo";
 
 type ModuleDef = { routeTree: AnyRoute };
 
 const modulesRegistry = {
-	agro: { routeTree: agroTree },
+	agroservice: { routeTree: agroserviceTree },
 	csoo: { routeTree: csooTree },
 } satisfies Record<Module, ModuleDef>;
 

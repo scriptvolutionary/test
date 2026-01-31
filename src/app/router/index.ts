@@ -4,10 +4,9 @@ import { ErrorPageComponent } from "@/platform/pages/error";
 import { NotFoundPageComponent } from "@/platform/pages/not-found";
 import {
 	moduleRoute,
-	modulesRoute,
-	platformPublicRouteTree,
 	platformRoute,
-	protectedRoute,
+	platformRouteTree,
+	publicRouteTree,
 	rootRoute,
 } from "@/platform/sdk/routes";
 
@@ -17,14 +16,11 @@ function createAppRouter() {
 	const enabledModules = getEnabledModules();
 
 	const routeTree = rootRoute.addChildren([
-		...platformPublicRouteTree,
+		...publicRouteTree,
 
-		protectedRoute.addChildren([
-			platformRoute.addChildren([
-				modulesRoute.addChildren([
-					moduleRoute.addChildren(enabledModules.map((m) => m.routeTree)),
-				]),
-			]),
+		platformRoute.addChildren([
+			...platformRouteTree,
+			moduleRoute.addChildren(enabledModules.map((m) => m.routeTree)),
 		]),
 	]);
 

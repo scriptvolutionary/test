@@ -4,7 +4,7 @@ import { moduleRoute } from "@/platform/sdk/routes";
 
 export const rootRoute = createRoute({
 	getParentRoute: () => moduleRoute,
-	path: "/",
+	path: "csoo",
 	component: Outlet,
 });
 

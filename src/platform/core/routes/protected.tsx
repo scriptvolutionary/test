@@ -11,9 +11,9 @@ import { type Module, runtime } from "@/platform/infra/config";
 import { rootRoute } from ".";
 import { useSessionStore } from "../state";
 
-export const protectedRoute = createRoute({
+export const platformRoute = createRoute({
 	getParentRoute: () => rootRoute,
-	id: "protected",
+	path: "platform",
 	beforeLoad: async ({ location }) => {
 		const token = getAuthToken();
 
@@ -27,33 +27,44 @@ export const protectedRoute = createRoute({
 	component: Outlet,
 });
 
-export const platformRoute = createRoute({
-	getParentRoute: () => protectedRoute,
-	path: "platform",
+export const platformIndexRoute = createRoute({
+	getParentRoute: () => platformRoute,
+	path: "/",
 	component: () => <>platform route</>,
 });
 
-export const modulesRoute = createRoute({
+export const moduleRoute = createRoute({
 	getParentRoute: () => platformRoute,
 	path: "m",
-	beforeLoad: () => {
-		const next = useSessionStore.getState().module;
+	beforeLoad: ({ location }) => {
+		const raw = getModuleFromLocation(location.pathname);
 
-		throw redirect({ to: `/platform/m/${next}` });
-	},
-});
+		if (!raw) {
+			const next = pickDefaultModule();
+			throw redirect({ to: `/platform/m/${next}` });
+		}
 
-export const moduleRoute = createRoute({
-	getParentRoute: () => modulesRoute,
-	path: "$module",
-	beforeLoad: ({ params }) => {
-		const key = params.module as Module;
-
+		const key = raw as Module;
 		if (!runtime.enabledModuleKeys.includes(key)) {
 			throw notFound();
 		}
 
-		useSessionStore.getState().setModule(key);
+		const current = useSessionStore.getState().module;
+		if (current !== key) {
+			useSessionStore.getState().setModule(key);
+		}
 	},
-	component: Outlet,
 });
+
+function pickDefaultModule(): Module {
+	const preferred = useSessionStore.getState().module;
+	return runtime.enabledModuleKeys.includes(preferred)
+		? preferred
+		: runtime.enabledModuleKeys[0];
+}
+
+function getModuleFromLocation(pathname: string): string | null {
+	const parts = pathname.split("/").filter(Boolean);
+
+	return parts[2] ?? null;
+}

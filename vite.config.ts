@@ -32,6 +32,10 @@ export default defineConfig(({ mode }) => {
 					port: 4001,
 					debug: env.NEXUS_APP_DEBUG === "true",
 				},
+				consolePiping: {
+					enabled: true,
+				},
+				logging: false,
 				editor: {
 					name: "VSCode",
 					open: async (path, lineNumber, columnNumber) => {

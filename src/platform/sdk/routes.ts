@@ -1,8 +1,7 @@
 export {
 	moduleRoute,
-	modulesRoute,
-	platformPublicRouteTree,
 	platformRoute,
-	protectedRoute,
+	platformRouteTree,
+	publicRouteTree,
 	rootRoute,
 } from "@/platform/core/routes";
