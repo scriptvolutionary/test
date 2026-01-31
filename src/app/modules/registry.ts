@@ -7,18 +7,15 @@ import { routeTree as csooTree } from "@/modules/csoo";
 
 type ModuleDef = { routeTree: AnyRoute };
 
-export const moduleRegistry = {
+const modulesRegistry = {
 	agro: { routeTree: agroTree },
 	csoo: { routeTree: csooTree },
-} as const;
+} satisfies Record<Module, ModuleDef>;
 
-export type ModuleKey = keyof typeof moduleRegistry;
-
-export function getEnabledModules(): Array<{
-	key: Module;
-	routeTree: AnyRoute;
-}> {
-	return (Object.entries(moduleRegistry) as Array<[Module, ModuleDef]>)
-		.filter(([key]) => isModuleEnabled(key))
-		.map(([key, def]) => ({ key, routeTree: def.routeTree }));
+function getEnabledModules(): Array<{ key: Module; routeTree: AnyRoute }> {
+	return (Object.keys(modulesRegistry) as Module[])
+		.filter((key) => isModuleEnabled(key))
+		.map((key) => ({ key, routeTree: modulesRegistry[key].routeTree }));
 }
+
+export { getEnabledModules, modulesRegistry };

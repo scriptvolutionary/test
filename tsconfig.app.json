@@ -26,5 +26,5 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["src", "src/app/ambient", "src/platform/config"]
+	"include": ["src", "src/app/ambient/**.d.ts", "src/platform/config"]
 }

@@ -11,7 +11,7 @@ export const protectedRoute = createRoute({
 		const me = await queryClient.ensureQueryData(sessionMeQueryOptions());
 
 		if (!me) {
-			return redirect({
+			throw redirect({
 				to: "/log-in",
 				search: { redirect: location.href },
 			});

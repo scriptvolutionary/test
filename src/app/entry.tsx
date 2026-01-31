@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 
 import { initThemeSync } from "@/platform/app/init";
 
-import { AppProviders } from "./providers";
+import { AppProviders } from "./providers/app-providers";
 
 initThemeSync();
 

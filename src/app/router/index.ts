@@ -8,21 +8,25 @@ import {
 import { ErrorPageComponent } from "@/platform/pages/error";
 import { NotFoundPageComponent } from "@/platform/pages/not-found";
 
-import { getEnabledModules } from "@/app/modules";
+import { getEnabledModules } from "@/app/modules/registry";
 
-const enabledModules = getEnabledModules();
+function createAppRouter() {
+	const enabledModules = getEnabledModules();
 
-const routeTree = rootRoute.addChildren([
-	...platformPublicRouteTree,
-	protectedRoute.addChildren(enabledModules.map((m) => m.routeTree)),
-]);
+	const routeTree = rootRoute.addChildren([
+		...platformPublicRouteTree,
+		protectedRoute.addChildren(enabledModules.map((m) => m.routeTree)),
+	]);
 
-export const router = createRouter({
-	routeTree,
-	defaultPreload: "intent",
-	defaultPreloadStaleTime: 0,
-	scrollRestoration: true,
-	context: undefined!,
-	defaultNotFoundComponent: NotFoundPageComponent,
-	defaultErrorComponent: ErrorPageComponent,
-});
+	return createRouter({
+		routeTree,
+		defaultPreload: "intent",
+		defaultPreloadStaleTime: 0,
+		scrollRestoration: true,
+		context: undefined!,
+		defaultNotFoundComponent: NotFoundPageComponent,
+		defaultErrorComponent: ErrorPageComponent,
+	});
+}
+
+export const router = createAppRouter();
