@@ -1,15 +1,7 @@
 import axios from "axios";
 
 import { runtime } from "../config";
-import { clearAuthToken, getAuthToken } from "../token-storage";
-
-export type ModuleResolver = () => string | null;
-
-let moduleResolver: ModuleResolver | null = null;
-
-export const setHttpModuleResolver = (resolver: ModuleResolver | null) => {
-	moduleResolver = resolver;
-};
+import { getHttpConfig } from "./configure";
 
 export const http = axios.create({
 	baseURL: runtime.apiUrl,
@@ -19,23 +11,21 @@ export const http = axios.create({
 export const baseHttp = http;
 
 http.interceptors.request.use((config) => {
-	const key = moduleResolver?.();
+	const { getModuleKey, getToken } = getHttpConfig();
 
+	const key = getModuleKey?.();
 	if (key && config.url) {
 		config.url = `/${key}${config.url}`;
 	}
 
-	return config;
-});
-
-http.interceptors.request.use((config) => {
-	const token = getAuthToken();
+	const token = getToken?.();
 	if (token) {
 		config.headers = config.headers ?? {};
 		if (!("Authorization" in config.headers)) {
 			config.headers.Authorization = `Bearer ${token}`;
 		}
 	}
+
 	return config;
 });
 
@@ -43,7 +33,7 @@ http.interceptors.response.use(
 	(res) => res,
 	(error) => {
 		if (error?.response?.status === 401) {
-			clearAuthToken();
+			getHttpConfig().onUnauthorized?.();
 		}
 		return Promise.reject(error);
 	},

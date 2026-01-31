@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 
-import { useAppStore } from "@/platform/app/state";
-
 import {
 	buildSupportMessage,
 	type SupportReport,
 } from "@/shared/lib/utils/support-message";
 import { TelegramFeedbackButton } from "@/shared/ui/telegram-feedback-button";
+
+import { useAppStore } from "@/platform/core/state";
 
 interface ModuleFeedbackButtonProps {
 	url?: string;

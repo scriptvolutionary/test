@@ -1,4 +1,4 @@
-import { useAppStore } from "@/platform/app/state";
+import { useAppStore } from "@/platform/core/state";
 
 export const useTheme = () => {
 	const theme = useAppStore((s) => s.theme);

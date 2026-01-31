@@ -4,7 +4,7 @@ import {
 	platformPublicRouteTree,
 	protectedRoute,
 	rootRoute,
-} from "@/platform/app/routes";
+} from "@/platform/core/routes";
 import { ErrorPageComponent } from "@/platform/pages/error";
 import { NotFoundPageComponent } from "@/platform/pages/not-found";
 

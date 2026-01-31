@@ -3,7 +3,7 @@ import "./styles.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import { initHttpSync, initThemeSync } from "@/platform/app/init";
+import { initHttpSync, initThemeSync } from "@/platform/core/init";
 
 import { AppProviders } from "./providers/app-providers";
 

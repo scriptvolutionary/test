@@ -1,4 +1,4 @@
-import { useAppStore } from "@/platform/app/state";
+import { useAppStore } from "@/platform/core/state";
 import { logout } from "@/platform/features/auth";
 import { useAuthStore } from "@/platform/features/auth/model/auth.store";
 import { configureHttp } from "@/platform/infra/http";

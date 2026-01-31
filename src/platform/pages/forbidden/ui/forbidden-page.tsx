@@ -1,10 +1,10 @@
 import { useSearch } from "@tanstack/react-router";
 import { Lock } from "lucide-react";
 
-import { ModuleFeedbackButton } from "@/platform/app/ui/module-feedback-button";
-import { StatusActions } from "@/platform/app/ui/status-actions";
-
 import { StatusPage } from "@/shared/ui/status-page";
+
+import { ModuleFeedbackButton } from "@/platform/core/ui/module-feedback-button";
+import { StatusActions } from "@/platform/core/ui/status-actions";
 
 function ForbiddenPageComponent() {
 	const { from } = useSearch({ from: "/forbidden" });

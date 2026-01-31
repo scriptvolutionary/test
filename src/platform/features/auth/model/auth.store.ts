@@ -4,7 +4,7 @@ import {
 	clearAuthToken,
 	getAuthToken,
 	setAuthToken,
-} from "@/platform/infra/token-storage";
+} from "@/platform/infra/auth-token";
 
 type AuthState = {
 	token: string | null;

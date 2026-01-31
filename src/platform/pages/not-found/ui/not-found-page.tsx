@@ -1,11 +1,11 @@
 import { useLocation } from "@tanstack/react-router";
 import { BadgeAlertIcon } from "lucide-react";
 
-import { ModuleFeedbackButton } from "@/platform/app/ui/module-feedback-button";
-import { StatusActions } from "@/platform/app/ui/status-actions";
-
 import { Kbd } from "@/shared/ui/primitives/kbd";
 import { StatusPage } from "@/shared/ui/status-page";
+
+import { ModuleFeedbackButton } from "@/platform/core/ui/module-feedback-button";
+import { StatusActions } from "@/platform/core/ui/status-actions";
 
 function NotFoundPageComponent() {
 	const location = useLocation();

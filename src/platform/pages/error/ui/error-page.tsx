@@ -1,10 +1,10 @@
 import { useLocation } from "@tanstack/react-router";
 import { AlertTriangleIcon } from "lucide-react";
 
-import { ModuleFeedbackButton } from "@/platform/app/ui/module-feedback-button";
-import { StatusActions } from "@/platform/app/ui/status-actions";
-
 import { StatusPage } from "@/shared/ui/status-page";
+
+import { ModuleFeedbackButton } from "@/platform/core/ui/module-feedback-button";
+import { StatusActions } from "@/platform/core/ui/status-actions";
 
 function getErrorMessage(error: unknown) {
 	if (error instanceof Error) return error.message;

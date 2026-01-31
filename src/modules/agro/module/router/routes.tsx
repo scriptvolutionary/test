@@ -1,6 +1,6 @@
 import { createRoute, redirect } from "@tanstack/react-router";
 
-import { protectedRoute } from "@/platform/app/routes";
+import { protectedRoute } from "@/platform/core/routes";
 
 export const rootRoute = createRoute({
 	getParentRoute: () => protectedRoute,
