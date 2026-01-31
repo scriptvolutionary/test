@@ -20,6 +20,7 @@ function StatusActions({
 		<>
 			{showDashboard ? (
 				<Button
+					nativeButton={false}
 					render={
 						<Link className="inline-flex items-center gap-2" to={dashboardTo}>
 							<LayoutDashboardIcon />В дашборд

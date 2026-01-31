@@ -292,6 +292,124 @@
 					"onemptied"
 				]
 			}
+		},
+
+		{
+			"includes": ["src/shared/**/*.{ts,tsx}"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"patterns": [
+									{
+										"group": ["@/platform/**", "@/modules/**", "@/app/**"],
+										"message": "shared не должен зависеть от platform/modules/app."
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["src/platform/infra/**/*.{ts,tsx}"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"patterns": [
+									{
+										"group": [
+											"@/platform/core/**",
+											"@/platform/features/**",
+											"@/platform/entities/**",
+											"@/platform/pages/**",
+											"@/platform/public/**"
+										],
+										"message": "platform/infra должен зависеть только от shared и внешних пакетов. Используй DI/инициализацию в core."
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["src/platform/**/*.{ts,tsx}"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"patterns": [
+									{
+										"group": ["@/app/**", "@/modules/**"],
+										"message": "platform не должен импортировать app или modules."
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["src/modules/**/*.{ts,tsx}"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"patterns": [
+									{
+										"group": [
+											"@/platform/infra/**",
+											"@/platform/core/**",
+											"@/platform/pages/**"
+										],
+										"message": "modules: запрещён импорт из platform/infra|core|pages. Используй platform/public/*."
+									},
+									{
+										"group": [
+											"@/platform/features/**",
+											"@/platform/entities/**"
+										],
+										"message": "modules: не импортируй platform/features или platform/entities напрямую. Используй platform/public/*."
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["src/app/**/*.{ts,tsx}"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"patterns": [
+									{
+										"group": ["@/platform/infra/**"],
+										"message": "В app запрещён прямой импорт из platform/infra. Используй platform/core/* или platform/public/*."
+									}
+								]
+							}
+						}
+					}
+				}
+			}
 		}
 	],
 	"assist": {

@@ -1,6 +1,6 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
 
-import { LoginForm } from "@/platform/features/auth/login";
+import { LoginForm } from "@/platform/features/auth";
 
 export function LoginPageComponent() {
 	const navigate = useNavigate();

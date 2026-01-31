@@ -1,9 +1,6 @@
 import { useMemo } from "react";
 
-import {
-	buildSupportMessage,
-	type SupportReport,
-} from "@/shared/lib/utils/support-message";
+import { buildSupportMessage, type SupportReport } from "@/shared/lib/utils";
 import { TelegramFeedbackButton } from "@/shared/ui/telegram-feedback-button";
 
 import { useAppStore } from "@/platform/core/state";

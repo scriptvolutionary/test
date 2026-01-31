@@ -9,7 +9,7 @@ export function getAuthToken(): string | null {
 export function setAuthToken(token: string): void {
 	Cookies.set(TOKEN_COOKIE_KEY, token, {
 		sameSite: "lax",
-		secure: true,
+		secure: import.meta.env.PROD,
 	});
 }
 

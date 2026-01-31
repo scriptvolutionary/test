@@ -1,6 +1,7 @@
 import { resolve } from "node:path";
 
 import tailwindcss from "@tailwindcss/vite";
+import { devtools } from "@tanstack/devtools-vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv } from "vite";
@@ -25,6 +26,22 @@ export default defineConfig(({ mode }) => {
 		preview: createServerConfig({ host: "localhost", port: 4443 }),
 
 		plugins: [
+			devtools({
+				removeDevtoolsOnBuild: true,
+				eventBusConfig: {
+					port: 4001,
+					debug: env.NEXUS_APP_DEBUG === "true",
+				},
+				editor: {
+					name: "VSCode",
+					open: async (path, lineNumber, columnNumber) => {
+						const { exec } = await import("node:child_process");
+						exec(
+							`code -g "${(path).replaceAll("$", "\\$")}${lineNumber ? `:${lineNumber}` : ""}${columnNumber ? `:${columnNumber}` : ""}"`,
+						);
+					},
+				},
+			}),
 			tanstackRouter({
 				target: "react",
 				autoCodeSplitting: true,

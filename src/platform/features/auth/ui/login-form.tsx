@@ -11,7 +11,7 @@ import {
 } from "@/shared/ui/primitives/field";
 import { Input } from "@/shared/ui/primitives/input";
 
-import { useLoginMutation } from "../model/login.mutation";
+import { useLoginMutation } from "../model/auth.mutations";
 
 const formSchema = z.object({
 	email: z.email("Введите корректный email"),

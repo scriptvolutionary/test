@@ -19,6 +19,7 @@ export function TelegramFeedbackButton({
 	return (
 		<Button
 			{...props}
+			nativeButton={false}
 			variant={props.variant ?? "outline"}
 			render={
 				<a
