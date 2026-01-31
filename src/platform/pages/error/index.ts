@@ -1,1 +1,1 @@
-export * from "./ui/error-page";
+export * from "./ui";

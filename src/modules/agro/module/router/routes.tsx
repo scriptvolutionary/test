@@ -1,12 +1,19 @@
-import { createRoute, redirect } from "@tanstack/react-router";
+import { createRoute, Outlet } from "@tanstack/react-router";
 
-import { protectedRoute } from "@/platform/core/routes";
+import { moduleRoute } from "@/platform/sdk/routes";
+import { useSessionStore } from "@/platform/sdk/store";
 
 export const rootRoute = createRoute({
-	getParentRoute: () => protectedRoute,
-	path: "a",
-	beforeLoad: ({ location }) => {
-		throw redirect({ to: "/forbidden", search: { from: location.pathname } });
+	getParentRoute: () => moduleRoute,
+	path: "/",
+	beforeLoad: () => {
+		useSessionStore.getState().setModule("agro");
 	},
+	component: Outlet,
+});
+
+export const indexRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "/",
 	component: () => <div>AGRO</div>,
 });

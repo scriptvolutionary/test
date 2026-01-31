@@ -1,1 +1,1 @@
-export * from "./ui/forbidden-page";
+export * from "./ui";

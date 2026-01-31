@@ -1,9 +1,15 @@
-import { createRoute } from "@tanstack/react-router";
+import { createRoute, Outlet } from "@tanstack/react-router";
 
-import { protectedRoute } from "@/platform/core/routes";
+import { moduleRoute } from "@/platform/sdk/routes";
 
 export const rootRoute = createRoute({
-	getParentRoute: () => protectedRoute,
-	path: "c",
+	getParentRoute: () => moduleRoute,
+	path: "/",
+	component: Outlet,
+});
+
+export const indexRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "/",
 	component: () => <div>CSOO</div>,
 });

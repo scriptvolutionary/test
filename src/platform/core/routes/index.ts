@@ -1,6 +1,10 @@
-import { forbiddenRoute, loginRoute } from "./public";
+import { forbiddenRoute, indexRoute, loginRoute } from "./public";
 
-export { protectedRoute } from "./protected";
-export { rootRoute } from "./root";
+export * from "./protected";
+export { rootRoute } from "./public";
 
-export const platformPublicRouteTree = [forbiddenRoute, loginRoute] as const;
+export const platformPublicRouteTree = [
+	indexRoute,
+	forbiddenRoute,
+	loginRoute,
+] as const;

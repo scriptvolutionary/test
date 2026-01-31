@@ -3,8 +3,8 @@ import { RouterProvider } from "@tanstack/react-router";
 
 import { Toaster } from "@/shared/ui/primitives/sonner";
 
-import { useTheme } from "@/platform/core/hooks";
-import { queryClient } from "@/platform/infra/query";
+import { useTheme } from "@/platform/sdk/hooks";
+import { queryClient } from "@/platform/sdk/query";
 
 import { router } from "@/app/router";
 

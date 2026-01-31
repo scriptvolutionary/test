@@ -1,4 +1,4 @@
-import { type Theme, useAppStore } from "../state";
+import { type Theme, useSettingsStore } from "../state";
 
 export const setColorScheme = (theme: Theme) => {
 	const root = document.documentElement;
@@ -13,9 +13,9 @@ export const setColorScheme = (theme: Theme) => {
 };
 
 export const initThemeSync = () => {
-	setColorScheme(useAppStore.getState().theme);
+	setColorScheme(useSettingsStore.getState().theme);
 
-	useAppStore.subscribe((state, prev) => {
+	useSettingsStore.subscribe((state, prev) => {
 		if (state.theme !== prev.theme) {
 			setColorScheme(state.theme);
 		}
@@ -23,7 +23,7 @@ export const initThemeSync = () => {
 
 	const media = window.matchMedia("(prefers-color-scheme: dark)");
 	const onChange = () => {
-		if (useAppStore.getState().theme === "system") {
+		if (useSettingsStore.getState().theme === "system") {
 			setColorScheme("system");
 		}
 	};

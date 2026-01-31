@@ -375,14 +375,14 @@
 											"@/platform/core/**",
 											"@/platform/pages/**"
 										],
-										"message": "modules: запрещён импорт из platform/infra|core|pages. Используй platform/public/*."
+										"message": "modules: запрещён импорт из platform/infra|core|pages. Используй platform/sdk/*."
 									},
 									{
 										"group": [
 											"@/platform/features/**",
 											"@/platform/entities/**"
 										],
-										"message": "modules: не импортируй platform/features или platform/entities напрямую. Используй platform/public/*."
+										"message": "modules: не импортируй platform/features или platform/entities напрямую. Используй platform/sdk/*."
 									}
 								]
 							}
@@ -402,7 +402,7 @@
 								"patterns": [
 									{
 										"group": ["@/platform/infra/**"],
-										"message": "В app запрещён прямой импорт из platform/infra. Используй platform/core/* или platform/public/*."
+										"message": "В app запрещён прямой импорт из platform/infra. Используй platform/sdk/*."
 									}
 								]
 							}

@@ -1,12 +1,15 @@
 import { createRouter } from "@tanstack/react-router";
 
-import {
-	platformPublicRouteTree,
-	protectedRoute,
-	rootRoute,
-} from "@/platform/core/routes";
 import { ErrorPageComponent } from "@/platform/pages/error";
 import { NotFoundPageComponent } from "@/platform/pages/not-found";
+import {
+	moduleRoute,
+	modulesRoute,
+	platformPublicRouteTree,
+	platformRoute,
+	protectedRoute,
+	rootRoute,
+} from "@/platform/sdk/routes";
 
 import { getEnabledModules } from "@/app/modules/registry";
 
@@ -15,7 +18,14 @@ function createAppRouter() {
 
 	const routeTree = rootRoute.addChildren([
 		...platformPublicRouteTree,
-		protectedRoute.addChildren(enabledModules.map((m) => m.routeTree)),
+
+		protectedRoute.addChildren([
+			platformRoute.addChildren([
+				modulesRoute.addChildren([
+					moduleRoute.addChildren(enabledModules.map((m) => m.routeTree)),
+				]),
+			]),
+		]),
 	]);
 
 	return createRouter({

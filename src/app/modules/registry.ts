@@ -1,6 +1,6 @@
 import type { AnyRoute } from "@tanstack/react-router";
 
-import { isModuleEnabled, type Module } from "@/platform/infra/config";
+import { isModuleEnabled, type Module } from "@/platform/sdk/modules";
 
 import { routeTree as agroTree } from "@/modules/agro";
 import { routeTree as csooTree } from "@/modules/csoo";

@@ -58,7 +58,6 @@ export default defineConfig(({ mode }) => {
 		define: {
 			__API_HOST__: JSON.stringify(env.NEXUS_API_HOST),
 			__API_PORT__: JSON.stringify(env.NEXUS_API_PORT),
-			__ENV__: JSON.stringify(env.NEXUS_APP_ENV),
 			__DEBUG_MODE__: env.NEXUS_APP_DEBUG === "true",
 			__ENABLED_MODULES__: JSON.stringify(
 				JSON.parse(env.NEXUS_ENABLED_MODULES),
