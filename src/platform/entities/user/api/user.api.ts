@@ -1,8 +1,8 @@
-import { http } from "@/platform/app/http";
-
 import { buildQueryParams } from "@/shared/api/query-params";
 import type { ApiResponse } from "@/shared/types/api-response";
 import type { ListParams } from "@/shared/types/list-params";
+
+import { http } from "@/platform/infra/http";
 
 import type {
 	User,

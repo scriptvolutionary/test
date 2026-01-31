@@ -1,0 +1,18 @@
+import Cookies from "js-cookie";
+
+const TOKEN_COOKIE_KEY = "token";
+
+export function getAuthToken(): string | null {
+	return Cookies.get(TOKEN_COOKIE_KEY) ?? null;
+}
+
+export function setAuthToken(token: string): void {
+	Cookies.set(TOKEN_COOKIE_KEY, token, {
+		sameSite: "lax",
+		secure: true,
+	});
+}
+
+export function clearAuthToken(): void {
+	Cookies.remove(TOKEN_COOKIE_KEY);
+}

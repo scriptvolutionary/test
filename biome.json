@@ -132,6 +132,7 @@
 					"complexity": { "noUselessTypeConstraint": "error" },
 					"correctness": { "noUnusedVariables": "error" },
 					"style": {
+						"noRestrictedImports": "error",
 						"noCommonJs": "error",
 						"noNamespace": "error",
 						"useArrayLiterals": "error",

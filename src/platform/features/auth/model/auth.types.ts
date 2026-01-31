@@ -1,6 +1,6 @@
-import type { SessionUser } from "@/platform/entities/user";
-
 import type { ApiResponse } from "@/shared/types/api-response";
+
+import type { SessionUser } from "@/platform/entities/user";
 
 export type LoginPayload = { email: string; password: string };
 
