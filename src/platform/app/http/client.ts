@@ -1,5 +1,6 @@
 import { useAppStore } from "@/platform/app/state";
-import { baseHttp } from "@/platform/infra/http-client";
+import { clearAuthToken, getAuthToken } from "@/platform/infra/auth-token";
+import { baseHttp } from "@/platform/infra/http";
 
 export const http = baseHttp;
 
@@ -12,3 +13,24 @@ http.interceptors.request.use((config) => {
 
 	return config;
 });
+
+http.interceptors.request.use((config) => {
+	const token = getAuthToken();
+	if (token) {
+		config.headers = config.headers ?? {};
+		if (!("Authorization" in config.headers)) {
+			config.headers.Authorization = `Bearer ${token}`;
+		}
+	}
+	return config;
+});
+
+http.interceptors.response.use(
+	(res) => res,
+	(error) => {
+		if (error?.response?.status === 401) {
+			clearAuthToken();
+		}
+		return Promise.reject(error);
+	},
+);

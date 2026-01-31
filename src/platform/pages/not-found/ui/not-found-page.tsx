@@ -2,11 +2,12 @@ import { useLocation } from "@tanstack/react-router";
 import { BadgeAlertIcon } from "lucide-react";
 
 import { ModuleFeedbackButton } from "@/platform/app/ui/module-feedback-button";
+import { StatusActions } from "@/platform/app/ui/status-actions";
 
 import { Kbd } from "@/shared/ui/primitives/kbd";
 import { StatusPage } from "@/shared/ui/status-page";
 
-export function NotFoundPageComponent() {
+function NotFoundPageComponent() {
 	const location = useLocation();
 
 	return (
@@ -22,15 +23,21 @@ export function NotFoundPageComponent() {
 					не существует.
 				</>
 			}
-			feedbackButton={
-				<ModuleFeedbackButton
-					url={location.href}
-					report={{
-						code: 404,
-						title: "Произошла ошибка при открытии страницы.",
-					}}
+			actions={
+				<StatusActions
+					feedbackButton={
+						<ModuleFeedbackButton
+							url={location.href}
+							report={{
+								code: 404,
+								title: "Произошла ошибка при открытии страницы.",
+							}}
+						/>
+					}
 				/>
 			}
 		/>
 	);
 }
+
+export { NotFoundPageComponent };

@@ -1,7 +1,7 @@
 import { Input as InputPrimitive } from "@base-ui/react/input";
 import * as React from "react";
 
-import { cn } from "@/shared/lib/cn";
+import { cn } from "@/shared/lib/utils/cn";
 
 function Input({
 	className,

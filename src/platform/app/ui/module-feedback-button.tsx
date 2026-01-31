@@ -2,7 +2,10 @@ import { useMemo } from "react";
 
 import { useAppStore } from "@/platform/app/state";
 
-import { buildSupportMessage, type SupportReport } from "@/shared/lib/cn";
+import {
+	buildSupportMessage,
+	type SupportReport,
+} from "@/shared/lib/utils/support-message";
 import { TelegramFeedbackButton } from "@/shared/ui/telegram-feedback-button";
 
 interface ModuleFeedbackButtonProps {

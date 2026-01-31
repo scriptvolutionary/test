@@ -3,7 +3,7 @@ import type { Region } from "@/platform/entities/region";
 import type { Role } from "@/platform/entities/role";
 import type { Status } from "@/platform/entities/status";
 
-import type { WithId } from "@/shared/types/entities";
+import type { WithId } from "@/shared/types/base-entities";
 
 export type UserName = {
 	lastname: string | null;

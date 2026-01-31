@@ -1,3 +1,3 @@
-import type { IdSysnameName } from "@/shared/types/entities";
+import type { IdSysnameName } from "@/shared/types/base-entities";
 
 export type Role = IdSysnameName;

@@ -1,6 +1,8 @@
 import { http } from "@/platform/app/http";
 
-import type { ApiResponse } from "@/shared/types/api";
+import { buildQueryParams } from "@/shared/api/query-params";
+import type { ApiResponse } from "@/shared/types/api-response";
+import type { ListParams } from "@/shared/types/list-params";
 
 import type {
 	User,
@@ -8,7 +10,18 @@ import type {
 	UserUpdatePayload,
 } from "../model/user.types";
 
-export async function getUser(id: number): Promise<ApiResponse<User>> {
+export type UsersListParams = ListParams;
+
+export async function fetchUsers(
+	params: UsersListParams = {},
+): Promise<ApiResponse<User[]>> {
+	const { data } = await http.get<ApiResponse<User[]>>("/users", {
+		params: buildQueryParams(params),
+	});
+	return data;
+}
+
+export async function fetchUserById(id: number): Promise<ApiResponse<User>> {
 	const { data } = await http.get<ApiResponse<User>>(`/users/${id}`);
 	return data;
 }
@@ -20,7 +33,7 @@ export async function createUser(
 	return data;
 }
 
-export async function updateUser(
+export async function updateUserById(
 	id: number,
 	payload: UserUpdatePayload,
 ): Promise<ApiResponse<User>> {
@@ -28,17 +41,17 @@ export async function updateUser(
 	return data;
 }
 
-export async function deleteUser(id: number): Promise<ApiResponse<null>> {
+export async function removeUserById(id: number): Promise<ApiResponse<null>> {
 	const { data } = await http.delete<ApiResponse<null>>(`/users/${id}`);
 	return data;
 }
 
-export async function blockUser(id: number): Promise<ApiResponse<null>> {
+export async function blockUserById(id: number): Promise<ApiResponse<null>> {
 	const { data } = await http.get<ApiResponse<null>>(`/users/${id}/block`);
 	return data;
 }
 
-export async function unblockUser(id: number): Promise<ApiResponse<null>> {
+export async function unblockUserById(id: number): Promise<ApiResponse<null>> {
 	const { data } = await http.get<ApiResponse<null>>(`/users/${id}/unblock`);
 	return data;
 }

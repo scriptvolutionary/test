@@ -1,6 +1,3 @@
-import { Link } from "@tanstack/react-router";
-import { LayoutDashboardIcon } from "lucide-react";
-
 import {
 	Empty,
 	EmptyContent,
@@ -10,23 +7,15 @@ import {
 	EmptyTitle,
 } from "@/shared/ui/primitives/empty";
 
-import { Button } from "./primitives/button";
-
-type StatusPageProps = {
+interface Props {
 	icon?: React.ReactNode;
 	title: string;
 	description: React.ReactNode | string;
-	feedbackButton: React.ReactNode;
 	details?: React.ReactNode;
-};
+	actions?: React.ReactNode;
+}
 
-export function StatusPage({
-	icon,
-	title,
-	description,
-	feedbackButton,
-	details,
-}: StatusPageProps) {
+function StatusPage({ icon, title, description, details, actions }: Props) {
 	return (
 		<main className="min-h-screen flex items-center justify-center bg-background px-4">
 			<Empty>
@@ -39,18 +28,14 @@ export function StatusPage({
 					{details ? <div className="mt-3">{details}</div> : null}
 				</EmptyHeader>
 
-				<EmptyContent className="flex justify-center flex-row gap-2">
-					<Button
-						render={
-							<Link to="/" className="inline-flex items-center gap-2">
-								<LayoutDashboardIcon /> В дашборд
-							</Link>
-						}
-					/>
-
-					{feedbackButton}
-				</EmptyContent>
+				{actions ? (
+					<EmptyContent className="flex justify-center flex-row gap-2">
+						{actions}
+					</EmptyContent>
+				) : null}
 			</Empty>
 		</main>
 	);
 }
+
+export { StatusPage };

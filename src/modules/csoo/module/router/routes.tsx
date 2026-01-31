@@ -4,6 +4,6 @@ import { protectedRoute } from "@/platform/app/routes";
 
 export const rootRoute = createRoute({
 	getParentRoute: () => protectedRoute,
-	path: "csoo",
+	path: "c",
 	component: () => <div>CSOO</div>,
 });

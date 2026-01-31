@@ -1,18 +1,19 @@
 import { createRouter } from "@tanstack/react-router";
 
-import { protectedRoute, rootRoute } from "@/platform/app/routes";
+import {
+	platformPublicRouteTree,
+	protectedRoute,
+	rootRoute,
+} from "@/platform/app/routes";
+import { ErrorPageComponent } from "@/platform/pages/error";
+import { NotFoundPageComponent } from "@/platform/pages/not-found";
 
 import { getEnabledModules } from "@/app/modules";
-
-import { ErrorPageComponent } from "../pages/error";
-import { NotFoundPageComponent } from "../pages/not-found";
-import { forbiddenRoute, loginRoute } from "./routes";
 
 const enabledModules = getEnabledModules();
 
 const routeTree = rootRoute.addChildren([
-	loginRoute,
-	forbiddenRoute,
+	...platformPublicRouteTree,
 	protectedRoute.addChildren(enabledModules.map((m) => m.routeTree)),
 ]);
 

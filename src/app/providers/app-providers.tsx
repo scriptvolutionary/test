@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RouterProvider } from "@tanstack/react-router";
 
 import { useTheme } from "@/platform/app/hooks";
-import { queryClient } from "@/platform/infra/query-client";
+import { queryClient } from "@/platform/infra/query";
 
 import { router } from "@/app/router";
 
