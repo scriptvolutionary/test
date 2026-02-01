@@ -5,7 +5,7 @@ import { getHttpConfig } from "./configure";
 
 export const http = axios.create({
 	baseURL: runtime.apiUrl,
-	withCredentials: true,
+	timeout: 5_000,
 });
 
 export const baseHttp = http;
@@ -34,6 +34,7 @@ http.interceptors.response.use(
 	(error) => {
 		if (error?.response?.status === 401) {
 			getHttpConfig().onUnauthorized?.();
+			window.location.reload();
 		}
 		return Promise.reject(error);
 	},

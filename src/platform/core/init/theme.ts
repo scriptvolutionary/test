@@ -1,15 +1,21 @@
-import { type Theme, useSettingsStore } from "../state";
+import { type Theme, useSessionStore, useSettingsStore } from "../state";
 
-export const setColorScheme = (theme: Theme) => {
+const resolveScheme = (theme: Theme) => {
+	if (theme === "system") {
+		return window.matchMedia("(prefers-color-scheme: dark)").matches
+			? "dark"
+			: "light";
+	}
+
+	return theme;
+};
+
+const setColorScheme = (theme: Theme) => {
 	const root = document.documentElement;
-	const resolved =
-		theme === "system"
-			? window.matchMedia("(prefers-color-scheme: dark)").matches
-				? "dark"
-				: "light"
-			: theme;
+	const resolved = resolveScheme(theme);
 
 	root.setAttribute("data-theme", resolved);
+	root.setAttribute("data-module", useSessionStore.getState().module);
 };
 
 export const initThemeSync = () => {
@@ -18,6 +24,12 @@ export const initThemeSync = () => {
 	useSettingsStore.subscribe((state, prev) => {
 		if (state.theme !== prev.theme) {
 			setColorScheme(state.theme);
+		}
+	});
+
+	useSessionStore.subscribe((state, prev) => {
+		if (state.module !== prev.module) {
+			setColorScheme(useSettingsStore.getState().theme);
 		}
 	});
 

@@ -1,0 +1,49 @@
+import { EyeIcon, EyeOffIcon, KeyIcon } from "lucide-react";
+import * as React from "react";
+
+import {
+	InputGroup,
+	InputGroupAddon,
+	InputGroupButton,
+	InputGroupInput,
+} from "./primitives/input-group";
+
+interface Props
+	extends Omit<React.ComponentProps<typeof InputGroupInput>, "type"> {
+	defaultShow?: boolean;
+	icon?: boolean;
+}
+
+function PasswordInput({ defaultShow = false, icon = true, ...props }: Props) {
+	const [show, setShow] = React.useState(defaultShow);
+
+	return (
+		<InputGroup>
+			{icon && (
+				<InputGroupAddon>
+					<KeyIcon className="size-4" />
+				</InputGroupAddon>
+			)}
+
+			<InputGroupInput type={show ? "text" : "password"} {...props} />
+
+			<InputGroupAddon align="inline-end">
+				<InputGroupButton
+					type="button"
+					size="icon-xs"
+					aria-label={show ? "Скрыть пароль" : "Показать пароль"}
+					onClick={() => setShow((v) => !v)}
+					disabled={props.disabled}
+				>
+					{show ? (
+						<EyeOffIcon className="size-4" />
+					) : (
+						<EyeIcon className="size-4" />
+					)}
+				</InputGroupButton>
+			</InputGroupAddon>
+		</InputGroup>
+	);
+}
+
+export { PasswordInput };
