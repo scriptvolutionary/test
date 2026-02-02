@@ -28,7 +28,6 @@ function createAppRouter() {
 		routeTree,
 		defaultPreload: "intent",
 		defaultPreloadStaleTime: 0,
-		scrollRestoration: true,
 		context: undefined!,
 		defaultNotFoundComponent: NotFoundPageComponent,
 		defaultErrorComponent: ErrorPageComponent,

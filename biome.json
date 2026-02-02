@@ -329,7 +329,7 @@
 											"@/platform/features/**",
 											"@/platform/entities/**",
 											"@/platform/pages/**",
-											"@/platform/public/**"
+											"@/platform/sdk/**"
 										],
 										"message": "platform/infra должен зависеть только от shared и внешних пакетов. Используй DI/инициализацию в core."
 									}
@@ -370,12 +370,8 @@
 							"options": {
 								"patterns": [
 									{
-										"group": [
-											"@/platform/infra/**",
-											"@/platform/core/**",
-											"@/platform/pages/**"
-										],
-										"message": "modules: запрещён импорт из platform/infra|core|pages. Используй platform/sdk/*."
+										"group": ["@/platform/infra/**", "@/platform/core/**"],
+										"message": "modules: запрещён импорт из platform/infra|core. Используй platform/sdk/*."
 									},
 									{
 										"group": [

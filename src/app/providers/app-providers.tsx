@@ -14,7 +14,6 @@ function AppProviders() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<RouterProvider router={router} context={{ queryClient }} />
-
 			<Toaster theme={theme} />
 		</QueryClientProvider>
 	);

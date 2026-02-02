@@ -43,7 +43,7 @@ function LoginForm({ onSuccess }: Props) {
 	};
 
 	return (
-		<div className="space-y-5">
+		<div className="space-y-6">
 			<form id={FORM} noValidate onSubmit={onSubmit}>
 				<FieldGroup>
 					<form.Field name="email">
@@ -58,7 +58,7 @@ function LoginForm({ onSuccess }: Props) {
 										autoFocus
 										id={field.name}
 										name={field.name}
-										placeholder="name@company.ru"
+										placeholder="mail@inbox.ru"
 										value={field.state.value}
 										disabled={isPending}
 										onBlur={field.handleBlur}

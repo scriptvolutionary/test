@@ -1,7 +1,7 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
 
 import { LoginForm } from "@/platform/features/auth/login/ui/login-form";
-import { AuthPageShell } from "@/platform/pages/auth/ui";
+import { AuthPageShell } from "@/platform/pages/auth/_ui";
 
 export function LoginPageComponent() {
 	const navigate = useNavigate();
@@ -9,8 +9,8 @@ export function LoginPageComponent() {
 
 	return (
 		<AuthPageShell
-			title="Вход в систему"
-			description="Авторизуйтесь чтобы получить доступ."
+			title="Получите доступ"
+			description="Войдите в свою учетную запись используя электронную почту и пароль"
 		>
 			<LoginForm
 				onSuccess={() => navigate({ to: search.redirect ?? "/platform" })}
