@@ -118,7 +118,7 @@ function TwoStepLoginForm({ onSuccess }: Props) {
 												autoFocus
 												id={field.name}
 												name={field.name}
-												placeholder="name@company.com"
+												placeholder="name@company.ru"
 												value={field.state.value}
 												disabled={isPending}
 												onBlur={field.handleBlur}

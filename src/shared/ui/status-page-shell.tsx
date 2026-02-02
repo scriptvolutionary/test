@@ -15,7 +15,13 @@ interface Props {
 	actions?: React.ReactNode;
 }
 
-function StatusPage({ icon, title, description, details, actions }: Props) {
+function StatusPageShell({
+	icon,
+	title,
+	description,
+	details,
+	actions,
+}: Props) {
 	return (
 		<main className="min-h-screen flex items-center justify-center bg-background px-4">
 			<Empty>
@@ -38,4 +44,4 @@ function StatusPage({ icon, title, description, details, actions }: Props) {
 	);
 }
 
-export { StatusPage };
+export { StatusPageShell };

@@ -57,7 +57,7 @@
 }
 
 :root {
-	--radius: 0.625rem;
+	--radius: 0.75rem;
 	--background: oklch(0.967 0.001 286.375);
 	--foreground: oklch(0.141 0.005 285.823);
 	--card: oklch(0.957 0.001 286.375);
@@ -152,7 +152,7 @@
 	--font-serif: Space Grotesk, ui-sans-serif, sans-serif;
 	--font-mono: Geist Mono, ui-monospace, monospace;
 
-	--radius: 0.625rem;
+	--radius: 0.75rem;
 	--background: oklch(0.967 0.001 286.375);
 	--foreground: oklch(0.141 0.005 285.823);
 	--card: oklch(0.957 0.001 286.375);
@@ -248,7 +248,7 @@
 	}
 
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-background text-foreground antialiased font-sans overscroll-none;
 	}
 
 	input[type="search"]::-webkit-search-cancel-button {

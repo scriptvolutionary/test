@@ -1,4 +1,4 @@
-import { EyeIcon, EyeOffIcon, KeyIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, LockIcon } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -21,7 +21,7 @@ function PasswordInput({ defaultShow = false, icon = true, ...props }: Props) {
 		<InputGroup>
 			{icon && (
 				<InputGroupAddon>
-					<KeyIcon className="size-4" />
+					<LockIcon className="size-4" />
 				</InputGroupAddon>
 			)}
 

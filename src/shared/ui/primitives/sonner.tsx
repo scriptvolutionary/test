@@ -30,6 +30,7 @@ const Toaster = ({ theme, ...props }: ToasterProps) => {
 				} as React.CSSProperties
 			}
 			toastOptions={{
+				descriptionClassName: "!text-muted-foreground",
 				classNames: {
 					toast: "cn-toast",
 				},

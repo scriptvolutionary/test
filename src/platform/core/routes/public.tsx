@@ -9,7 +9,7 @@ import z from "zod";
 
 import { getAuthToken } from "@/platform/infra/auth-token";
 import { ForbiddenPageComponent } from "@/platform/pages/forbidden";
-import { LoginPageComponent } from "@/platform/pages/login";
+import { LoginPageComponent } from "@/platform/pages/auth/login";
 
 import { Devtools } from "../devtools";
 

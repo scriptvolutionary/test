@@ -1,7 +1,7 @@
 import { useLocation } from "@tanstack/react-router";
 import { AlertTriangleIcon } from "lucide-react";
 
-import { StatusPage } from "@/shared/ui/status-page";
+import { StatusPageShell } from "@/shared/ui/status-page-shell";
 
 import { ModuleFeedbackButton } from "@/platform/core/ui/module-feedback-button";
 import { StatusActions } from "@/platform/core/ui/status-actions";
@@ -20,7 +20,7 @@ function ErrorPageComponent({ error }: Props) {
 	const message = getErrorMessage(error);
 
 	return (
-		<StatusPage
+		<StatusPageShell
 			icon={<AlertTriangleIcon />}
 			title="500 - Произошла ошибка"
 			description="Что-то пошло не так. Попробуйте обновить страницу или вернуться в приложение."
