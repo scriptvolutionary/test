@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap");
-
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -57,7 +55,7 @@
 }
 
 :root {
-	--radius: 0.75rem;
+	--radius: 0.65rem;
 	--background: oklch(0.967 0.001 286.375);
 	--foreground: oklch(0.141 0.005 285.823);
 	--card: oklch(0.957 0.001 286.375);
@@ -148,11 +146,6 @@
 }
 
 [data-module="agroservice"] {
-	--font-sans: Geist, ui-sans-serif, sans-serif;
-	--font-serif: Space Grotesk, ui-sans-serif, sans-serif;
-	--font-mono: Geist Mono, ui-monospace, monospace;
-
-	--radius: 0.75rem;
 	--background: oklch(0.967 0.001 286.375);
 	--foreground: oklch(0.141 0.005 285.823);
 	--card: oklch(0.957 0.001 286.375);

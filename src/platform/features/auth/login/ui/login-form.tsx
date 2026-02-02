@@ -2,21 +2,20 @@
 import { useForm } from "@tanstack/react-form";
 import * as React from "react";
 
+import { AsyncButton } from "@/shared/ui/async-button";
 import { EmailInput } from "@/shared/ui/email-input";
 import { PasswordInput } from "@/shared/ui/password-input";
-import { Button } from "@/shared/ui/primitives/button";
 import {
 	Field,
 	FieldError,
 	FieldGroup,
 	FieldLabel,
 } from "@/shared/ui/primitives/field";
-import { Spinner } from "@/shared/ui/primitives/spinner";
 
 import { useLoginMutation } from "../model/login.mutation";
 import { loginSchema } from "../model/login.schema";
 
-const FORM_ID = "two-step-login-form" as const;
+const FORM = "login-form" as const;
 
 interface Props {
 	onSuccess: () => void;
@@ -25,6 +24,8 @@ interface Props {
 function LoginForm({ onSuccess }: Props) {
 	const loginMutation = useLoginMutation();
 	const isPending = loginMutation.isPending;
+
+	const passwordRef = React.useRef<HTMLInputElement>(null);
 
 	const form = useForm({
 		defaultValues: { email: "", password: "" },
@@ -37,15 +38,13 @@ function LoginForm({ onSuccess }: Props) {
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
 		if (isPending) return;
-
 		form.handleSubmit();
 	};
 
 	return (
 		<div className="space-y-5">
-			<form id={FORM_ID} noValidate onSubmit={onSubmit}>
+			<form id={FORM} noValidate onSubmit={onSubmit}>
 				<FieldGroup>
 					<form.Field name="email">
 						{(field) => {
@@ -64,7 +63,15 @@ function LoginForm({ onSuccess }: Props) {
 										disabled={isPending}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
+										enterKeyHint="next"
 										aria-invalid={isInvalid}
+										onKeyDown={(e) => {
+											if (e.key !== "Enter") return;
+											e.preventDefault();
+											field.handleBlur();
+											if (!field.state.value) return;
+											passwordRef.current?.focus();
+										}}
 									/>
 									{isInvalid && <FieldError errors={field.state.meta.errors} />}
 								</Field>
@@ -80,15 +87,17 @@ function LoginForm({ onSuccess }: Props) {
 								<Field>
 									<FieldLabel>Пароль</FieldLabel>
 									<PasswordInput
+										ref={passwordRef}
 										id={field.name}
 										name={field.name}
 										autoComplete="current-password"
-										placeholder="••••••••"
+										placeholder="●●●●●●●●"
 										value={field.state.value}
 										disabled={isPending}
 										onBlur={field.handleBlur}
 										onChange={(e) => field.handleChange(e.target.value)}
 										aria-invalid={isInvalid}
+										enterKeyHint="done"
 									/>
 									{isInvalid && <FieldError errors={field.state.meta.errors} />}
 								</Field>
@@ -97,22 +106,9 @@ function LoginForm({ onSuccess }: Props) {
 					</form.Field>
 				</FieldGroup>
 			</form>
-			<Button
-				className="w-full"
-				type="submit"
-				size="lg"
-				form={FORM_ID}
-				disabled={isPending}
-			>
-				{isPending ? (
-					<>
-						<Spinner className="size-4 animate-spin" />
-						Входим…
-					</>
-				) : (
-					"Авторизоваться"
-				)}
-			</Button>
+			<Field>
+				<AsyncButton form={FORM} isPending={isPending} label="Авторизоваться" />
+			</Field>
 		</div>
 	);
 }
