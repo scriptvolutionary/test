@@ -103,6 +103,7 @@ export function defineHead(
 	};
 }
 
+/** TODO: ??? */
 export function defineHeadFn(
 	factory: (ctx: any) => DefineHeadInput,
 	options?: { defaults?: Partial<DefineHeadDefaults> },

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { LayoutDashboardIcon } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 
 import { Button } from "@/shared/ui/primitives/button";
 
@@ -23,7 +23,8 @@ function StatusActions({
 					nativeButton={false}
 					render={
 						<Link className="inline-flex items-center gap-2" to={dashboardTo}>
-							<LayoutDashboardIcon />В дашборд
+							<HomeIcon />
+							На главную
 						</Link>
 					}
 				/>

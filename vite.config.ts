@@ -62,6 +62,7 @@ export default defineConfig(({ mode }) => {
 		},
 
 		define: {
+			__USE_SLI__: env.NEXUS_USE_SLI === "true",
 			__APP_VERSION__: JSON.stringify(pkg.version),
 			__API_HOST__: JSON.stringify(env.NEXUS_API_HOST),
 			__API_PORT__: JSON.stringify(env.NEXUS_API_PORT),

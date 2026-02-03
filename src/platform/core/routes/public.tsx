@@ -12,9 +12,10 @@ import { defineHead } from "@/shared/lib/seo";
 
 import { getAuthToken } from "@/platform/infra/auth-token";
 import { LoginPageComponent } from "@/platform/pages/auth/login";
-import { ForbiddenPageComponent } from "@/platform/pages/forbidden";
+import { ForbiddenPageComponent } from "@/platform/pages/errors/forbidden";
 
 import { Devtools } from "../devtools";
+import { PendingIndicator } from "../ui/pending-indicator";
 
 export const rootRoute = createRootRouteWithContext<{
 	queryClient: QueryClient;
@@ -22,7 +23,10 @@ export const rootRoute = createRootRouteWithContext<{
 	component: () => (
 		<>
 			<HeadContent />
+
 			<Outlet />
+			<PendingIndicator />
+
 			<Devtools />
 		</>
 	),

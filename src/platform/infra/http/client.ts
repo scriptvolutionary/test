@@ -8,8 +8,6 @@ export const http = axios.create({
 	timeout: 5_000,
 });
 
-export const baseHttp = http;
-
 http.interceptors.request.use((config) => {
 	const { getModuleKey, getToken } = getHttpConfig();
 

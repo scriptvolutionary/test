@@ -1,1 +1,1 @@
-export { baseHttp, http } from "@/platform/infra/http";
+export { http } from "@/platform/infra/http";

@@ -1,10 +1,27 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
 import { useSessionStore, useSettingsStore } from "@/platform/core/state";
 
-export function initStoresSync() {
-	const settings = useSettingsStore.getState();
-	settings.setTheme(settings.theme);
-	settings.setLocale(settings.locale);
+async function seedIfMissing(store: any, storageKey: string) {
+	const storage = store.persist?.getOptions?.().storage;
+	const getItem = storage?.getItem?.bind(storage);
+	const setItem = storage?.setItem?.bind(storage);
 
-	const session = useSessionStore.getState();
-	session.setModule(session.module);
+	if (!getItem || !setItem) return;
+
+	const existing = await getItem(storageKey);
+	if (existing != null) return;
+
+	store.setState(store.getState(), true);
+}
+
+export async function initStoresSync() {
+	await Promise.all([
+		useSettingsStore.persist.rehydrate(),
+		useSessionStore.persist.rehydrate(),
+	]);
+
+	await Promise.all([
+		seedIfMissing(useSettingsStore, "settings-store"),
+		seedIfMissing(useSessionStore, "session-store"),
+	]);
 }

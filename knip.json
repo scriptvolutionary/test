@@ -1,0 +1,29 @@
+{
+	"$schema": "https://unpkg.com/knip@5/schema.json",
+
+	"entry": ["src/app/entry.tsx", "vite.config.ts"],
+
+	"project": ["src/**/*.{ts,tsx,js,jsx}", "vite.config.ts"],
+
+	"typescript": {
+		"config": "tsconfig.app.json"
+	},
+
+	"ignore": [
+		"public/**",
+		"dist/**",
+		"node_modules/**",
+
+		"src/app/ambient/**",
+		"**/*.d.ts",
+
+		"**/*.test.*",
+		"**/*.spec.*",
+		"**/*.stories.*",
+
+		"**/__tests__/**",
+		"**/__mocks__/**"
+	],
+
+	"ignoreDependencies": ["@types/*"]
+}

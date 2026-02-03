@@ -8,10 +8,8 @@ const modulesRegistry = {
 	csoo: { routeTree: csooTree },
 };
 
-function getEnabledModules() {
+export function getEnabledModules() {
 	return (Object.keys(modulesRegistry) as Module[])
 		.filter((key) => isModuleEnabled(key))
 		.map((key) => ({ key, routeTree: modulesRegistry[key].routeTree }));
 }
-
-export { getEnabledModules, modulesRegistry };

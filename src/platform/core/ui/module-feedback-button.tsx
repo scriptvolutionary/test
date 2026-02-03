@@ -1,22 +1,25 @@
-import { useMemo } from "react";
+import React from "react";
 
 import { buildSupportMessage, type SupportReport } from "@/shared/lib/utils";
+import type { ButtonProps } from "@/shared/ui/primitives/button";
 import { TelegramFeedbackButton } from "@/shared/ui/telegram-feedback-button";
 
-import { useModule } from "../hooks";
+import { useCurrentModule } from "../hooks";
 
 interface ModuleFeedbackButtonProps {
 	url?: string;
 	report: Omit<SupportReport, "url" | "module"> & { module?: string };
+	variant?: ButtonProps["variant"];
 }
 
-export function ModuleFeedbackButton({
+function ModuleFeedbackButton({
 	url,
+	variant,
 	report,
 }: ModuleFeedbackButtonProps) {
-	const { module } = useModule();
+	const { module } = useCurrentModule();
 
-	const message = useMemo(() => {
+	const message = React.useMemo(() => {
 		return buildSupportMessage({
 			...report,
 			url,
@@ -24,5 +27,7 @@ export function ModuleFeedbackButton({
 		});
 	}, [report, url, module]);
 
-	return <TelegramFeedbackButton message={message} />;
+	return <TelegramFeedbackButton variant={variant} message={message} />;
 }
+
+export { ModuleFeedbackButton };

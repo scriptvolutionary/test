@@ -11,12 +11,17 @@ import {
 
 import { AppProviders } from "./providers/app-providers";
 
-initStoresSync();
-initThemeSync();
-initHttpSync();
+async function bootstrap() {
+	await initStoresSync();
 
-createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<AppProviders />
-	</StrictMode>,
-);
+	initThemeSync();
+	initHttpSync();
+
+	createRoot(document.getElementById("root")!).render(
+		<StrictMode>
+			<AppProviders />
+		</StrictMode>,
+	);
+}
+
+void bootstrap();

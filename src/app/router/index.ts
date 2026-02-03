@@ -1,7 +1,7 @@
 import { createRouter } from "@tanstack/react-router";
 
-import { ErrorPageComponent } from "@/platform/pages/error";
-import { NotFoundPageComponent } from "@/platform/pages/not-found";
+import { ErrorPageComponent } from "@/platform/pages/errors/error";
+import { NotFoundPageComponent } from "@/platform/pages/errors/not-found";
 import {
 	moduleRoute,
 	platformRoute,

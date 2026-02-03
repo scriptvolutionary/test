@@ -1,4 +1,7 @@
+import { CircuitBoardIcon } from "lucide-react";
 import { lazy, Suspense } from "react";
+
+import { Button } from "@/shared/ui/primitives/button";
 
 import { runtime } from "@/platform/infra/config";
 
@@ -16,6 +19,16 @@ const LazyDevtools = lazy(async () => {
 	function DevtoolsInner() {
 		return (
 			<TanStackDevtools
+				config={{
+					customTrigger: () => {
+						return (
+							<Button className="opacity-50 hover:opacity-100" variant="ghost">
+								<CircuitBoardIcon />
+								ПАНЕЛЬ РАЗРАБОТЧИКА
+							</Button>
+						);
+					},
+				}}
 				plugins={[
 					{
 						name: "TanStack Query",
