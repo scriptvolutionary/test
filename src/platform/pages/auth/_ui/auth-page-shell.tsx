@@ -1,7 +1,6 @@
 import { useLocation } from "@tanstack/react-router";
 import * as React from "react";
 
-import { Backdrop } from "@/shared/ui/backdrop";
 import {
 	Card,
 	CardContent,
@@ -27,7 +26,6 @@ function AuthPageShell({ title, description, children }: AuthPageShellProps) {
 
 	return (
 		<PublicPageShell
-			backdrop={<Backdrop mode="public" />}
 			headerAction={
 				<ModuleFeedbackButton
 					variant="ghost"

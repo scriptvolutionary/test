@@ -1,38 +1,34 @@
 import { Link } from "@tanstack/react-router";
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, MoveLeftIcon } from "lucide-react";
 
 import { Button } from "@/shared/ui/primitives/button";
 
-interface Props {
-	showDashboard?: boolean;
-	dashboardTo?: string;
-	extra?: React.ReactNode;
-	feedbackButton?: React.ReactNode;
-}
+import { useCurrentModule } from "../hooks";
 
-function StatusActions({
-	showDashboard = true,
-	dashboardTo = "/",
-	extra,
-	feedbackButton,
-}: Props) {
+function StatusActions() {
+	const { module } = useCurrentModule();
+
 	return (
-		<>
-			{showDashboard ? (
-				<Button
-					nativeButton={false}
-					render={
-						<Link className="inline-flex items-center gap-2" to={dashboardTo}>
-							<HomeIcon />
-							На главную
-						</Link>
-					}
-				/>
-			) : null}
+		<div className="grid lg:grid-cols-2 w-full gap-2">
+			<Button
+				className="justify-between"
+				variant="outline"
+				onClick={() => window.history.back()}
+			>
+				<MoveLeftIcon /> Назад
+			</Button>
 
-			{extra}
-			{feedbackButton}
-		</>
+			<Button
+				className="justify-between"
+				nativeButton={false}
+				render={
+					<Link to={`/platform/m/${module}`}>
+						<HomeIcon />
+						На главную
+					</Link>
+				}
+			/>
+		</div>
 	);
 }
 

@@ -1,22 +1,24 @@
+import { Backdrop } from "./backdrop";
+
 interface PublicPageShellProps {
-	backdrop: React.ReactNode;
+	backdropMode?: "public" | "protected";
 	version: React.ReactNode;
 	headerAction: React.ReactNode;
 	children: React.ReactNode;
 }
 
 function PublicPageShell({
-	backdrop,
+	backdropMode = "public",
 	headerAction,
 	version,
 	children,
 }: PublicPageShellProps) {
 	return (
 		<div className="relative min-h-dvh overflow-hidden">
-			{backdrop}
+			<Backdrop mode={backdropMode} />
 
 			<div className="relative mx-auto flex min-h-dvh container flex-col px-6 lg:px-12">
-				<header className="flex items-center justify-between py-6">
+				<header className="flex items-center justify-between py-6 lg:py-12">
 					<div className="flex items-center gap-2">
 						<div className="grid place-items-center">
 							<img
@@ -40,7 +42,7 @@ function PublicPageShell({
 					{children}
 				</main>
 
-				<footer className="pb-8 text-center text-xs text-muted-foreground">
+				<footer className="py-6 lg:py-12 text-center text-xs text-muted-foreground">
 					<span>ООО "Ревелк" © 2026</span>
 					<span className="mx-2">·</span>
 					<span>Версия: {version}</span>

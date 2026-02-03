@@ -1,10 +1,8 @@
 import { useLocation } from "@tanstack/react-router";
-import { AlertTriangleIcon } from "lucide-react";
-
-import { StatusPageShell } from "@/shared/ui/status-page-shell";
 
 import { ModuleFeedbackButton } from "@/platform/core/ui/module-feedback-button";
-import { StatusActions } from "@/platform/core/ui/status-actions";
+
+import { ErrorPageShell } from "../../_ui";
 
 function getErrorMessage(error: unknown) {
 	if (error instanceof Error) return error.message;
@@ -15,27 +13,23 @@ function getErrorMessage(error: unknown) {
 interface Props {
 	error: unknown;
 }
+
 function ErrorPageComponent({ error }: Props) {
 	const location = useLocation();
 	const message = getErrorMessage(error);
 
 	return (
-		<StatusPageShell
-			icon={<AlertTriangleIcon />}
+		<ErrorPageShell
 			title="500 - Произошла ошибка"
 			description="Что-то пошло не так. Попробуйте обновить страницу или вернуться в приложение."
-			actions={
-				<StatusActions
-					feedbackButton={
-						<ModuleFeedbackButton
-							url={location.href}
-							report={{
-								code: 500,
-								title: "Произошла ошибка в приложении.",
-								details: message,
-							}}
-						/>
-					}
+			headerAction={
+				<ModuleFeedbackButton
+					url={location.href}
+					report={{
+						code: 500,
+						title: "Произошла ошибка в приложении.",
+						details: message,
+					}}
 				/>
 			}
 		/>
