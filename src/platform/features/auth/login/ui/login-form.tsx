@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
+/** biome-ignore-all lint/suspicious/noExplicitAny: ignore */
 import { useForm } from "@tanstack/react-form";
 import * as React from "react";
 

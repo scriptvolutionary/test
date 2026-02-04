@@ -10,7 +10,7 @@ function Empty({
 	return (
 		<div
 			data-slot="empty"
-			date-test={test}
+			data-test={test}
 			className={cn(
 				"gap-4 rounded-lg border-dashed p-6 flex w-full min-w-0 flex-1 flex-col items-center justify-center text-center text-balance",
 				className,
@@ -28,7 +28,7 @@ function EmptyHeader({
 	return (
 		<div
 			data-slot="empty-header"
-			date-test={test}
+			data-test={test}
 			className={cn("gap-2 flex max-w-sm flex-col items-center", className)}
 			{...props}
 		/>
@@ -60,7 +60,7 @@ function EmptyMedia({
 	return (
 		<div
 			data-slot="empty-icon"
-			date-test={test}
+			data-test={test}
 			data-variant={variant}
 			className={cn(emptyMediaVariants({ variant, className }))}
 			{...props}
@@ -76,7 +76,7 @@ function EmptyTitle({
 	return (
 		<div
 			data-slot="empty-title"
-			date-test={test}
+			data-test={test}
 			className={cn("text-sm font-medium tracking-tight", className)}
 			{...props}
 		/>
@@ -91,7 +91,7 @@ function EmptyDescription({
 	return (
 		<div
 			data-slot="empty-description"
-			date-test={test}
+			data-test={test}
 			className={cn(
 				"text-sm/relaxed text-muted-foreground [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
 				className,

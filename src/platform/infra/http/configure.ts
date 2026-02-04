@@ -2,6 +2,7 @@ export type HttpConfig = {
 	getModuleKey?: () => string | null;
 	getToken?: () => string | null;
 	onUnauthorized?: () => void;
+	onForbidden?: () => void;
 };
 
 let config: HttpConfig = {};

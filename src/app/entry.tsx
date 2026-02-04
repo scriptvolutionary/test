@@ -10,12 +10,27 @@ import {
 } from "@/platform/core/init";
 
 import { AppProviders } from "./providers/app-providers";
+import { router } from "./router";
 
 async function bootstrap() {
 	await initStoresSync();
 
 	initThemeSync();
-	initHttpSync();
+	initHttpSync({
+		toLogin: (redirect) => {
+			void router.navigate({
+				to: "/log-in",
+				search: { redirect },
+			});
+		},
+		toForbidden: (from) => {
+			void router.navigate({
+				to: "/forbidden",
+				search: { from },
+			});
+		},
+		getCurrentPath: () => router.state.location.href,
+	});
 
 	createRoot(document.getElementById("root")!).render(
 		<StrictMode>

@@ -5,6 +5,7 @@ import { devtools } from "@tanstack/devtools-vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv } from "vite";
+import checker from "vite-plugin-checker";
 
 import pkg from "./package.json";
 
@@ -13,6 +14,8 @@ type ServerConfig = { host?: string | boolean; port?: number };
 export default defineConfig(({ mode }) => {
 	const namespace = "NEXUS_" as const;
 	const env = loadEnv(mode, process.cwd(), namespace);
+
+	const isDev = mode === "development";
 
 	const createServerConfig = ({ host, port }: ServerConfig) => ({
 		host: env.NEXUS_APP_HOST ?? host,
@@ -28,26 +31,32 @@ export default defineConfig(({ mode }) => {
 		preview: createServerConfig({ host: "localhost", port: 4443 }),
 
 		plugins: [
-			devtools({
-				removeDevtoolsOnBuild: true,
-				eventBusConfig: {
-					port: 4001,
-					debug: env.NEXUS_APP_DEBUG === "true",
-				},
-				consolePiping: {
-					enabled: true,
-				},
-				logging: false,
-				editor: {
-					name: "VSCode",
-					open: async (path, lineNumber, columnNumber) => {
-						const { exec } = await import("node:child_process");
-						exec(
-							`code -g "${(path).replaceAll("$", "\\$")}${lineNumber ? `:${lineNumber}` : ""}${columnNumber ? `:${columnNumber}` : ""}"`,
-						);
+			isDev &&
+				checker({
+					typescript: true,
+					biome: {
+						command: "lint",
 					},
-				},
-			}),
+					enableBuild: false,
+					terminal: true,
+				}),
+			isDev &&
+				devtools({
+					removeDevtoolsOnBuild: true,
+					eventBusConfig: { port: 4001, debug: env.NEXUS_APP_DEBUG === "true" },
+					consolePiping: { enabled: true },
+					enhancedLogs: { enabled: true },
+					logging: false,
+					editor: {
+						name: "VSCode",
+						open: async (path, lineNumber, columnNumber) => {
+							const { exec } = await import("node:child_process");
+							exec(
+								`code -g "${(path).replaceAll("$", "\\$")}${lineNumber ? `:${lineNumber}` : ""}${columnNumber ? `:${columnNumber}` : ""}"`,
+							);
+						},
+					},
+				}),
 			tanstackRouter({
 				target: "react",
 				autoCodeSplitting: true,
@@ -55,7 +64,7 @@ export default defineConfig(({ mode }) => {
 			}),
 			react({ babel: { plugins: [["babel-plugin-react-compiler"]] } }),
 			tailwindcss({ optimize: true }),
-		],
+		].filter(Boolean),
 
 		resolve: {
 			alias: { "@": resolve(__dirname, "src") },

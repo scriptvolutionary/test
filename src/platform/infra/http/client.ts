@@ -3,6 +3,14 @@ import axios from "axios";
 import { runtime } from "../config";
 import { getHttpConfig } from "./configure";
 
+let handling401 = false;
+let handling403 = false;
+
+export function resetHttpAuthHandling() {
+	handling401 = false;
+	handling403 = false;
+}
+
 export const http = axios.create({
 	baseURL: runtime.apiUrl,
 	timeout: 5_000,
@@ -30,10 +38,32 @@ http.interceptors.request.use((config) => {
 http.interceptors.response.use(
 	(res) => res,
 	(error) => {
-		if (error?.response?.status === 401) {
-			getHttpConfig().onUnauthorized?.();
-			window.location.reload();
+		const status = error?.response?.status;
+
+		if (status === 401) {
+			if (!handling401) {
+				handling401 = true;
+
+				getHttpConfig().onUnauthorized?.();
+
+				handling401 = false;
+			}
 		}
+
+		if (status === 403) {
+			const path = window.location.pathname;
+			const alreadyOnForbidden = path.startsWith("/forbidden");
+			const alreadyOnLogin = path.startsWith("/log-in");
+
+			if (!alreadyOnForbidden && !alreadyOnLogin && !handling403) {
+				handling403 = true;
+
+				getHttpConfig().onForbidden?.();
+
+				handling403 = false;
+			}
+		}
+
 		return Promise.reject(error);
 	},
 );

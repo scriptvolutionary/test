@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
+/** biome-ignore-all lint/suspicious/noExplicitAny: ignore */
 import { useSessionStore, useSettingsStore } from "@/platform/core/state";
 
 async function seedIfMissing(store: any, storageKey: string) {

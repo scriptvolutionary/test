@@ -10,12 +10,12 @@ import z from "zod";
 
 import { defineHead } from "@/shared/lib/seo";
 
-import { getAuthToken } from "@/platform/infra/auth-token";
 import { LoginPageComponent } from "@/platform/pages/auth/login";
 import { ForbiddenPageComponent } from "@/platform/pages/errors/forbidden";
 
 import { Devtools } from "../devtools";
 import { PendingIndicator } from "../ui/pending-indicator";
+import { redirectIfAuthed } from "./guards/session";
 
 export const rootRoute = createRootRouteWithContext<{
 	queryClient: QueryClient;
@@ -46,14 +46,8 @@ export const loginRoute = createRoute({
 	validateSearch: z.object({
 		redirect: z.string().optional(),
 	}),
-	head: defineHead({ title: "Вход в систему" }),
-	beforeLoad: async ({ search }) => {
-		const token = getAuthToken();
-
-		if (token) {
-			throw redirect({ to: search.redirect ?? "/platform" });
-		}
-	},
+	head: defineHead({ title: "Получите доступ" }),
+	beforeLoad: redirectIfAuthed,
 	component: LoginPageComponent,
 });
 

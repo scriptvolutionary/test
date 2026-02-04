@@ -1,29 +1,17 @@
-import {
-	createRoute,
-	notFound,
-	Outlet,
-	redirect,
-} from "@tanstack/react-router";
-
-import { getAuthToken } from "@/platform/infra/auth-token";
-import { type Module, runtime } from "@/platform/infra/config";
+import { createRoute, Outlet } from "@tanstack/react-router";
 
 import { rootRoute } from ".";
-import { useSessionStore } from "../state";
+import { requireModule } from "./guards/module";
+import { requireAuth, requirePermission } from "./guards/session";
+
+/* =========================================
+ * PLATFORM ROOT
+ * ========================================= */
 
 export const platformRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "platform",
-	beforeLoad: async ({ location }) => {
-		const token = getAuthToken();
-
-		if (!token) {
-			throw redirect({
-				to: "/log-in",
-				search: { redirect: location.href },
-			});
-		}
-	},
+	beforeLoad: requireAuth,
 	component: Outlet,
 });
 
@@ -33,38 +21,98 @@ export const platformIndexRoute = createRoute({
 	component: () => <>platform route</>,
 });
 
+/* =========================================
+ * USERS
+ * /platform/users           (GET)
+ * /platform/users/new       (POST)
+ * /platform/users/$userId   (GET)
+ * /platform/users/$userId/edit (PUT)
+ * ========================================= */
+
+export const platformUsersRoute = createRoute({
+	getParentRoute: () => platformRoute,
+	path: "users",
+	component: Outlet,
+});
+
+export const platformUsersIndexRoute = createRoute({
+	getParentRoute: () => platformUsersRoute,
+	path: "/",
+	beforeLoad: requirePermission({ route: "users", method: "GET" }),
+	component: () => <>users list page</>,
+});
+
+export const platformUserCreateRoute = createRoute({
+	getParentRoute: () => platformUsersRoute,
+	path: "new",
+	beforeLoad: requirePermission({ route: "users", method: "POST" }),
+	component: () => <>user create form page</>,
+});
+
+export const platformUserDetailsRoute = createRoute({
+	getParentRoute: () => platformUsersRoute,
+	path: "$userId",
+	beforeLoad: requirePermission({ route: "users", method: "GET" }),
+	component: () => <>user details page</>,
+});
+
+export const platformUserEditRoute = createRoute({
+	getParentRoute: () => platformUserDetailsRoute,
+	path: "edit",
+	beforeLoad: requirePermission({ route: "users", method: "PUT" }),
+	component: () => <>user edit form page</>,
+});
+
+/* =========================================
+ * ROLES
+ * /platform/roles           (GET)
+ * /platform/roles/new       (POST)
+ * /platform/roles/$roleId   (GET)
+ * /platform/roles/$roleId/edit (PUT)
+ * ========================================= */
+
+export const platformRolesRoute = createRoute({
+	getParentRoute: () => platformRoute,
+	path: "roles",
+	component: Outlet,
+});
+
+export const platformRolesIndexRoute = createRoute({
+	getParentRoute: () => platformRolesRoute,
+	path: "/",
+	beforeLoad: requirePermission({ route: "roles", method: "GET" }),
+	component: () => <>roles list page</>,
+});
+
+export const platformRoleCreateRoute = createRoute({
+	getParentRoute: () => platformRolesRoute,
+	path: "new",
+	beforeLoad: requirePermission({ route: "roles", method: "POST" }),
+	component: () => <>role create form page</>,
+});
+
+export const platformRoleDetailsRoute = createRoute({
+	getParentRoute: () => platformRolesRoute,
+	path: "$roleId",
+	beforeLoad: requirePermission({ route: "roles", method: "GET" }),
+	component: () => <>role details page</>,
+});
+
+export const platformRoleEditRoute = createRoute({
+	getParentRoute: () => platformRoleDetailsRoute,
+	path: "edit",
+	beforeLoad: requirePermission({ route: "roles", method: "PUT" }),
+	component: () => <>role edit form page</>,
+});
+
+/* =========================================
+ * MODULE ROUTES
+ * /platform/m/*
+ * ========================================= */
+
 export const moduleRoute = createRoute({
 	getParentRoute: () => platformRoute,
 	path: "m",
-	beforeLoad: ({ location }) => {
-		const raw = getModuleFromLocation(location.pathname);
-
-		if (!raw) {
-			const next = pickDefaultModule();
-			throw redirect({ to: `/platform/m/${next}` });
-		}
-
-		const key = raw as Module;
-		if (!runtime.enabledModuleKeys.includes(key)) {
-			throw notFound();
-		}
-
-		const current = useSessionStore.getState().module;
-		if (current !== key) {
-			useSessionStore.getState().setModule(key);
-		}
-	},
+	beforeLoad: requireModule,
+	component: Outlet,
 });
-
-function pickDefaultModule(): Module {
-	const preferred = useSessionStore.getState().module;
-	return runtime.enabledModuleKeys.includes(preferred)
-		? preferred
-		: runtime.enabledModuleKeys[0];
-}
-
-function getModuleFromLocation(pathname: string): string | null {
-	const parts = pathname.split("/").filter(Boolean);
-
-	return parts[2] ?? null;
-}

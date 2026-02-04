@@ -25,7 +25,7 @@ function ErrorPageShell({
 }: ErrorPageShellProps) {
 	return (
 		<PublicPageShell headerAction={headerAction} version={runtime.version}>
-			<Card className="w-full bg-card/25 max-w-sm gap-6 py-6 animate-in ease-in-out zoom-in-90 fade-in-15 slide-in-from-bottom-5 duration-300">
+			<Card className="w-full bg-card/25 max-w-xs gap-6 py-6 animate-in ease-in-out zoom-in-90 fade-in-15 slide-in-from-bottom-5 duration-300">
 				<CardHeader className="text-center px-6">
 					<CardTitle className="text-xl">{title}</CardTitle>
 					{description ? (
