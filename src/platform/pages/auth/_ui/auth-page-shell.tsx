@@ -30,7 +30,7 @@ function AuthPageShell({ title, description, children }: AuthPageShellProps) {
 				<ModuleFeedbackButton
 					variant="ghost"
 					url={location.href}
-					report={{ code: 0, title: "У меня есть вопрос..." }}
+					report={{ title: "У меня есть вопрос..." }}
 				/>
 			}
 			version={runtime.version}

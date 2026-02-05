@@ -91,7 +91,6 @@ function LoginForm({ onSuccess }: Props) {
 										id={field.name}
 										name={field.name}
 										autoComplete="current-password"
-										placeholder="●●●●●●●●"
 										value={field.state.value}
 										disabled={isPending}
 										onBlur={field.handleBlur}

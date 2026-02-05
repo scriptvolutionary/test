@@ -150,7 +150,7 @@
 }
 
 [data-module="agroservice"] {
-	--font-sans: Geist, ui-sans-serif, sans-serif;
+	--font-sans: Onest, ui-sans-serif, sans-serif;
 	--font-serif: Lora, ui-serif, serif;
 	--font-mono: JetBrains Mono, ui-monospace, monospace;
 
@@ -336,7 +336,7 @@
 
 @layer base {
 	* {
-		@apply border-border outline-ring/50;
+		@apply border-border outline-ring/50 scroll-smooth;
 	}
 
 	body {

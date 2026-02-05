@@ -8,7 +8,10 @@ import { useCurrentModule } from "../hooks";
 
 interface ModuleFeedbackButtonProps {
 	url?: string;
-	report: Omit<SupportReport, "url" | "module" | "code"> & { module?: string };
+	report: Omit<SupportReport, "url" | "module" | "code"> & {
+		module?: string;
+		code?: number;
+	};
 	variant?: ButtonProps["variant"];
 	className?: string;
 	size?: ButtonProps["size"];

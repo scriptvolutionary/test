@@ -1,6 +1,7 @@
 import { EyeIcon, EyeOffIcon, LockIcon } from "lucide-react";
 import * as React from "react";
 
+import { cn } from "../lib/utils";
 import {
 	InputGroup,
 	InputGroupAddon,
@@ -17,6 +18,8 @@ interface Props
 function PasswordInput({ defaultShow = false, icon = true, ...props }: Props) {
 	const [show, setShow] = React.useState(defaultShow);
 
+	const masked = !show;
+
 	return (
 		<InputGroup>
 			{icon && (
@@ -25,7 +28,16 @@ function PasswordInput({ defaultShow = false, icon = true, ...props }: Props) {
 				</InputGroupAddon>
 			)}
 
-			<InputGroupInput type={show ? "text" : "password"} {...props} />
+			<InputGroupInput
+				type="text"
+				autoComplete="current-password"
+				placeholder="••••••••"
+				className={cn(
+					masked &&
+						"[-webkit-text-security:disc] placeholder:text-body tracking-widest text",
+				)}
+				{...props}
+			/>
 
 			<InputGroupAddon align="inline-end">
 				<InputGroupButton
