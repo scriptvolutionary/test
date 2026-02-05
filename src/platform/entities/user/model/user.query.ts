@@ -9,13 +9,17 @@ import { userKeys } from "./user.keys";
 export const usersListQueryOptions = createListQueryOptions({
 	getKey: (p) => userKeys.list(p),
 	queryFn: (params: UsersListParams) => fetchUsers(params),
-	staleTime: 30_000,
+});
+
+export const usersOptionsQueryOptions = createListQueryOptions({
+	getKey: (p) => userKeys.list(p),
+	queryFn: (params: UsersListParams) => fetchUsers(params),
 });
 
 export function userDetailQueryOptions(id: number) {
 	return queryOptions({
 		queryKey: userKeys.detail(id),
 		queryFn: () => fetchUserById(id),
-		staleTime: 30_000,
+		staleTime: 60 * 60_000,
 	});
 }

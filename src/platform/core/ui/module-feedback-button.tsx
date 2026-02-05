@@ -10,11 +10,15 @@ interface ModuleFeedbackButtonProps {
 	url?: string;
 	report: Omit<SupportReport, "url" | "module"> & { module?: string };
 	variant?: ButtonProps["variant"];
+	className?: string;
+	size?: ButtonProps["size"];
 }
 
 function ModuleFeedbackButton({
 	url,
 	variant,
+	className,
+	size,
 	report,
 }: ModuleFeedbackButtonProps) {
 	const { module } = useCurrentModule();
@@ -27,7 +31,14 @@ function ModuleFeedbackButton({
 		});
 	}, [report, url, module]);
 
-	return <TelegramFeedbackButton variant={variant} message={message} />;
+	return (
+		<TelegramFeedbackButton
+			className={className}
+			size={size}
+			variant={variant}
+			message={message}
+		/>
+	);
 }
 
 export { ModuleFeedbackButton };

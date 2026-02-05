@@ -1,3 +1,5 @@
+import { DropletsIcon, Flower2Icon, type LucideIcon } from "lucide-react";
+
 export const enabledModuleKeys = __ENABLED_MODULES__;
 
 export const runtime = {
@@ -17,9 +19,17 @@ export const modulesMap: Record<
 		title: string;
 		shortTitle?: string;
 		description?: string;
-		icon?: string;
+		icon?: LucideIcon;
 	}
 > = {
-	agroservice: { title: "Мои растения" },
-	csoo: { title: "ЦСОО" },
+	agroservice: {
+		title: "Мои растения",
+		description: "Помощник выращивания растений",
+		icon: Flower2Icon,
+	},
+	csoo: {
+		title: "ЦСОО",
+		description: "Цифровой сервис обслуживания объектов",
+		icon: DropletsIcon,
+	},
 };

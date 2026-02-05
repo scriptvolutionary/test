@@ -68,22 +68,18 @@ function Item({
 	variant = "default",
 	size = "default",
 	render,
+	test,
 	...props
-}: useRender.ComponentProps<"div"> & VariantProps<typeof itemVariants>) {
+}: useRender.ComponentProps<"div"> &
+	VariantProps<typeof itemVariants> & { test?: string }) {
 	return useRender({
 		defaultTagName: "div",
 		props: mergeProps<"div">(
-			{
-				className: cn(itemVariants({ variant, size, className })),
-			},
+			{ className: cn(itemVariants({ variant, size, className })) },
 			props,
 		),
 		render,
-		state: {
-			slot: "item",
-			variant,
-			size,
-		},
+		state: { slot: "item", variant, size, test },
 	});
 }
 

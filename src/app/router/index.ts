@@ -29,6 +29,7 @@ function createAppRouter() {
 		defaultPreload: "intent",
 		defaultPreloadStaleTime: 0,
 		context: undefined!,
+		notFoundMode: "root",
 		defaultNotFoundComponent: NotFoundPageComponent,
 		defaultErrorComponent: ErrorPageComponent,
 	});

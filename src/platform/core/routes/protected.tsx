@@ -1,5 +1,7 @@
 import { createRoute, Outlet } from "@tanstack/react-router";
 
+import { PlatformShell } from "@/platform/widgets/platform-shell";
+
 import { rootRoute } from ".";
 import { requireModule } from "./guards/module";
 import { requireAuth, requirePermission } from "./guards/session";
@@ -12,7 +14,7 @@ export const platformRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "platform",
 	beforeLoad: requireAuth,
-	component: Outlet,
+	component: PlatformShell,
 });
 
 export const platformIndexRoute = createRoute({

@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 import React from "react";
 
 import { useSessionStore } from "@/platform/core/state";
@@ -26,6 +26,7 @@ export function useEnabledModules() {
 
 export function useSetModule() {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const setModule = useSessionStore((s) => s.setModule);
 
 	return React.useCallback(
@@ -42,8 +43,15 @@ export function useSetModule() {
 				return;
 			}
 
+			const href =
+				typeof location?.href === "string" ? location.href : location.pathname;
+			const canNavigate = enabledModuleKeys.some((key) => href.includes(key));
+
+			setModule(next);
+			if (!canNavigate) return;
+
 			navigate({ to: `/platform/m/${next}` });
 		},
-		[navigate, setModule],
+		[navigate, setModule, location],
 	);
 }

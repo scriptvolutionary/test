@@ -24,6 +24,9 @@ export const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			retry: false,
+			// refetchOnWindowFocus: true,
+			// refetchOnReconnect: true,
+			// refetchOnMount: true,
 		},
 		mutations: {
 			retry: false,

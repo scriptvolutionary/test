@@ -4,4 +4,5 @@ export const userKeys = {
 	list: (params: unknown) => [...userKeys.lists(), params] as const,
 	details: () => [...userKeys.all, "detail"] as const,
 	detail: (id: number) => [...userKeys.details(), id] as const,
+	options: (p: unknown) => [...userKeys.all, "options", p] as const,
 };

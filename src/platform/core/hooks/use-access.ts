@@ -1,19 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 
 import {
 	canPermission,
 	canRole,
 	type PermissionCheck,
-	sessionMeQueryOptions,
+	useSessionMe,
 } from "@/platform/entities/session";
 
-export function useSessionAccess() {
-	return useQuery(sessionMeQueryOptions());
-}
-
 export function useCanRole(roles: string | string[]) {
-	const { data, isLoading } = useSessionAccess();
+	const { data, isLoading } = useSessionMe();
 
 	const allowed = useMemo(() => canRole(data, roles), [data, roles]);
 
@@ -21,7 +16,7 @@ export function useCanRole(roles: string | string[]) {
 }
 
 export function useCanPermission(check: PermissionCheck) {
-	const { data, isLoading } = useSessionAccess();
+	const { data, isLoading } = useSessionMe();
 
 	const allowed = useMemo(() => canPermission(data, check), [data, check]);
 

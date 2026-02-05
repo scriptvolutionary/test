@@ -30,22 +30,19 @@ const badgeVariants = cva(
 function Badge({
 	className,
 	variant = "default",
+	test,
 	render,
 	...props
-}: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants>) {
+}: useRender.ComponentProps<"span"> &
+	VariantProps<typeof badgeVariants> & { test?: string }) {
 	return useRender({
 		defaultTagName: "span",
 		props: mergeProps<"span">(
-			{
-				className: cn(badgeVariants({ className, variant })),
-			},
+			{ className: cn(badgeVariants({ className, variant })) },
 			props,
 		),
 		render,
-		state: {
-			slot: "badge",
-			variant,
-		},
+		state: { slot: "badge", variant, test },
 	});
 }
 

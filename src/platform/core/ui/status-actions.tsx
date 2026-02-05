@@ -3,11 +3,7 @@ import { HomeIcon, MoveLeftIcon } from "lucide-react";
 
 import { Button } from "@/shared/ui/primitives/button";
 
-import { useCurrentModule } from "../hooks";
-
 function StatusActions() {
-	const { module } = useCurrentModule();
-
 	return (
 		<div className="grid lg:grid-cols-2 w-full gap-2">
 			<Button
@@ -17,12 +13,11 @@ function StatusActions() {
 			>
 				<MoveLeftIcon /> Назад
 			</Button>
-
 			<Button
 				className="justify-between"
 				nativeButton={false}
 				render={
-					<Link to={`/platform/m/${module}`}>
+					<Link to={`/platform`}>
 						<HomeIcon />
 						На главную
 					</Link>

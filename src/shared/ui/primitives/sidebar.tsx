@@ -23,7 +23,7 @@ import {
 	TooltipTrigger,
 } from "@/shared/ui/primitives/tooltip";
 
-const SIDEBAR_COOKIE_NAME = "sidebar_state";
+const SIDEBAR_COOKIE_NAME = "sidebar:state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
@@ -385,8 +385,10 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
 function SidebarGroupLabel({
 	className,
 	render,
+	test,
 	...props
-}: useRender.ComponentProps<"div"> & React.ComponentProps<"div">) {
+}: useRender.ComponentProps<"div"> &
+	React.ComponentProps<"div"> & { test?: string }) {
 	return useRender({
 		defaultTagName: "div",
 		props: mergeProps<"div">(
@@ -399,18 +401,17 @@ function SidebarGroupLabel({
 			props,
 		),
 		render,
-		state: {
-			slot: "sidebar-group-label",
-			sidebar: "group-label",
-		},
+		state: { slot: "sidebar-group-label", sidebar: "group-label", test },
 	});
 }
 
 function SidebarGroupAction({
 	className,
 	render,
+	test,
 	...props
-}: useRender.ComponentProps<"button"> & React.ComponentProps<"button">) {
+}: useRender.ComponentProps<"button"> &
+	React.ComponentProps<"button"> & { test?: string }) {
 	return useRender({
 		defaultTagName: "button",
 		props: mergeProps<"button">(
@@ -426,6 +427,7 @@ function SidebarGroupAction({
 		state: {
 			slot: "sidebar-group-action",
 			sidebar: "group-action",
+			test,
 		},
 	});
 }
@@ -495,12 +497,13 @@ function SidebarMenuButton({
 	size = "default",
 	tooltip,
 	className,
+	test,
 	...props
-}: useRender.ComponentProps<"button"> &
-	React.ComponentProps<"button"> & {
-		isActive?: boolean;
-		tooltip?: string | React.ComponentProps<typeof TooltipContent>;
-	} & VariantProps<typeof sidebarMenuButtonVariants>) {
+}: useRender.ComponentProps<"button"> & {
+	isActive?: boolean;
+	test?: string;
+	tooltip?: string | React.ComponentProps<typeof TooltipContent>;
+} & VariantProps<typeof sidebarMenuButtonVariants>) {
 	const { isMobile, state } = useSidebar();
 	const comp = useRender({
 		defaultTagName: "button",
@@ -515,6 +518,7 @@ function SidebarMenuButton({
 			slot: "sidebar-menu-button",
 			sidebar: "menu-button",
 			size,
+			test,
 			active: isActive,
 		},
 	});
@@ -546,10 +550,12 @@ function SidebarMenuAction({
 	className,
 	render,
 	showOnHover = false,
+	test,
 	...props
 }: useRender.ComponentProps<"button"> &
 	React.ComponentProps<"button"> & {
 		showOnHover?: boolean;
+		test?: string;
 	}) {
 	return useRender({
 		defaultTagName: "button",
@@ -565,10 +571,7 @@ function SidebarMenuAction({
 			props,
 		),
 		render,
-		state: {
-			slot: "sidebar-menu-action",
-			sidebar: "menu-action",
-		},
+		state: { slot: "sidebar-menu-action", sidebar: "menu-action", test },
 	});
 }
 
@@ -659,10 +662,12 @@ function SidebarMenuSubButton({
 	size = "md",
 	isActive = false,
 	className,
+	test,
 	...props
 }: useRender.ComponentProps<"a"> &
 	React.ComponentProps<"a"> & {
 		size?: "sm" | "md";
+		test?: string;
 		isActive?: boolean;
 	}) {
 	return useRender({
@@ -681,6 +686,7 @@ function SidebarMenuSubButton({
 			slot: "sidebar-menu-sub-button",
 			sidebar: "menu-sub-button",
 			size,
+			test,
 			active: isActive,
 		},
 	});
