@@ -1,4 +1,4 @@
-import { DropletsIcon, Flower2Icon, type LucideIcon } from "lucide-react";
+import { DropletsIcon, FlowerIcon, type LucideIcon } from "lucide-react";
 
 export const enabledModuleKeys = __ENABLED_MODULES__;
 
@@ -25,7 +25,7 @@ export const modulesMap: Record<
 	agroservice: {
 		title: "Мои растения",
 		description: "Помощник выращивания растений",
-		icon: Flower2Icon,
+		icon: FlowerIcon,
 	},
 	csoo: {
 		title: "ЦСОО",

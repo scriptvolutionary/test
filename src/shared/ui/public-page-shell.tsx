@@ -19,9 +19,8 @@ function PublicPageShell({
 			<Backdrop mode={backdropMode} />
 
 			<div className="relative mx-auto flex min-h-dvh container flex-col px-6 lg:px-12">
-				<header className="flex items-center justify-between py-6 lg:py-12">
+				<header className="flex items-center justify-between py-4 lg:py-6">
 					<BrandCard />
-
 					{headerAction && headerAction}
 				</header>
 
@@ -29,7 +28,7 @@ function PublicPageShell({
 					{children}
 				</main>
 
-				<footer className="py-6 lg:py-12 text-center text-xs text-muted-foreground">
+				<footer className="py-4 lg:py-6 text-center text-xs text-muted-foreground">
 					<span>ООО "Ревелк" © 2026</span>
 					<span className="mx-2">·</span>
 					<span>Версия: {version}</span>

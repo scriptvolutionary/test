@@ -72,13 +72,13 @@ function PendingIndicator({
 			className={cn(
 				"fixed inset-0 z-1000",
 				"bg-background/25 backdrop-blur-sm",
-				"transition-opacity duration-300 ease-out",
+				"transition-opacity duration-200 ease-out",
 				visible ? "opacity-100" : "opacity-0",
 				"pointer-events-none",
 			)}
 		>
 			<div className="flex h-full w-full items-center justify-center">
-				<div className="grid grid-cols-2 gap-2 animate-in zoom-in-95 fade-in duration-300">
+				<div className="grid grid-cols-2 gap-2 animate-in zoom-in-95 fade-in duration-200">
 					<Square delay="0ms" />
 					<Square delay="240ms" />
 					<Square delay="240ms" />

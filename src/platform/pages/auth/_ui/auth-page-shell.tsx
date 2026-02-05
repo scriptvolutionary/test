@@ -35,7 +35,7 @@ function AuthPageShell({ title, description, children }: AuthPageShellProps) {
 			}
 			version={runtime.version}
 		>
-			<Card className="w-full bg-card/25 max-w-sm gap-6 py-6 animate-in ease-in-out zoom-in-90 fade-in-15 slide-in-from-bottom-5 duration-300">
+			<Card className="w-full bg-card/25 max-w-sm gap-6 py-6 animate-in ease-in-out zoom-in-90 fade-in-15 slide-in-from-bottom-5 duration-200">
 				<CardHeader className="text-center justify-center px-6">
 					<div className="inline-flex items-center gap-2 rounded-full border bg-background/25 px-3 py-1 text-xs text-muted-foreground">
 						<span className="font-medium text-foreground/80">{meta.title}</span>

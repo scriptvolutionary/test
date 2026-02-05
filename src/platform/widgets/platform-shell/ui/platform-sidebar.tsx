@@ -12,16 +12,17 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarSeparator,
 } from "@/shared/ui/primitives/sidebar";
 
-import { SessionProfileCard } from "@/platform/entities/session";
+import { ModuleFeedbackButton } from "@/platform/core/ui/module-feedback-button";
 
 import { platformMenuItems } from "../model/menu";
-import { ModuleSwitcher } from "./module-switcher";
+import { SidebarModuleMenuSwitcher } from "./sidebar-module-menu-switcher";
+import { SidebarSessionProfileMenu } from "./sidebar-session-profile-menu";
 
 function PlatformSidebar() {
 	const pathname = useRouterState({ select: (s) => s.location.pathname });
-	const [query, setQuery] = React.useState("");
 
 	const cleanPath =
 		pathname.endsWith("/") && pathname !== "/"
@@ -38,67 +39,59 @@ function PlatformSidebar() {
 		[cleanPath],
 	);
 
-	const filteredMenu = React.useMemo(() => {
-		const normalized = query.trim().toLowerCase();
-		if (!normalized) return platformMenuItems;
-		return platformMenuItems.filter((item) =>
-			item.label.toLowerCase().includes(normalized),
-		);
-	}, [query]);
-
 	return (
-		<Sidebar collapsible="icon" variant="inset">
+		<Sidebar collapsible="icon" variant="floating">
 			<SidebarHeader>
-				<SidebarMenu>
-					<SidebarMenuItem>
-						<ModuleSwitcher />
-					</SidebarMenuItem>
-				</SidebarMenu>
-				{/* <div className="relative">
-					<SearchIcon className="pointer-events-none absolute left-2 top-2 size-4 text-muted-foreground" />
-					<SidebarInput
-						value={query}
-						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Поиск по меню..."
-						className="pl-8"
-					/>
-				</div> */}
+				<SidebarModuleMenuSwitcher />
 			</SidebarHeader>
 			<SidebarContent>
 				<SidebarGroup>
-					<SidebarGroupLabel>Навигация</SidebarGroupLabel>
-					<SidebarGroupContent className="space-y-2">
-						{filteredMenu.length ? (
-							<SidebarMenu>
-								{filteredMenu.map((item) => (
-									<SidebarMenuItem key={item.id}>
-										<SidebarMenuButton
-											isActive={isActive(item.to)}
-											tooltip={item.label}
-											render={
-												<Link to={item.to}>
-													<item.icon />
-													<span>{item.label}</span>
-												</Link>
-											}
+					<SidebarGroupLabel>Платформа</SidebarGroupLabel>
+					<SidebarGroupContent>
+						<SidebarMenu>
+							{platformMenuItems.map((item) => (
+								<SidebarMenuItem key={item.id}>
+									<SidebarMenuButton
+										isActive={isActive(item.to)}
+										tooltip={item.label}
+										render={
+											<Link to={item.to}>
+												<item.icon />
+												{item.label}
+											</Link>
+										}
+									/>
+								</SidebarMenuItem>
+							))}
+						</SidebarMenu>
+					</SidebarGroupContent>
+				</SidebarGroup>
+				<SidebarGroup className="mt-auto">
+					<SidebarGroupContent>
+						<SidebarMenu>
+							<SidebarMenuItem>
+								<SidebarMenuButton
+									className="justify-start"
+									size="sm"
+									tooltip="Обратная связь"
+									render={
+										<ModuleFeedbackButton
+											variant="ghost"
+											size="sm"
+											report={{
+												title: "Здравствуйте, у меня возник вопрос...",
+											}}
 										/>
-									</SidebarMenuItem>
-								))}
-							</SidebarMenu>
-						) : (
-							<div className="px-2 py-1 text-xs text-muted-foreground">
-								Ничего не найдено
-							</div>
-						)}
+									}
+								/>
+							</SidebarMenuItem>
+						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
 			</SidebarContent>
+			<SidebarSeparator />
 			<SidebarFooter>
-				<SidebarMenu>
-					<SidebarMenuItem>
-						<SessionProfileCard />
-					</SidebarMenuItem>
-				</SidebarMenu>
+				<SidebarSessionProfileMenu />
 			</SidebarFooter>
 		</Sidebar>
 	);

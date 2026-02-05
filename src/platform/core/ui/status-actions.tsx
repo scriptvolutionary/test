@@ -5,7 +5,7 @@ import { Button } from "@/shared/ui/primitives/button";
 
 function StatusActions() {
 	return (
-		<div className="grid lg:grid-cols-2 w-full gap-2">
+		<div className="grid grid-cols-2 w-full gap-2">
 			<Button
 				className="justify-between"
 				variant="outline"

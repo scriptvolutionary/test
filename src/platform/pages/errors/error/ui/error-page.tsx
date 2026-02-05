@@ -20,7 +20,7 @@ function ErrorPageComponent({ error }: Props) {
 
 	return (
 		<ErrorPageShell
-			title="500 - Произошла ошибка"
+			title="500"
 			description="Что-то пошло не так. Попробуйте обновить страницу или вернуться в приложение."
 			headerAction={
 				<ModuleFeedbackButton

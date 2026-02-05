@@ -18,8 +18,6 @@ function PlatformShell() {
 					<Outlet />
 				</main>
 			</SidebarInset>
-
-			{/* md:peer-data-[variant=inset]:p-2 */}
 		</SidebarProvider>
 	);
 }

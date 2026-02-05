@@ -3,4 +3,3 @@ export * from "./model/access";
 export * from "./model/session.keys";
 export * from "./model/session.query";
 export * from "./model/use-session-me";
-export * from "./ui/session-profile-card";

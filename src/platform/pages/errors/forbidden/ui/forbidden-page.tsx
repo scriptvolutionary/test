@@ -8,8 +8,8 @@ function ForbiddenPageComponent() {
 
 	return (
 		<ErrorPageShell
-			title="403 — Доступ запрещён"
-			description="У вас нет прав для просмотра этой страницы."
+			title="403"
+			description="У вас нет прав для просмотра этой страницы. Если вы считаете что это ошибка - обратитесь к вашему администратору."
 			headerAction={
 				<ModuleFeedbackButton
 					variant="ghost"

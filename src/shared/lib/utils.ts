@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export type SupportReport = {
-	code: number;
+	code?: number;
 	title: string;
 	url?: string;
 	details?: string;
@@ -20,7 +20,7 @@ export function buildSupportMessage(report: SupportReport): string {
 	return (
 		`Здравствуйте!\n\n` +
 		`${report.title}\n\n` +
-		`Код: ${report.code}\n` +
+		(report.code ? `Код: ${report.code}\n` : "") +
 		(report.url ? `URL: ${report.url}\n` : "") +
 		(report.module ? `Модуль: ${report.module}\n` : "") +
 		(report.details ? `Детали: ${report.details}\n` : "") +

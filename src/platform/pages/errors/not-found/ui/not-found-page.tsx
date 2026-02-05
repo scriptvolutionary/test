@@ -8,7 +8,7 @@ import { ErrorPageShell } from "@/platform/pages/errors/_ui";
 function NotFoundPageComponent() {
 	return (
 		<ErrorPageShell
-			title="404 - Не найдено"
+			title="404"
 			description="По всей видимости текущая страница не существует или была удалена."
 			headerAction={
 				<ModuleFeedbackButton
