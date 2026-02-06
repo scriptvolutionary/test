@@ -13,12 +13,35 @@
 			"tailwindDirectives": true
 		}
 	},
-	"javascript": { "formatter": { "quoteStyle": "double" } },
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"jsxQuoteStyle": "single",
+			"trailingCommas": "none",
+			"semicolons": "asNeeded",
+			"lineWidth": 100,
+			"expand": "auto",
+			"lineEnding": null,
+			"quoteProperties": "asNeeded"
+		}
+	},
 	"overrides": [
 		{
 			"includes": ["**/*.{ts,tsx}"],
 			"linter": {
 				"rules": {
+					"nursery": {
+						"noFloatingPromises": "error",
+						"noDuplicateAttributes": "error",
+						"noImportCycles": "error",
+						"useSortedClasses": {
+							"level": "warn",
+							"options": {
+								"attributes": ["className", "containerClassName"],
+								"functions": ["cn", "clsx", "cva", "tailwindMerge"]
+							}
+						}
+					},
 					"complexity": {
 						"noAdjacentSpacesInRegex": "error",
 						"noExtraBooleanCast": "error",

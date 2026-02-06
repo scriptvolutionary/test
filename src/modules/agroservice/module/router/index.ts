@@ -1,3 +1,3 @@
-import { indexRoute, rootRoute } from "./routes";
+import { indexRoute, rootRoute } from './routes'
 
-export const routeTree = rootRoute.addChildren([indexRoute]);
+export const routeTree = rootRoute.addChildren([indexRoute])

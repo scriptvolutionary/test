@@ -1,129 +1,117 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from 'class-variance-authority'
 
-import { cn } from "@/shared/lib/utils";
+import { cn } from '@/shared/lib/utils'
 
-function Empty({
-	className,
-	test,
-	...props
-}: React.ComponentProps<"div"> & { test?: string }) {
+function Empty({ className, test, ...props }: React.ComponentProps<'div'> & { test?: string }) {
 	return (
 		<div
-			data-slot="empty"
+			data-slot='empty'
 			data-test={test}
 			className={cn(
-				"gap-4 rounded-lg border-dashed p-6 flex w-full min-w-0 flex-1 flex-col items-center justify-center text-center text-balance",
-				className,
+				'flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 text-balance rounded-lg border-dashed p-6 text-center',
+				className
 			)}
 			{...props}
 		/>
-	);
+	)
 }
 
 function EmptyHeader({
 	className,
 	test,
 	...props
-}: React.ComponentProps<"div"> & { test?: string }) {
+}: React.ComponentProps<'div'> & { test?: string }) {
 	return (
 		<div
-			data-slot="empty-header"
+			data-slot='empty-header'
 			data-test={test}
-			className={cn("gap-2 flex max-w-sm flex-col items-center", className)}
+			className={cn('flex max-w-sm flex-col items-center gap-2', className)}
 			{...props}
 		/>
-	);
+	)
 }
 
 const emptyMediaVariants = cva(
-	"mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
+	'mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0',
 	{
 		variants: {
 			variant: {
-				default: "bg-transparent",
-				icon: "bg-muted text-foreground flex size-8 shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-4",
-			},
+				default: 'bg-transparent',
+				icon: "flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-4"
+			}
 		},
 		defaultVariants: {
-			variant: "default",
-		},
-	},
-);
+			variant: 'default'
+		}
+	}
+)
 
 function EmptyMedia({
 	className,
 	test,
-	variant = "default",
+	variant = 'default',
 	...props
-}: React.ComponentProps<"div"> &
-	VariantProps<typeof emptyMediaVariants> & { test?: string }) {
+}: React.ComponentProps<'div'> & VariantProps<typeof emptyMediaVariants> & { test?: string }) {
 	return (
 		<div
-			data-slot="empty-icon"
+			data-slot='empty-icon'
 			data-test={test}
 			data-variant={variant}
 			className={cn(emptyMediaVariants({ variant, className }))}
 			{...props}
 		/>
-	);
+	)
 }
 
 function EmptyTitle({
 	className,
 	test,
 	...props
-}: React.ComponentProps<"div"> & { test?: string }) {
+}: React.ComponentProps<'div'> & { test?: string }) {
 	return (
 		<div
-			data-slot="empty-title"
+			data-slot='empty-title'
 			data-test={test}
-			className={cn("text-sm font-medium tracking-tight", className)}
+			className={cn('font-medium text-sm tracking-tight', className)}
 			{...props}
 		/>
-	);
+	)
 }
 
 function EmptyDescription({
 	className,
 	test,
 	...props
-}: React.ComponentProps<"p"> & { test?: string }) {
+}: React.ComponentProps<'p'> & { test?: string }) {
 	return (
 		<div
-			data-slot="empty-description"
+			data-slot='empty-description'
 			data-test={test}
 			className={cn(
-				"text-sm/relaxed text-muted-foreground [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
-				className,
+				'text-muted-foreground text-sm/relaxed [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4',
+				className
 			)}
 			{...props}
 		/>
-	);
+	)
 }
 
 function EmptyContent({
 	className,
 	test,
 	...props
-}: React.ComponentProps<"div"> & { test?: string }) {
+}: React.ComponentProps<'div'> & { test?: string }) {
 	return (
 		<div
-			data-slot="empty-content"
+			data-slot='empty-content'
 			data-test={test}
 			className={cn(
-				"gap-2.5 text-sm flex w-full max-w-sm min-w-0 flex-col items-center text-balance",
-				className,
+				'flex w-full min-w-0 max-w-sm flex-col items-center gap-2.5 text-balance text-sm',
+				className
 			)}
 			{...props}
 		/>
-	);
+	)
 }
 
-export {
-	Empty,
-	EmptyContent,
-	EmptyDescription,
-	EmptyHeader,
-	EmptyMedia,
-	EmptyTitle,
-};
+export { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle }

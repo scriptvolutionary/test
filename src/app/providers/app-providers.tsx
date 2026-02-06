@@ -1,16 +1,16 @@
-import { QueryClientProvider } from "@tanstack/react-query";
-import { RouterProvider } from "@tanstack/react-router";
+import { QueryClientProvider } from '@tanstack/react-query'
+import { RouterProvider } from '@tanstack/react-router'
 
-import { Toaster } from "@/shared/ui/primitives/sonner";
-import { TooltipProvider } from "@/shared/ui/primitives/tooltip";
+import { Toaster } from '@/shared/ui/primitives/sonner'
+import { TooltipProvider } from '@/shared/ui/primitives/tooltip'
 
-import { useTheme } from "@/platform/sdk/hooks";
-import { queryClient } from "@/platform/sdk/query";
+import { useTheme } from '@/platform/sdk/hooks'
+import { queryClient } from '@/platform/sdk/query'
 
-import { router } from "@/app/router";
+import { router } from '@/app/router'
 
 function AppProviders() {
-	const { theme } = useTheme();
+	const { theme } = useTheme()
 
 	return (
 		<TooltipProvider>
@@ -19,7 +19,7 @@ function AppProviders() {
 				<Toaster theme={theme} />
 			</QueryClientProvider>
 		</TooltipProvider>
-	);
+	)
 }
 
-export { AppProviders };
+export { AppProviders }

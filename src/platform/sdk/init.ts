@@ -1,1 +1,1 @@
-export * from "@/platform/core/init";
+export * from '@/platform/core/init'

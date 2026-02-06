@@ -1,7 +1,7 @@
-import type { IdSysnameName } from "@/shared/types/base-entities";
+import type { IdSysnameName } from '@/shared/types/base-entities'
 
 export type Permission = IdSysnameName & {
-	permission_id: number;
-	methods: string;
-	route: string;
-};
+	permission_id: number
+	methods: string
+	route: string
+}

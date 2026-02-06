@@ -1,1 +1,1 @@
-export * from "@/platform/core/hooks";
+export * from '@/platform/core/hooks'

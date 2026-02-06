@@ -1,1 +1,1 @@
-export * from "@/platform/core/routes/guards/session";
+export * from '@/platform/core/routes/guards/session'

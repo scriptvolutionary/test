@@ -1,1 +1,1 @@
-export * from "./model/status.types";
+export * from './model/status.types'

@@ -1,1 +1,1 @@
-export { queryClient } from "@/platform/infra/query";
+export { queryClient } from '@/platform/infra/query'

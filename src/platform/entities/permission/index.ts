@@ -1,1 +1,1 @@
-export * from "./model/permission.types";
+export * from './model/permission.types'

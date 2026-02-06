@@ -1,8 +1,8 @@
-import { useSettingsStore } from "@/platform/core/state";
+import { useSettingsStore } from '@/platform/core/state'
 
 export const useTheme = () => {
-	const theme = useSettingsStore((s) => s.theme);
-	const setTheme = useSettingsStore((s) => s.setTheme);
+	const theme = useSettingsStore((s) => s.theme)
+	const setTheme = useSettingsStore((s) => s.setTheme)
 
-	return { theme, setTheme };
-};
+	return { theme, setTheme }
+}

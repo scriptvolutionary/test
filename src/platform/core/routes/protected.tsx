@@ -1,12 +1,12 @@
-﻿import { createRoute, Outlet } from "@tanstack/react-router";
+﻿import { createRoute, Outlet } from '@tanstack/react-router'
 
-import { defineHead, defineHeadFn } from "@/shared/lib/seo";
+import { defineHead, defineHeadFn } from '@/shared/lib/seo'
 
-import { PlatformShell } from "@/platform/widgets/platform-shell";
+import { PlatformShell } from '@/platform/widgets/platform-shell'
 
-import { rootRoute } from ".";
-import { requireModule } from "./guards/module";
-import { requireAuth, requirePermission } from "./guards/session";
+import { rootRoute } from '.'
+import { requireModule } from './guards/module'
+import { requireAuth, requirePermission } from './guards/session'
 
 /* =========================================
  * PLATFORM ROOT
@@ -14,18 +14,18 @@ import { requireAuth, requirePermission } from "./guards/session";
 
 export const platformRoute = createRoute({
 	getParentRoute: () => rootRoute,
-	path: "platform",
+	path: 'platform',
 	beforeLoad: requireAuth,
-	staticData: { crumb: "Платформа" },
-	head: defineHead({ title: "Платформа" }),
-	component: PlatformShell,
-});
+	staticData: { crumb: 'Платформа' },
+	head: defineHead({ title: 'Платформа' }),
+	component: PlatformShell
+})
 
 export const platformIndexRoute = createRoute({
 	getParentRoute: () => platformRoute,
-	path: "/",
-	staticData: { crumb: "Главная" },
-	head: defineHead({ title: "Платформа · Главная" }),
+	path: '/',
+	staticData: { crumb: 'Главная' },
+	head: defineHead({ title: 'Платформа · Главная' }),
 	component: () => (
 		<div>
 			<div>
@@ -311,8 +311,8 @@ export const platformIndexRoute = createRoute({
 				<>platform route</>
 			</div>
 		</div>
-	),
-});
+	)
+})
 
 /* =========================================
  * USERS
@@ -324,73 +324,73 @@ export const platformIndexRoute = createRoute({
 
 export const platformUsersRoute = createRoute({
 	getParentRoute: () => platformRoute,
-	path: "users",
-	staticData: { crumb: "Пользователи" },
-	head: defineHead({ title: "Пользователи" }),
-	component: Outlet,
-});
+	path: 'users',
+	staticData: { crumb: 'Пользователи' },
+	head: defineHead({ title: 'Пользователи' }),
+	component: Outlet
+})
 
 export const platformUsersIndexRoute = createRoute({
 	getParentRoute: () => platformUsersRoute,
-	path: "/",
-	beforeLoad: requirePermission({ route: "users", method: "GET" }),
-	staticData: { crumb: "Список" },
-	head: defineHead({ title: "Пользователи · Список" }),
-	component: () => <>users list page</>,
-});
+	path: '/',
+	beforeLoad: requirePermission({ route: 'users', method: 'GET' }),
+	staticData: { crumb: 'Список' },
+	head: defineHead({ title: 'Пользователи · Список' }),
+	component: () => <>users list page</>
+})
 
 export const platformUserCreateRoute = createRoute({
 	getParentRoute: () => platformUsersRoute,
-	path: "new",
-	beforeLoad: requirePermission({ route: "users", method: "POST" }),
-	staticData: { crumb: "Новый" },
-	head: defineHead({ title: "Пользователи · Новый" }),
-	component: () => <>user create form page</>,
-});
+	path: 'new',
+	beforeLoad: requirePermission({ route: 'users', method: 'POST' }),
+	staticData: { crumb: 'Новый' },
+	head: defineHead({ title: 'Пользователи · Новый' }),
+	component: () => <>user create form page</>
+})
 
 export const platformUserDetailsRoute = createRoute({
 	getParentRoute: () => platformUsersRoute,
-	path: "$userId",
-	beforeLoad: requirePermission({ route: "users", method: "GET" }),
+	path: '$userId',
+	beforeLoad: requirePermission({ route: 'users', method: 'GET' }),
 	staticData: { crumb: ({ params }) => `${params.userId}` },
 	head: defineHeadFn(({ params }) => ({
 		title: `Пользователи · #${params.userId}`,
 		description: `Профиль пользователя #${params.userId}`,
 		meta: [
 			{
-				property: "og:title",
-				content: `Пользователи · #${params.userId}`,
+				property: 'og:title',
+				content: `Пользователи · #${params.userId}`
 			},
 			{
-				property: "og:description",
-				content: `Профиль пользователя #${params.userId}`,
-			},
-		],
+				property: 'og:description',
+				content: `Профиль пользователя #${params.userId}`
+			}
+		]
 	})),
-	component: () => <>user details page</>,
-});
+	component: () => <>user details page</>
+})
 
 export const platformUserEditRoute = createRoute({
 	getParentRoute: () => platformUserDetailsRoute,
-	path: "edit",
-	beforeLoad: requirePermission({ route: "users", method: "PUT" }),
-	staticData: { crumb: "Редактирование" },
+	path: 'edit',
+	beforeLoad: requirePermission({ route: 'users', method: 'PUT' }),
+	staticData: { crumb: 'Редактирование' },
 	head: defineHeadFn(({ params }) => ({
 		title: `Пользователи · #${params.userId} · Редактирование`,
 		description: `Редактирование пользователя #${params.userId}`,
 		meta: [
 			{
-				property: "og:title",
-				content: `Пользователи · #${params.userId} · Редактирование`,
+				property: 'og:title',
+				content: `Пользователи · #${params.userId} · Редактирование`
 			},
 			{
-				property: "og:description",
-				content: `Профиль пользователя #${params.userId} · Редактирование`,
-			},
-		],
+				property: 'og:description',
+				content: `Профиль пользователя #${params.userId} · Редактирование`
+			}
+		]
 	})),
-	component: () => <>user edit form page</>,
-});
+	component: () => <>user edit form page</>
+})
 
 /* =========================================
  * ROLES
@@ -402,70 +402,70 @@ export const platformUserEditRoute = createRoute({
 
 export const platformRolesRoute = createRoute({
 	getParentRoute: () => platformRoute,
-	path: "roles",
-	staticData: { crumb: "Роли" },
-	head: defineHead({ title: "Роли" }),
-	component: Outlet,
-});
+	path: 'roles',
+	staticData: { crumb: 'Роли' },
+	head: defineHead({ title: 'Роли' }),
+	component: Outlet
+})
 
 export const platformRolesIndexRoute = createRoute({
 	getParentRoute: () => platformRolesRoute,
-	path: "/",
-	beforeLoad: requirePermission({ route: "roles", method: "GET" }),
-	staticData: { crumb: "Список" },
-	head: defineHead({ title: "Роли · Список" }),
-	component: () => <>roles list page</>,
-});
+	path: '/',
+	beforeLoad: requirePermission({ route: 'roles', method: 'GET' }),
+	staticData: { crumb: 'Список' },
+	head: defineHead({ title: 'Роли · Список' }),
+	component: () => <>roles list page</>
+})
 
 export const platformRoleCreateRoute = createRoute({
 	getParentRoute: () => platformRolesRoute,
-	path: "new",
-	beforeLoad: requirePermission({ route: "roles", method: "POST" }),
-	staticData: { crumb: "Новая" },
-	head: defineHead({ title: "Роли · Новая" }),
-	component: () => <>role create form page</>,
-});
+	path: 'new',
+	beforeLoad: requirePermission({ route: 'roles', method: 'POST' }),
+	staticData: { crumb: 'Новая' },
+	head: defineHead({ title: 'Роли · Новая' }),
+	component: () => <>role create form page</>
+})
 
 export const platformRoleDetailsRoute = createRoute({
 	getParentRoute: () => platformRolesRoute,
-	path: "$roleId",
-	beforeLoad: requirePermission({ route: "roles", method: "GET" }),
+	path: '$roleId',
+	beforeLoad: requirePermission({ route: 'roles', method: 'GET' }),
 	staticData: { crumb: ({ params }) => `${params.roleId}` },
 	head: defineHeadFn(({ params }) => ({
 		title: `Роли · #${params.roleId}`,
 		description: `Карточка роли #${params.roleId}`,
 		meta: [
-			{ property: "og:title", content: `Роли · #${params.roleId}` },
+			{ property: 'og:title', content: `Роли · #${params.roleId}` },
 			{
-				property: "og:description",
-				content: `Карточка роли #${params.roleId}`,
-			},
-		],
+				property: 'og:description',
+				content: `Карточка роли #${params.roleId}`
+			}
+		]
 	})),
-	component: () => <>role details page</>,
-});
+	component: () => <>role details page</>
+})
 
 export const platformRoleEditRoute = createRoute({
 	getParentRoute: () => platformRoleDetailsRoute,
-	path: "edit",
-	beforeLoad: requirePermission({ route: "roles", method: "PUT" }),
-	staticData: { crumb: "Редактирование" },
+	path: 'edit',
+	beforeLoad: requirePermission({ route: 'roles', method: 'PUT' }),
+	staticData: { crumb: 'Редактирование' },
 	head: defineHeadFn(({ params }) => ({
 		title: `Роли · #${params.roleId} · Редактирование`,
 		description: `Редактирование роли #${params.roleId}`,
 		meta: [
 			{
-				property: "og:title",
-				content: `Роли · #${params.roleId}· Редактирование`,
+				property: 'og:title',
+				content: `Роли · #${params.roleId}· Редактирование`
 			},
 			{
-				property: "og:description",
-				content: `Редактирование роли #${params.roleId}`,
-			},
-		],
+				property: 'og:description',
+				content: `Редактирование роли #${params.roleId}`
+			}
+		]
 	})),
-	component: () => <>role edit form page</>,
-});
+	component: () => <>role edit form page</>
+})
 
 /* =========================================
  * MODULE ROUTES
@@ -474,8 +474,8 @@ export const platformRoleEditRoute = createRoute({
 
 export const moduleRoute = createRoute({
 	getParentRoute: () => platformRoute,
-	path: "m",
+	path: 'm',
 	beforeLoad: requireModule,
-	staticData: { crumb: "Модуль" },
-	component: Outlet,
-});
+	staticData: { crumb: 'Модуль' },
+	component: Outlet
+})

@@ -1,12 +1,11 @@
-import { CircuitBoardIcon } from "lucide-react";
-import { lazy, Suspense } from "react";
+import { CircuitBoardIcon } from 'lucide-react'
+import { lazy, Suspense } from 'react'
 
-import { Button } from "@/shared/ui/primitives/button";
+import { Button } from '@/shared/ui/primitives/button'
 
-import { runtime } from "@/platform/infra/config";
+import { runtime } from '@/platform/infra/config'
 
-let LazyDevtools: ReturnType<typeof lazy<() => React.JSX.Element>> | null =
-	null;
+let LazyDevtools: ReturnType<typeof lazy<() => React.JSX.Element>> | null = null
 
 if (import.meta.env.DEV) {
 	LazyDevtools = lazy(async () => {
@@ -14,13 +13,13 @@ if (import.meta.env.DEV) {
 			{ TanStackDevtools },
 			{ ReactQueryDevtoolsPanel },
 			{ TanStackRouterDevtoolsPanel },
-			{ FormDevtoolsPanel },
+			{ FormDevtoolsPanel }
 		] = await Promise.all([
-			import("@tanstack/react-devtools"),
-			import("@tanstack/react-query-devtools"),
-			import("@tanstack/react-router-devtools"),
-			import("@tanstack/react-form-devtools"),
-		]);
+			import('@tanstack/react-devtools'),
+			import('@tanstack/react-query-devtools'),
+			import('@tanstack/react-router-devtools'),
+			import('@tanstack/react-form-devtools')
+		])
 
 		function DevtoolsInner() {
 			return (
@@ -28,52 +27,49 @@ if (import.meta.env.DEV) {
 					config={{
 						customTrigger: () => {
 							return (
-								<Button
-									className="opacity-50 hover:opacity-100"
-									variant="ghost"
-								>
+								<Button className='opacity-50 hover:opacity-100' variant='ghost'>
 									<CircuitBoardIcon />
 									ПАНЕЛЬ РАЗРАБОТЧИКА
 								</Button>
-							);
-						},
+							)
+						}
 					}}
 					plugins={[
 						{
-							name: "Query",
+							name: 'Query',
 							render: <ReactQueryDevtoolsPanel />,
-							defaultOpen: false,
+							defaultOpen: false
 						},
 						{
-							name: "Router",
+							name: 'Router',
 							render: <TanStackRouterDevtoolsPanel />,
-							defaultOpen: false,
+							defaultOpen: false
 						},
 						{
-							name: "Form",
+							name: 'Form',
 							render: <FormDevtoolsPanel />,
-							defaultOpen: false,
-						},
+							defaultOpen: false
+						}
 					]}
 				/>
-			);
+			)
 		}
 
-		return { default: DevtoolsInner };
-	});
+		return { default: DevtoolsInner }
+	})
 }
 
 function Devtools() {
-	if (!import.meta.env.DEV) return null;
+	if (!import.meta.env.DEV) return null
 
-	if (!runtime.debug) return null;
+	if (!runtime.debug) return null
 
-	const Comp = LazyDevtools!;
+	const Comp = LazyDevtools!
 	return (
 		<Suspense fallback={null}>
 			<Comp />
 		</Suspense>
-	);
+	)
 }
 
-export { Devtools };
+export { Devtools }

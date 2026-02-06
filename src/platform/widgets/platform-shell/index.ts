@@ -1,1 +1,1 @@
-export { PlatformShell } from "./ui/platform-shell";
+export { PlatformShell } from './ui/platform-shell'

@@ -3,5 +3,5 @@ export {
 	platformRoute,
 	platformRouteTree,
 	publicRouteTree,
-	rootRoute,
-} from "@/platform/core/routes";
+	rootRoute
+} from '@/platform/core/routes'

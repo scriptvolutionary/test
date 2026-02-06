@@ -1,20 +1,16 @@
-import { Link } from "@tanstack/react-router";
-import { HomeIcon, MoveLeftIcon } from "lucide-react";
+import { Link } from '@tanstack/react-router'
+import { HomeIcon, MoveLeftIcon } from 'lucide-react'
 
-import { Button } from "@/shared/ui/primitives/button";
+import { Button } from '@/shared/ui/primitives/button'
 
 function StatusActions() {
 	return (
-		<div className="grid grid-cols-2 w-full gap-2">
-			<Button
-				className="justify-between"
-				variant="outline"
-				onClick={() => window.history.back()}
-			>
+		<div className='grid w-full grid-cols-2 gap-2'>
+			<Button className='justify-between' variant='outline' onClick={() => window.history.back()}>
 				<MoveLeftIcon /> Назад
 			</Button>
 			<Button
-				className="justify-between"
+				className='justify-between'
 				nativeButton={false}
 				render={
 					<Link to={`/platform`}>
@@ -24,7 +20,7 @@ function StatusActions() {
 				}
 			/>
 		</div>
-	);
+	)
 }
 
-export { StatusActions };
+export { StatusActions }

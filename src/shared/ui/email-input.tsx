@@ -1,37 +1,28 @@
-import { MailIcon } from "lucide-react";
-import * as React from "react";
+import { MailIcon } from 'lucide-react'
+import * as React from 'react'
 
-import {
-	InputGroup,
-	InputGroupAddon,
-	InputGroupInput,
-} from "./primitives/input-group";
+import { InputGroup, InputGroupAddon, InputGroupInput } from './primitives/input-group'
 
 interface Props
 	extends Omit<
 		React.ComponentProps<typeof InputGroupInput>,
-		"type" | "inputMode" | "autoComplete"
+		'type' | 'inputMode' | 'autoComplete'
 	> {
-	icon?: boolean;
+	icon?: boolean
 }
 
 function EmailInput({ icon = true, ...props }: Props) {
 	return (
 		<InputGroup>
 			{icon ? (
-				<InputGroupAddon aria-hidden="true">
-					<MailIcon className="size-4" />
+				<InputGroupAddon aria-hidden='true'>
+					<MailIcon className='size-4' />
 				</InputGroupAddon>
 			) : null}
 
-			<InputGroupInput
-				type="email"
-				inputMode="email"
-				autoComplete="email"
-				{...props}
-			/>
+			<InputGroupInput type='email' inputMode='email' autoComplete='email' {...props} />
 		</InputGroup>
-	);
+	)
 }
 
-export { EmailInput };
+export { EmailInput }

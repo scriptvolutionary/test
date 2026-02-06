@@ -1,1 +1,1 @@
-export * from "./error-page-shell";
+export * from './error-page-shell'

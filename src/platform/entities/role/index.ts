@@ -1,1 +1,1 @@
-export * from "./model/role.types";
+export * from './model/role.types'

@@ -1,5 +1,5 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import * as React from "react";
+import { Link, useRouterState } from '@tanstack/react-router'
+import * as React from 'react'
 
 import {
 	Sidebar,
@@ -12,42 +12,37 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
-	SidebarSeparator,
-} from "@/shared/ui/primitives/sidebar";
+	SidebarSeparator
+} from '@/shared/ui/primitives/sidebar'
 
-import { useCurrentModule } from "@/platform/core/hooks";
-import { ModuleFeedbackButton } from "@/platform/core/ui/module-feedback-button";
+import { useCurrentModule } from '@/platform/core/hooks'
+import { ModuleFeedbackButton } from '@/platform/core/ui/module-feedback-button'
 
-import { moduleMenuItems, platformMenuItems } from "../model/menu";
-import { SidebarModuleMenuSwitcher } from "./sidebar-module-menu-switcher";
-import { SidebarSessionProfileMenu } from "./sidebar-session-profile-menu";
+import { moduleMenuItems, platformMenuItems } from '../model/menu'
+import { SidebarModuleMenuSwitcher } from './sidebar-module-menu-switcher'
+import { SidebarSessionProfileMenu } from './sidebar-session-profile-menu'
 
 function PlatformSidebar() {
-	const pathname = useRouterState({ select: (s) => s.location.pathname });
-	const { module: currentModule, meta: currentMeta } = useCurrentModule();
+	const pathname = useRouterState({ select: (s) => s.location.pathname })
+	const { module: currentModule, meta: currentMeta } = useCurrentModule()
 
-	const cleanPath =
-		pathname.endsWith("/") && pathname !== "/"
-			? pathname.slice(0, -1)
-			: pathname;
+	const cleanPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname
 
 	const isActive = React.useCallback(
 		(to: string) => {
-			if (to === "/platform") {
-				return cleanPath === "/platform";
+			if (to === '/platform') {
+				return cleanPath === '/platform'
 			}
-			return cleanPath.startsWith(to);
+			return cleanPath.startsWith(to)
 		},
-		[cleanPath],
-	);
+		[cleanPath]
+	)
 
 	const moduleItems =
-		currentModule && moduleMenuItems[currentModule]
-			? moduleMenuItems[currentModule]
-			: [];
+		currentModule && moduleMenuItems[currentModule] ? moduleMenuItems[currentModule] : []
 
 	return (
-		<Sidebar collapsible="icon" variant="floating">
+		<Sidebar collapsible='icon' variant='floating'>
 			<SidebarHeader>
 				<SidebarModuleMenuSwitcher />
 			</SidebarHeader>
@@ -76,9 +71,7 @@ function PlatformSidebar() {
 
 				{moduleItems.length ? (
 					<SidebarGroup>
-						<SidebarGroupLabel>
-							{currentMeta?.title ?? "Модуль"}
-						</SidebarGroupLabel>
+						<SidebarGroupLabel>{currentMeta?.title ?? 'Модуль'}</SidebarGroupLabel>
 						<SidebarGroupContent>
 							<SidebarMenu>
 								{moduleItems.map((item) => (
@@ -100,20 +93,20 @@ function PlatformSidebar() {
 					</SidebarGroup>
 				) : null}
 
-				<SidebarGroup className="mt-auto">
+				<SidebarGroup className='mt-auto'>
 					<SidebarGroupContent>
 						<SidebarMenu>
 							<SidebarMenuItem>
 								<SidebarMenuButton
-									className="justify-start"
-									size="sm"
-									tooltip="Обратная связь"
+									className='justify-start'
+									size='sm'
+									tooltip='Обратная связь'
 									render={
 										<ModuleFeedbackButton
-											variant="ghost"
-											size="sm"
+											variant='ghost'
+											size='sm'
 											report={{
-												title: "Здравствуйте, у меня возник вопрос...",
+												title: 'Здравствуйте, у меня возник вопрос...'
 											}}
 										/>
 									}
@@ -128,7 +121,7 @@ function PlatformSidebar() {
 				<SidebarSessionProfileMenu />
 			</SidebarFooter>
 		</Sidebar>
-	);
+	)
 }
 
-export { PlatformSidebar };
+export { PlatformSidebar }

@@ -1,3 +1,3 @@
-export * from "./use-access";
-export * from "./use-module";
-export * from "./use-theme";
+export * from './use-access'
+export * from './use-module'
+export * from './use-theme'

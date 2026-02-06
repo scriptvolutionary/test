@@ -1,1 +1,1 @@
-export { useAuthStore } from "@/platform/features/auth";
+export { useAuthStore } from '@/platform/features/auth'

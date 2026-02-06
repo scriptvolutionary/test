@@ -1,24 +1,24 @@
-import type { QueryClient } from "@tanstack/react-query";
+import type { QueryClient } from '@tanstack/react-query'
 import {
 	createRootRouteWithContext,
 	createRoute,
 	HeadContent,
 	Outlet,
-	redirect,
-} from "@tanstack/react-router";
-import z from "zod";
+	redirect
+} from '@tanstack/react-router'
+import z from 'zod'
 
-import { defineHead } from "@/shared/lib/seo";
+import { defineHead } from '@/shared/lib/seo'
 
-import { LoginPageComponent } from "@/platform/pages/auth/login";
-import { ForbiddenPageComponent } from "@/platform/pages/errors/forbidden";
+import { LoginPageComponent } from '@/platform/pages/auth/login'
+import { ForbiddenPageComponent } from '@/platform/pages/errors/forbidden'
 
-import { Devtools } from "../devtools";
-import { PendingIndicator } from "../ui/pending-indicator";
-import { redirectIfAuthed } from "./guards/session";
+import { Devtools } from '../devtools'
+import { PendingIndicator } from '../ui/pending-indicator'
+import { redirectIfAuthed } from './guards/session'
 
 export const rootRoute = createRootRouteWithContext<{
-	queryClient: QueryClient;
+	queryClient: QueryClient
 }>()({
 	component: () => (
 		<>
@@ -29,34 +29,34 @@ export const rootRoute = createRootRouteWithContext<{
 
 			<Devtools />
 		</>
-	),
-});
+	)
+})
 
 export const indexRoute = createRoute({
 	getParentRoute: () => rootRoute,
-	path: "/",
+	path: '/',
 	beforeLoad: () => {
-		throw redirect({ to: "/platform" });
-	},
-});
+		throw redirect({ to: '/platform' })
+	}
+})
 
 export const loginRoute = createRoute({
 	getParentRoute: () => rootRoute,
-	path: "log-in",
+	path: 'log-in',
 	validateSearch: z.object({
-		redirect: z.string().optional(),
+		redirect: z.string().optional()
 	}),
-	head: defineHead({ title: "Получите доступ" }),
+	head: defineHead({ title: 'Получите доступ' }),
 	beforeLoad: redirectIfAuthed,
-	component: LoginPageComponent,
-});
+	component: LoginPageComponent
+})
 
 export const forbiddenRoute = createRoute({
 	getParentRoute: () => rootRoute,
-	path: "forbidden",
-	head: defineHead({ title: "Нет доступа" }),
+	path: 'forbidden',
+	head: defineHead({ title: 'Нет доступа' }),
 	validateSearch: z.object({
-		from: z.string().optional(),
+		from: z.string().optional()
 	}),
-	component: ForbiddenPageComponent,
-});
+	component: ForbiddenPageComponent
+})

@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react'
 
-import { buildSupportMessage, type SupportReport } from "@/shared/lib/utils";
-import type { ButtonProps } from "@/shared/ui/primitives/button";
-import { TelegramFeedbackButton } from "@/shared/ui/telegram-feedback-button";
+import { buildSupportMessage, type SupportReport } from '@/shared/lib/utils'
+import type { ButtonProps } from '@/shared/ui/primitives/button'
+import { TelegramFeedbackButton } from '@/shared/ui/telegram-feedback-button'
 
-import { useCurrentModule } from "../hooks";
+import { useCurrentModule } from '../hooks'
 
 interface ModuleFeedbackButtonProps {
-	url?: string;
-	report: Omit<SupportReport, "url" | "module" | "code"> & {
-		module?: string;
-		code?: number;
-	};
-	variant?: ButtonProps["variant"];
-	className?: string;
-	size?: ButtonProps["size"];
+	url?: string
+	report: Omit<SupportReport, 'url' | 'module' | 'code'> & {
+		module?: string
+		code?: number
+	}
+	variant?: ButtonProps['variant']
+	className?: string
+	size?: ButtonProps['size']
 }
 
 function ModuleFeedbackButton({
@@ -22,26 +22,21 @@ function ModuleFeedbackButton({
 	variant,
 	className,
 	size,
-	report,
+	report
 }: ModuleFeedbackButtonProps) {
-	const { module } = useCurrentModule();
+	const { module } = useCurrentModule()
 
 	const message = React.useMemo(() => {
 		return buildSupportMessage({
 			...report,
 			url,
-			module: report.module ?? module ?? undefined,
-		});
-	}, [report, url, module]);
+			module: report.module ?? module ?? undefined
+		})
+	}, [report, url, module])
 
 	return (
-		<TelegramFeedbackButton
-			className={className}
-			size={size}
-			variant={variant}
-			message={message}
-		/>
-	);
+		<TelegramFeedbackButton className={className} size={size} variant={variant} message={message} />
+	)
 }
 
-export { ModuleFeedbackButton };
+export { ModuleFeedbackButton }

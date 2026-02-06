@@ -1,1 +1,1 @@
-export * from "@/platform/core/state";
+export * from '@/platform/core/state'

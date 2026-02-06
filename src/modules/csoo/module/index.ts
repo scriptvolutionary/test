@@ -1,1 +1,1 @@
-export { routeTree } from "./router";
+export { routeTree } from './router'

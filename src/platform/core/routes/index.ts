@@ -9,18 +9,14 @@ import {
 	platformUserDetailsRoute,
 	platformUserEditRoute,
 	platformUsersIndexRoute,
-	platformUsersRoute,
-} from "./protected";
-import { forbiddenRoute, indexRoute, loginRoute } from "./public";
+	platformUsersRoute
+} from './protected'
+import { forbiddenRoute, indexRoute, loginRoute } from './public'
 
-export * from "./protected";
-export { rootRoute } from "./public";
+export * from './protected'
+export { rootRoute } from './public'
 
-export const publicRouteTree = [
-	indexRoute,
-	forbiddenRoute,
-	loginRoute,
-] as const;
+export const publicRouteTree = [indexRoute, forbiddenRoute, loginRoute] as const
 
 export const platformRouteTree = [
 	platformIndexRoute,
@@ -28,12 +24,12 @@ export const platformRouteTree = [
 	platformUsersRoute.addChildren([
 		platformUsersIndexRoute,
 		platformUserCreateRoute,
-		platformUserDetailsRoute.addChildren([platformUserEditRoute]),
+		platformUserDetailsRoute.addChildren([platformUserEditRoute])
 	]),
 
 	platformRolesRoute.addChildren([
 		platformRolesIndexRoute,
 		platformRoleCreateRoute,
-		platformRoleDetailsRoute.addChildren([platformRoleEditRoute]),
-	]),
-];
+		platformRoleDetailsRoute.addChildren([platformRoleEditRoute])
+	])
+]

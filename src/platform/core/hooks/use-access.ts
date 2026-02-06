@@ -1,24 +1,24 @@
-import { useMemo } from "react";
+import { useMemo } from 'react'
 
 import {
 	canPermission,
 	canRole,
 	type PermissionCheck,
-	useSessionMe,
-} from "@/platform/entities/session";
+	useSessionMe
+} from '@/platform/entities/session'
 
 export function useCanRole(roles: string | string[]) {
-	const { data, isLoading } = useSessionMe();
+	const { data, isLoading } = useSessionMe()
 
-	const allowed = useMemo(() => canRole(data, roles), [data, roles]);
+	const allowed = useMemo(() => canRole(data, roles), [data, roles])
 
-	return { allowed, isLoading };
+	return { allowed, isLoading }
 }
 
 export function useCanPermission(check: PermissionCheck) {
-	const { data, isLoading } = useSessionMe();
+	const { data, isLoading } = useSessionMe()
 
-	const allowed = useMemo(() => canPermission(data, check), [data, check]);
+	const allowed = useMemo(() => canPermission(data, check), [data, check])
 
-	return { allowed, isLoading };
+	return { allowed, isLoading }
 }

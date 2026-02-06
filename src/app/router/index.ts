@@ -1,38 +1,38 @@
-import { createRouter } from "@tanstack/react-router";
+import { createRouter } from '@tanstack/react-router'
 
-import { ErrorPageComponent } from "@/platform/pages/errors/error";
-import { NotFoundPageComponent } from "@/platform/pages/errors/not-found";
+import { ErrorPageComponent } from '@/platform/pages/errors/error'
+import { NotFoundPageComponent } from '@/platform/pages/errors/not-found'
 import {
 	moduleRoute,
 	platformRoute,
 	platformRouteTree,
 	publicRouteTree,
-	rootRoute,
-} from "@/platform/sdk/routes";
+	rootRoute
+} from '@/platform/sdk/routes'
 
-import { getEnabledModules } from "@/app/modules/registry";
+import { getEnabledModules } from '@/app/modules/registry'
 
 function createAppRouter() {
-	const enabledModules = getEnabledModules();
+	const enabledModules = getEnabledModules()
 
 	const routeTree = rootRoute.addChildren([
 		...publicRouteTree,
 
 		platformRoute.addChildren([
 			...platformRouteTree,
-			moduleRoute.addChildren(enabledModules.map((m) => m.routeTree)),
-		]),
-	]);
+			moduleRoute.addChildren(enabledModules.map((m) => m.routeTree))
+		])
+	])
 
 	return createRouter({
 		routeTree,
-		defaultPreload: "intent",
+		defaultPreload: 'intent',
 		defaultPreloadStaleTime: 0,
 		context: undefined!,
-		notFoundMode: "root",
+		notFoundMode: 'root',
 		defaultNotFoundComponent: NotFoundPageComponent,
-		defaultErrorComponent: ErrorPageComponent,
-	});
+		defaultErrorComponent: ErrorPageComponent
+	})
 }
 
-export const router = createAppRouter();
+export const router = createAppRouter()
