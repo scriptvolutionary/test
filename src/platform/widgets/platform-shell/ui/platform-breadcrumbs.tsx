@@ -1,75 +1,92 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import { ChevronRightIcon } from "lucide-react";
+import { type AnyRouteMatch, Link, useMatches } from "@tanstack/react-router";
 import * as React from "react";
 
-import { modulesMap } from "@/platform/infra/config";
+import { useIsMobile } from "@/shared/hooks/use-mobile";
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/shared/ui/primitives/breadcrumb";
 
-import { platformMenuItems } from "../model/menu";
+import { useCurrentModule } from "@/platform/core/hooks";
 
-interface Crumb {
+type Crumb = {
 	label: string;
-	to: string;
-}
+	to: AnyRouteMatch["fullPath"];
+	params: AnyRouteMatch["params"];
+};
 
 function PlatformBreadcrumbs() {
-	const pathname = useRouterState({ select: (s) => s.location.pathname });
+	const matches = useMatches();
+	const isMobile = useIsMobile();
+	const { module: currentModule, meta: currentMeta } = useCurrentModule();
 
 	const crumbs = React.useMemo<Crumb[]>(() => {
-		const cleanPath =
-			pathname.endsWith("/") && pathname !== "/"
-				? pathname.slice(0, -1)
-				: pathname;
+		return matches.flatMap((match) => {
+			const isModuleRoot =
+				currentModule && match.fullPath === `/platform/m/${currentModule}`;
+			const fromStatic = match.staticData?.crumb;
+			const labelFromStatic =
+				typeof fromStatic === "function"
+					? fromStatic({ params: match.params })
+					: fromStatic;
 
-		const segments = cleanPath.split("/").filter(Boolean);
-		if (segments[0] !== "platform") return [];
+			if (!labelFromStatic && !isModuleRoot) return [];
 
-		const list: Crumb[] = [{ label: "?????????", to: "/platform" }];
+			const label =
+				isModuleRoot && currentMeta?.title
+					? currentMeta.title
+					: (labelFromStatic ?? match.fullPath);
 
-		if (segments[1] === "m" && segments[2]) {
-			const key = segments[2];
-			const meta = modulesMap[key as keyof typeof modulesMap];
-			list.push({
-				label: meta?.title ?? key,
-				to: `/platform/m/${key}`,
-			});
-			return list;
-		}
-
-		const section = platformMenuItems.find(
-			(item) => item.to !== "/platform" && cleanPath.startsWith(item.to),
-		);
-		if (section) {
-			list.push({ label: section.label, to: section.to });
-		}
-
-		return list;
-	}, [pathname]);
+			return [
+				{
+					label,
+					to: match.fullPath,
+					params: match.params,
+				},
+			];
+		});
+	}, [matches, currentModule, currentMeta?.title]);
 
 	if (!crumbs.length) return null;
 
-	return (
-		<nav aria-label="Breadcrumbs">
-			<ol className="flex items-center gap-1 text-sm text-muted-foreground">
-				{crumbs.map((crumb, index) => {
-					const isLast = index === crumbs.length - 1;
+	const lastCrumb = crumbs[crumbs.length - 1];
+	const hiddenCrumbs = crumbs.slice(0, -1);
 
-					return (
-						<li key={crumb.to} className="flex items-center gap-1">
-							{isLast ? (
-								<span className="text-foreground">{crumb.label}</span>
-							) : (
-								<Link to={crumb.to} className="hover:text-foreground">
-									{crumb.label}
-								</Link>
-							)}
-							{!isLast ? (
-								<ChevronRightIcon className="size-3.5 text-muted-foreground" />
-							) : null}
-						</li>
-					);
-				})}
-			</ol>
-		</nav>
+	return (
+		<Breadcrumb>
+			<BreadcrumbList className="flex-nowrap">
+				{isMobile && hiddenCrumbs.length ? (
+					<BreadcrumbItem>
+						<BreadcrumbPage>{lastCrumb.label}</BreadcrumbPage>
+					</BreadcrumbItem>
+				) : (
+					crumbs.map((crumb, index) => {
+						const isLast = index === crumbs.length - 1;
+
+						return (
+							<React.Fragment key={crumb.to}>
+								<BreadcrumbItem>
+									{isLast ? (
+										<BreadcrumbPage>{crumb.label}</BreadcrumbPage>
+									) : (
+										<BreadcrumbLink
+											render={<Link to={crumb.to} params={crumb.params} />}
+										>
+											{crumb.label}
+										</BreadcrumbLink>
+									)}
+								</BreadcrumbItem>
+								{!isLast && <BreadcrumbSeparator />}
+							</React.Fragment>
+						);
+					})
+				)}
+			</BreadcrumbList>
+		</Breadcrumb>
 	);
 }
 

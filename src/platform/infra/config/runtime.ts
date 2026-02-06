@@ -23,7 +23,7 @@ export const modulesMap: Record<
 	}
 > = {
 	agroservice: {
-		title: "Мои растения",
+		title: "Агросервис",
 		description: "Помощник выращивания растений",
 		icon: FlowerIcon,
 	},

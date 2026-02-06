@@ -8,7 +8,13 @@ import { PlatformSidebar } from "./platform-sidebar";
 
 function PlatformShell() {
 	return (
-		<SidebarProvider defaultOpen>
+		<SidebarProvider
+			style={
+				{
+					"--sidebar-width": "calc(var(--spacing) * 72)",
+				} as React.CSSProperties
+			}
+		>
 			<PlatformSidebar />
 
 			<SidebarInset>

@@ -1,19 +1,19 @@
 import type { LucideIcon } from "lucide-react";
 import * as React from "react";
 
-interface BrandCardProps {
+interface BrandItemProps {
 	logo?: React.ReactNode;
 	icon?: LucideIcon | null;
 	title?: React.ReactNode;
 	description?: React.ReactNode;
 }
 
-export function BrandCard({
+export function BrandItem({
 	logo,
 	icon,
 	title = "Nexus",
 	description = "Модульная платформа",
-}: BrandCardProps) {
+}: BrandItemProps) {
 	const latestRef = React.useRef({
 		logo,
 		icon,
@@ -32,8 +32,13 @@ export function BrandCard({
 		title,
 		description,
 	}));
+	const hasMountedRef = React.useRef(false);
 
 	React.useEffect(() => {
+		if (!hasMountedRef.current) {
+			hasMountedRef.current = true;
+			return;
+		}
 		setVisible(false);
 		const t = window.setTimeout(() => {
 			setSnap({ logo, icon, title, description });

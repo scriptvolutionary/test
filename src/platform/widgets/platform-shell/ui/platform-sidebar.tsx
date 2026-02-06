@@ -15,14 +15,16 @@ import {
 	SidebarSeparator,
 } from "@/shared/ui/primitives/sidebar";
 
+import { useCurrentModule } from "@/platform/core/hooks";
 import { ModuleFeedbackButton } from "@/platform/core/ui/module-feedback-button";
 
-import { platformMenuItems } from "../model/menu";
+import { moduleMenuItems, platformMenuItems } from "../model/menu";
 import { SidebarModuleMenuSwitcher } from "./sidebar-module-menu-switcher";
 import { SidebarSessionProfileMenu } from "./sidebar-session-profile-menu";
 
 function PlatformSidebar() {
 	const pathname = useRouterState({ select: (s) => s.location.pathname });
+	const { module: currentModule, meta: currentMeta } = useCurrentModule();
 
 	const cleanPath =
 		pathname.endsWith("/") && pathname !== "/"
@@ -38,6 +40,11 @@ function PlatformSidebar() {
 		},
 		[cleanPath],
 	);
+
+	const moduleItems =
+		currentModule && moduleMenuItems[currentModule]
+			? moduleMenuItems[currentModule]
+			: [];
 
 	return (
 		<Sidebar collapsible="icon" variant="floating">
@@ -66,6 +73,33 @@ function PlatformSidebar() {
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
+
+				{moduleItems.length ? (
+					<SidebarGroup>
+						<SidebarGroupLabel>
+							{currentMeta?.title ?? "Модуль"}
+						</SidebarGroupLabel>
+						<SidebarGroupContent>
+							<SidebarMenu>
+								{moduleItems.map((item) => (
+									<SidebarMenuItem key={item.id}>
+										<SidebarMenuButton
+											isActive={isActive(item.to)}
+											tooltip={item.label}
+											render={
+												<Link to={item.to}>
+													<item.icon />
+													{item.label}
+												</Link>
+											}
+										/>
+									</SidebarMenuItem>
+								))}
+							</SidebarMenu>
+						</SidebarGroupContent>
+					</SidebarGroup>
+				) : null}
+
 				<SidebarGroup className="mt-auto">
 					<SidebarGroupContent>
 						<SidebarMenu>

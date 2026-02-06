@@ -71,7 +71,7 @@ function PendingIndicator({
 			aria-busy={pending ? "true" : "false"}
 			className={cn(
 				"fixed inset-0 z-1000",
-				"bg-background/25 backdrop-blur-sm",
+				"bg-background/25 backdrop-blur-xs",
 				"transition-opacity duration-200 ease-out",
 				visible ? "opacity-100" : "opacity-0",
 				"pointer-events-none",
@@ -80,9 +80,9 @@ function PendingIndicator({
 			<div className="flex h-full w-full items-center justify-center">
 				<div className="grid grid-cols-2 gap-2 animate-in zoom-in-95 fade-in duration-200">
 					<Square delay="0ms" />
-					<Square delay="240ms" />
-					<Square delay="240ms" />
-					<Square delay="480ms" />
+					<Square delay="300ms" />
+					<Square delay="600ms" />
+					<Square delay="900ms" />
 				</div>
 			</div>
 		</div>
@@ -93,9 +93,9 @@ function Square({ delay }: { delay: string }) {
 	return (
 		<div
 			className={cn(
-				"size-6 rounded-md",
-				"bg-primary",
-				"animate-[nexus-quad_900ms_ease-in-out_infinite]",
+				"size-8 rounded-md",
+				"bg-primary bg-linear-to-br to-muted/80",
+				"animate-[nexus-quad_2s_ease-in-out_infinite]",
 			)}
 			style={{ animationDelay: delay }}
 			aria-hidden="true"

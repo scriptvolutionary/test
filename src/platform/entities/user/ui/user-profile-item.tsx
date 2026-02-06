@@ -11,15 +11,15 @@ import {
 
 type UserLike = Partial<User> | null | undefined;
 
-type UserProfileVariant = "menu" | "label";
+type UserProfileItemVariant = "menu" | "label";
 
-interface UserProfileProps {
+interface UserProfileItemProps {
 	user?: UserLike;
 	isLoading?: boolean;
-	variant?: UserProfileVariant;
+	variant?: UserProfileItemVariant;
 }
 
-function useUserProfileView(user: UserLike) {
+function useUserProfileItemView(user: UserLike) {
 	return React.useMemo(() => {
 		const title = formatUserName(user);
 		const subtitle = user?.email ?? "";
@@ -32,10 +32,14 @@ function useUserProfileView(user: UserLike) {
 	}, [user]);
 }
 
-function UserProfile({ user, isLoading, variant = "menu" }: UserProfileProps) {
-	const { title, subtitle, initials, role, id } = useUserProfileView(user);
+function UserProfileItem({
+	user,
+	isLoading,
+	variant = "menu",
+}: UserProfileItemProps) {
+	const { title, subtitle, initials, role, id } = useUserProfileItemView(user);
 
-	if (isLoading) return <UserProfileSkeleton variant={variant} />;
+	if (isLoading) return <UserProfileItemSkeleton variant={variant} />;
 
 	if (variant === "label") {
 		return (
@@ -60,7 +64,11 @@ function UserProfile({ user, isLoading, variant = "menu" }: UserProfileProps) {
 	);
 }
 
-function UserProfileSkeleton({ variant }: { variant: UserProfileVariant }) {
+function UserProfileItemSkeleton({
+	variant,
+}: {
+	variant: UserProfileItemVariant;
+}) {
 	if (variant === "label") {
 		return (
 			<div className="space-y-1">
@@ -81,4 +89,4 @@ function UserProfileSkeleton({ variant }: { variant: UserProfileVariant }) {
 	);
 }
 
-export { UserProfile, type UserProfileVariant };
+export { UserProfileItem, type UserProfileItemVariant };

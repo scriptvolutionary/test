@@ -1,5 +1,5 @@
 import { Backdrop } from "./backdrop";
-import { BrandCard } from "./platform-brand";
+import { BrandItem } from "./brand-item";
 
 interface PublicPageShellProps {
 	backdropMode?: "public" | "protected";
@@ -20,7 +20,7 @@ function PublicPageShell({
 
 			<div className="relative mx-auto flex min-h-dvh container flex-col px-6 lg:px-12">
 				<header className="flex items-center justify-between py-4 lg:py-6">
-					<BrandCard />
+					<BrandItem />
 					{headerAction && headerAction}
 				</header>
 

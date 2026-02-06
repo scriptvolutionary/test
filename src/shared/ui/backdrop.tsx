@@ -72,17 +72,26 @@ function PublicLayer() {
 
 function ProtectedLayer() {
 	return (
-		<>
+		<div
+			className={cn(
+				"absolute inset-0 h-svh pointer-events-none",
+				"[-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_0%,transparent_100%)]",
+				"[-webkit-mask-repeat:no-repeat]",
+				"[-webkit-mask-size:100%_100%]",
+			)}
+		>
 			<div
 				className={cn(
-					"absolute inset-x-0 h-svh",
-					"bg-[linear-gradient(to_right,rgb(from_var(--muted)_r_g_b/0.48)_1px,transparent_1px),linear-gradient(to_bottom,rgb(from_var(--muted)_r_g_b/0.24)_1px,transparent_1px)]",
-					"bg-size-[24px_24px]",
-					"mask-[radial-gradient(ellipse_at_top,black_0%,transparent_75%)]",
-					"opacity-100",
+					"absolute inset-0",
+					"bg-[linear-gradient(90deg,rgb(from_var(--muted)_r_g_b/0.16),rgb(from_var(--muted)_r_g_b/0.42),rgb(from_var(--muted)_r_g_b/0.16))]",
+					"animate-[nexus-gradient-xy_3s_ease-in-out_infinite]",
+					"[-webkit-mask-image:linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)]",
+					"[-webkit-mask-size:24px_24px,24px_24px]",
+					"[-webkit-mask-repeat:repeat,repeat]",
+					"[-webkit-mask-position:0_0,0_0]",
 				)}
 			/>
-		</>
+		</div>
 	);
 }
 

@@ -4,4 +4,4 @@ export * from "./model/user.keys";
 export * from "./model/user.mutations";
 export * from "./model/user.query";
 export * from "./model/user.types";
-export * from "./ui/user-profile-card";
+export * from "./ui/user-profile-item";
