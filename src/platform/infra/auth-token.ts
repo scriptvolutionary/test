@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TOKEN_COOKIE_KEY = 'nexus:token'
+const TOKEN_COOKIE_KEY = 'nexus:session'
 
 export function getAuthToken(): string | null {
 	return Cookies.get(TOKEN_COOKIE_KEY) ?? null
