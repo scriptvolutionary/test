@@ -1,4 +1,4 @@
-import { BellPlusIcon } from 'lucide-react'
+﻿import { BellPlusIcon } from 'lucide-react'
 import * as React from 'react'
 
 import { cn } from '@/shared/lib/utils'
@@ -11,7 +11,7 @@ import { ThemeSwitcher } from '@/platform/features/theme'
 
 import { PlatformBreadcrumbs } from './platform-breadcrumbs'
 
-function PlatformHeader() {
+export function PlatformHeader() {
 	const [isScrolled, setIsScrolled] = React.useState(false)
 
 	React.useEffect(() => {
@@ -61,5 +61,3 @@ function PlatformHeader() {
 		</header>
 	)
 }
-
-export { PlatformHeader }

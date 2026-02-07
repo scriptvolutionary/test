@@ -1,4 +1,4 @@
-import { useNavigate } from '@tanstack/react-router'
+﻿import { useNavigate } from '@tanstack/react-router'
 import { ChevronsUpDownIcon, LogOutIcon } from 'lucide-react'
 
 import {
@@ -15,7 +15,7 @@ import { logout } from '@/platform/features/auth'
 
 import { SidebarMenuDropdown } from '../_ui/sidebar-menu-dropdown'
 
-function SidebarSessionProfileMenu() {
+export function SidebarSessionProfileMenu() {
 	const navigate = useNavigate()
 
 	const { data: me, isLoading } = useSessionMe()
@@ -57,5 +57,3 @@ function SidebarSessionProfileMenu() {
 		</SidebarMenuDropdown>
 	)
 }
-
-export { SidebarSessionProfileMenu }

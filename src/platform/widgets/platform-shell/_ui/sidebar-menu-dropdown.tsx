@@ -1,4 +1,4 @@
-import * as React from 'react'
+﻿import * as React from 'react'
 
 import {
 	DropdownMenu,
@@ -21,7 +21,7 @@ type SidebarMenuDropdownProps = {
 	sideOffsetDesktop?: number
 }
 
-function SidebarMenuDropdown({
+export function SidebarMenuDropdown({
 	trigger,
 	children,
 	contentClassName = 'w-(--anchor-width)',
@@ -52,5 +52,3 @@ function SidebarMenuDropdown({
 		</SidebarMenu>
 	)
 }
-
-export { SidebarMenuDropdown }

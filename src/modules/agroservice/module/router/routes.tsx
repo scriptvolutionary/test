@@ -1,4 +1,4 @@
-import { createRoute, Outlet } from '@tanstack/react-router'
+﻿import { createRoute, Outlet } from '@tanstack/react-router'
 
 import { defineHead } from '@/shared/lib/seo'
 

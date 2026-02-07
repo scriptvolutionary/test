@@ -1,7 +1,7 @@
-import type { LucideIcon } from 'lucide-react'
+﻿import type { LucideIcon } from 'lucide-react'
 import * as React from 'react'
 
-interface BrandItemProps {
+type BrandItemProps = {
 	logo?: React.ReactNode
 	icon?: LucideIcon | null
 	title?: React.ReactNode

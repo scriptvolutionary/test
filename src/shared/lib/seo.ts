@@ -6,14 +6,14 @@ type MetaTag =
 
 type LinkTag = React.LinkHTMLAttributes<HTMLLinkElement>
 
-export interface DefineHeadDefaults {
+export type DefineHeadDefaults = {
 	appName: string
 	description: string
 	iconHref: string
 	titleTemplate?: (title: string) => string
 }
 
-export interface DefineHeadInput {
+export type DefineHeadInput = {
 	title?: string
 	disableTitleTemplate?: boolean
 	description?: string

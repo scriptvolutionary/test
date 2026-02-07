@@ -36,6 +36,7 @@
 						"noImportCycles": "error",
 						"useSortedClasses": {
 							"level": "warn",
+							"fix": "safe",
 							"options": {
 								"attributes": ["className", "containerClassName"],
 								"functions": ["cn", "clsx", "cva", "tailwindMerge"]

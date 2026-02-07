@@ -1,4 +1,4 @@
-import { cn } from '@/shared/lib/utils'
+﻿import { cn } from '@/shared/lib/utils'
 import { Button } from '@/shared/ui/primitives/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/primitives/tooltip'
 
@@ -6,7 +6,7 @@ import { useTheme } from '@/platform/core/hooks'
 
 import { themeOptions } from '../model/theme'
 
-function ThemeSwitcher() {
+export function ThemeSwitcher() {
 	const { theme, setTheme } = useTheme()
 
 	return (
@@ -40,5 +40,3 @@ function ThemeSwitcher() {
 		</div>
 	)
 }
-
-export { ThemeSwitcher }

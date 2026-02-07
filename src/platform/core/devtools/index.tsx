@@ -1,4 +1,4 @@
-import { CircuitBoardIcon } from 'lucide-react'
+﻿import { CircuitBoardIcon } from 'lucide-react'
 import { lazy, Suspense } from 'react'
 
 import { Button } from '@/shared/ui/primitives/button'
@@ -59,7 +59,7 @@ if (import.meta.env.DEV) {
 	})
 }
 
-function Devtools() {
+export function Devtools() {
 	if (!import.meta.env.DEV) return null
 
 	if (!runtime.debug) return null
@@ -71,5 +71,3 @@ function Devtools() {
 		</Suspense>
 	)
 }
-
-export { Devtools }

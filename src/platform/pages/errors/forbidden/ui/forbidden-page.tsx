@@ -1,9 +1,9 @@
-import { useSearch } from '@tanstack/react-router'
+﻿import { useSearch } from '@tanstack/react-router'
 
 import { ModuleFeedbackButton } from '@/platform/core/ui/module-feedback-button'
 import { ErrorPageShell } from '@/platform/pages/errors/_ui'
 
-function ForbiddenPageComponent() {
+export function ForbiddenPageComponent() {
 	const { from } = useSearch({ from: '/forbidden' })
 
 	return (
@@ -24,5 +24,3 @@ function ForbiddenPageComponent() {
 		/>
 	)
 }
-
-export { ForbiddenPageComponent }

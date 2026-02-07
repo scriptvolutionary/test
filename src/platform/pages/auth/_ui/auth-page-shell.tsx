@@ -1,4 +1,4 @@
-import { useLocation } from '@tanstack/react-router'
+﻿import { useLocation } from '@tanstack/react-router'
 import * as React from 'react'
 
 import {
@@ -14,13 +14,13 @@ import { useCurrentModule } from '@/platform/core/hooks'
 import { ModuleFeedbackButton } from '@/platform/core/ui/module-feedback-button'
 import { runtime } from '@/platform/infra/config'
 
-interface AuthPageShellProps {
+type AuthPageShellProps = {
 	title: React.ReactNode
 	description: React.ReactNode
 	children: React.ReactNode
 }
 
-function AuthPageShell({ title, description, children }: AuthPageShellProps) {
+export function AuthPageShell({ title, description, children }: AuthPageShellProps) {
 	const location = useLocation()
 	const { meta } = useCurrentModule()
 
@@ -52,5 +52,3 @@ function AuthPageShell({ title, description, children }: AuthPageShellProps) {
 		</PublicPageShell>
 	)
 }
-
-export { AuthPageShell }

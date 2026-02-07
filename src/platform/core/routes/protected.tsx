@@ -3,6 +3,7 @@
 import { defineHead, defineHeadFn } from '@/shared/lib/seo'
 
 import { PlatformShell } from '@/platform/widgets/platform-shell'
+import { UsersListPageComponent } from '@/platform/pages/users/list'
 
 import { rootRoute } from '.'
 import { requireModule } from './guards/module'
@@ -336,7 +337,7 @@ export const platformUsersIndexRoute = createRoute({
 	beforeLoad: requirePermission({ route: 'users', method: 'GET' }),
 	staticData: { crumb: 'Список' },
 	head: defineHead({ title: 'Пользователи · Список' }),
-	component: () => <>users list page</>
+	component: UsersListPageComponent
 })
 
 export const platformUserCreateRoute = createRoute({

@@ -1,9 +1,9 @@
-import { CircleCheckIcon, InfoIcon, OctagonXIcon, TriangleAlertIcon } from 'lucide-react'
+﻿import { CircleCheckIcon, InfoIcon, OctagonXIcon, TriangleAlertIcon } from 'lucide-react'
 import { Toaster as Sonner, type ToasterProps } from 'sonner'
 
 import { Spinner } from './spinner'
 
-const Toaster = ({ theme, ...props }: ToasterProps) => {
+export function Toaster({ theme, ...props }: ToasterProps) {
 	return (
 		<Sonner
 			theme={theme as ToasterProps['theme']}
@@ -34,5 +34,3 @@ const Toaster = ({ theme, ...props }: ToasterProps) => {
 		/>
 	)
 }
-
-export { Toaster }

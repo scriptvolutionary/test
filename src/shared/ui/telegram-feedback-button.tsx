@@ -1,8 +1,8 @@
-import { MessageSquareShare } from 'lucide-react'
+﻿import { MessageSquareShare } from 'lucide-react'
 
 import { Button, type ButtonProps } from '@/shared/ui/primitives/button'
 
-interface TelegramFeedbackButtonProps extends ButtonProps {
+type TelegramFeedbackButtonProps = ButtonProps & {
 	message: string
 }
 

@@ -1,14 +1,14 @@
-import { cn } from '../lib/utils'
+﻿import { cn } from '../lib/utils'
 import { Button, type ButtonProps } from './primitives/button'
 import { Spinner } from './primitives/spinner'
 
-interface AsyncButtonProps extends ButtonProps {
+type AsyncButtonProps = ButtonProps & {
 	isPending: boolean
 	pendingLabel?: React.ReactNode
 	label: React.ReactNode
 }
 
-function AsyncButton({
+export function AsyncButton({
 	className,
 	isPending,
 	pendingLabel = 'Запрашиваю...',
@@ -35,5 +35,3 @@ function AsyncButton({
 		</Button>
 	)
 }
-
-export { AsyncButton }

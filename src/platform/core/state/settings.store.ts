@@ -4,7 +4,7 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 export type Theme = 'light' | 'dark' | 'system'
 export type Locale = 'ru' | 'en'
 
-interface SettingsState {
+type SettingsState = {
 	theme: Theme
 	locale: Locale
 	setTheme: (theme: Theme) => void

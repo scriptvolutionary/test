@@ -1,14 +1,14 @@
-import { Backdrop } from './backdrop'
+﻿import { Backdrop } from './backdrop'
 import { BrandItem } from './brand-item'
 
-interface PublicPageShellProps {
+type PublicPageShellProps = {
 	backdropMode?: 'public' | 'protected'
 	version: React.ReactNode
 	headerAction: React.ReactNode
 	children: React.ReactNode
 }
 
-function PublicPageShell({
+export function PublicPageShell({
 	backdropMode = 'public',
 	headerAction,
 	version,
@@ -18,7 +18,7 @@ function PublicPageShell({
 		<div className='relative min-h-dvh overflow-hidden'>
 			<Backdrop mode={backdropMode} />
 
-			<div className='container relative mx-auto flex min-h-dvh flex-col px-6 lg:px-12'>
+			<div className='relative mx-auto flex min-h-dvh max-w-350 flex-col px-6 lg:px-12'>
 				<header className='flex items-center justify-between py-4 lg:py-6'>
 					<BrandItem />
 					{headerAction && headerAction}
@@ -35,5 +35,3 @@ function PublicPageShell({
 		</div>
 	)
 }
-
-export { PublicPageShell }

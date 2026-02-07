@@ -1,7 +1,7 @@
-import { ModuleFeedbackButton } from '@/platform/core/ui/module-feedback-button'
+﻿import { ModuleFeedbackButton } from '@/platform/core/ui/module-feedback-button'
 import { ErrorPageShell } from '@/platform/pages/errors/_ui'
 
-function NotFoundPageComponent() {
+export function NotFoundPageComponent() {
 	return (
 		<ErrorPageShell
 			title='404'
@@ -18,5 +18,3 @@ function NotFoundPageComponent() {
 		/>
 	)
 }
-
-export { NotFoundPageComponent }

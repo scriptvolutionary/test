@@ -1,17 +1,16 @@
-import { MailIcon } from 'lucide-react'
+﻿import { MailIcon } from 'lucide-react'
 import * as React from 'react'
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from './primitives/input-group'
 
-interface Props
-	extends Omit<
-		React.ComponentProps<typeof InputGroupInput>,
-		'type' | 'inputMode' | 'autoComplete'
-	> {
+type Props = Omit<
+	React.ComponentProps<typeof InputGroupInput>,
+	'type' | 'inputMode' | 'autoComplete'
+> & {
 	icon?: boolean
 }
 
-function EmailInput({ icon = true, ...props }: Props) {
+export function EmailInput({ icon = true, ...props }: Props) {
 	return (
 		<InputGroup>
 			{icon ? (
@@ -24,5 +23,3 @@ function EmailInput({ icon = true, ...props }: Props) {
 		</InputGroup>
 	)
 }
-
-export { EmailInput }

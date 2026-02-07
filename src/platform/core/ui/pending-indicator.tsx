@@ -1,14 +1,14 @@
-import { useRouterState } from '@tanstack/react-router'
+﻿import { useRouterState } from '@tanstack/react-router'
 import React from 'react'
 
 import { cn } from '@/shared/lib/utils'
 
-interface PendingIndicatorProps {
+type PendingIndicatorProps = {
 	force?: boolean
 	minVisibleMs?: number
 }
 
-function PendingIndicator({ force = false, minVisibleMs = 300 }: PendingIndicatorProps) {
+export function PendingIndicator({ force = false, minVisibleMs = 300 }: PendingIndicatorProps) {
 	const pending = useRouterState({ select: (s) => s.status === 'pending' })
 
 	const active = force || pending
@@ -86,7 +86,7 @@ function PendingIndicator({ force = false, minVisibleMs = 300 }: PendingIndicato
 	)
 }
 
-function Square({ delay }: { delay: string }) {
+export function Square({ delay }: { delay: string }) {
 	return (
 		<div
 			className={cn(
@@ -99,5 +99,3 @@ function Square({ delay }: { delay: string }) {
 		/>
 	)
 }
-
-export { PendingIndicator }

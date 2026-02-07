@@ -17,6 +17,7 @@
 		"@base-ui/react": "^1.1.0",
 		"@tanstack/react-form": "^1.28.0",
 		"@tanstack/react-query": "^5.90.20",
+		"@tanstack/react-table": "^8.21.3",
 		"@tanstack/react-router": "^1.157.16",
 		"axios": "^1.13.3",
 		"class-variance-authority": "^0.7.1",

@@ -1,4 +1,4 @@
-import { EyeIcon, EyeOffIcon, LockIcon } from 'lucide-react'
+﻿import { EyeIcon, EyeOffIcon, LockIcon } from 'lucide-react'
 import * as React from 'react'
 
 import { cn } from '../lib/utils'
@@ -9,12 +9,12 @@ import {
 	InputGroupInput
 } from './primitives/input-group'
 
-interface Props extends Omit<React.ComponentProps<typeof InputGroupInput>, 'type'> {
+type Props = Omit<React.ComponentProps<typeof InputGroupInput>, 'type'> & {
 	defaultShow?: boolean
 	icon?: boolean
 }
 
-function PasswordInput({ defaultShow = false, icon = true, ...props }: Props) {
+export function PasswordInput({ defaultShow = false, icon = true, ...props }: Props) {
 	const [show, setShow] = React.useState(defaultShow)
 
 	const masked = !show
@@ -51,5 +51,3 @@ function PasswordInput({ defaultShow = false, icon = true, ...props }: Props) {
 		</InputGroup>
 	)
 }
-
-export { PasswordInput }

@@ -1,4 +1,4 @@
-import { Link, useRouterState } from '@tanstack/react-router'
+﻿import { Link, useRouterState } from '@tanstack/react-router'
 import * as React from 'react'
 
 import {
@@ -22,7 +22,7 @@ import { moduleMenuItems, platformMenuItems } from '../model/menu'
 import { SidebarModuleMenuSwitcher } from './sidebar-module-menu-switcher'
 import { SidebarSessionProfileMenu } from './sidebar-session-profile-menu'
 
-function PlatformSidebar() {
+export function PlatformSidebar() {
 	const pathname = useRouterState({ select: (s) => s.location.pathname })
 	const { module: currentModule, meta: currentMeta } = useCurrentModule()
 
@@ -123,5 +123,3 @@ function PlatformSidebar() {
 		</Sidebar>
 	)
 }
-
-export { PlatformSidebar }

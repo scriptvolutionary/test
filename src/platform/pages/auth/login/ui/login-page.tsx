@@ -1,4 +1,4 @@
-import { useNavigate, useSearch } from '@tanstack/react-router'
+﻿import { useNavigate, useSearch } from '@tanstack/react-router'
 
 import { LoginForm } from '@/platform/features/auth/login/ui/login-form'
 import { AuthPageShell } from '@/platform/pages/auth/_ui'

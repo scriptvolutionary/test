@@ -1,4 +1,4 @@
-import { type AnyRouteMatch, Link, useMatches } from '@tanstack/react-router'
+﻿import { type AnyRouteMatch, Link, useMatches } from '@tanstack/react-router'
 import * as React from 'react'
 
 import { useIsMobile } from '@/shared/hooks/use-mobile'
@@ -19,7 +19,7 @@ type Crumb = {
 	params: AnyRouteMatch['params']
 }
 
-function PlatformBreadcrumbs() {
+export function PlatformBreadcrumbs() {
 	const matches = useMatches()
 	const isMobile = useIsMobile()
 	const { module: currentModule, meta: currentMeta } = useCurrentModule()
@@ -82,5 +82,3 @@ function PlatformBreadcrumbs() {
 		</Breadcrumb>
 	)
 }
-
-export { PlatformBreadcrumbs }

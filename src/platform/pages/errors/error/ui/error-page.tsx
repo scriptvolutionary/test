@@ -1,4 +1,4 @@
-import { useLocation } from '@tanstack/react-router'
+﻿import { useLocation } from '@tanstack/react-router'
 
 import { ModuleFeedbackButton } from '@/platform/core/ui/module-feedback-button'
 
@@ -10,11 +10,11 @@ function getErrorMessage(error: unknown) {
 	return 'Неизвестная ошибка'
 }
 
-interface Props {
+type Props = {
 	error: unknown
 }
 
-function ErrorPageComponent({ error }: Props) {
+export function ErrorPageComponent({ error }: Props) {
 	const location = useLocation()
 	const message = getErrorMessage(error)
 
@@ -35,5 +35,3 @@ function ErrorPageComponent({ error }: Props) {
 		/>
 	)
 }
-
-export { ErrorPageComponent }

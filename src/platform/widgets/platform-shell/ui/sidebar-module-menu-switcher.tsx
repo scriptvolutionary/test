@@ -1,4 +1,4 @@
-import { CheckCheckIcon, EllipsisVerticalIcon } from 'lucide-react'
+﻿import { CheckCheckIcon, EllipsisVerticalIcon } from 'lucide-react'
 
 import { BrandItem } from '@/shared/ui/brand-item'
 import { Button } from '@/shared/ui/primitives/button'
@@ -13,7 +13,7 @@ import { useCurrentModule, useEnabledModules, useSetModule } from '@/platform/co
 
 import { SidebarMenuDropdown } from '../_ui/sidebar-menu-dropdown'
 
-function SidebarModuleMenuSwitcher() {
+export function SidebarModuleMenuSwitcher() {
 	const modules = useEnabledModules()
 	const { module, meta } = useCurrentModule()
 	const setModule = useSetModule()
@@ -62,5 +62,3 @@ function SidebarModuleMenuSwitcher() {
 		</SidebarMenuDropdown>
 	)
 }
-
-export { SidebarModuleMenuSwitcher }

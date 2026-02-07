@@ -3,7 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 
 import { enabledModuleKeys, type Module } from '@/platform/infra/config'
 
-interface SessionState {
+type SessionState = {
 	module: Module
 	setModule: (module: Module) => void
 }

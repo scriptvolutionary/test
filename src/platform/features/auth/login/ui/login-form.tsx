@@ -1,5 +1,4 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: ignore */
-import { useForm } from '@tanstack/react-form'
+﻿import { useForm } from '@tanstack/react-form'
 import * as React from 'react'
 
 import { AsyncButton } from '@/shared/ui/async-button'
@@ -12,11 +11,11 @@ import { loginSchema } from '../model/login.schema'
 
 const FORM = 'login-form' as const
 
-interface Props {
+type Props = {
 	onSuccess: () => void
 }
 
-function LoginForm({ onSuccess }: Props) {
+export function LoginForm({ onSuccess }: Props) {
 	const loginMutation = useLoginMutation()
 	const isPending = loginMutation.isPending
 
@@ -104,5 +103,3 @@ function LoginForm({ onSuccess }: Props) {
 		</div>
 	)
 }
-
-export { LoginForm }

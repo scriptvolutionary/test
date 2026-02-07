@@ -1,4 +1,4 @@
-import * as React from 'react'
+﻿import * as React from 'react'
 
 import { CardDescription } from '@/shared/ui/primitives/card'
 import { PublicPageShell } from '@/shared/ui/public-page-shell'
@@ -6,13 +6,13 @@ import { PublicPageShell } from '@/shared/ui/public-page-shell'
 import { StatusActions } from '@/platform/core/ui/status-actions'
 import { runtime } from '@/platform/infra/config'
 
-interface ErrorPageShellProps {
+type ErrorPageShellProps = {
 	title: React.ReactNode
 	description: React.ReactNode
 	headerAction: React.ReactNode
 }
 
-function ErrorPageShell({ headerAction, title, description }: ErrorPageShellProps) {
+export function ErrorPageShell({ headerAction, title, description }: ErrorPageShellProps) {
 	return (
 		<PublicPageShell headerAction={headerAction} version={runtime.version}>
 			<div className='zoom-in-90 fade-in-15 slide-in-from-bottom-5 w-full max-w-sm animate-in gap-6 space-y-12 py-6 duration-200 ease-in-out'>
@@ -27,5 +27,3 @@ function ErrorPageShell({ headerAction, title, description }: ErrorPageShellProp
 		</PublicPageShell>
 	)
 }
-
-export { ErrorPageShell }

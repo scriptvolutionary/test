@@ -1,4 +1,4 @@
-import { QueryClientProvider } from '@tanstack/react-query'
+﻿import { QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from '@tanstack/react-router'
 
 import { Toaster } from '@/shared/ui/primitives/sonner'
@@ -9,7 +9,7 @@ import { queryClient } from '@/platform/sdk/query'
 
 import { router } from '@/app/router'
 
-function AppProviders() {
+export function AppProviders() {
 	const { theme } = useTheme()
 
 	return (
@@ -21,5 +21,3 @@ function AppProviders() {
 		</TooltipProvider>
 	)
 }
-
-export { AppProviders }

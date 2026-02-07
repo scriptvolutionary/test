@@ -1,22 +1,20 @@
-import { cn } from '@/shared/lib/utils'
+﻿import { cn } from '@/shared/lib/utils'
 
 type Mode = 'public' | 'protected'
 
-interface BackdropProps {
+type BackdropProps = {
 	mode?: Mode
 	className?: string
 }
 
-function Backdrop({ mode = 'public', className }: BackdropProps) {
+export function Backdrop({ mode = 'public', className }: BackdropProps) {
 	return (
 		<div className={cn('pointer-events-none absolute inset-0 overflow-hidden', className)}>
 			{mode === 'public' ? <PublicLayer /> : <ProtectedLayer />}
 		</div>
 	)
 }
-export { Backdrop }
-
-function PublicLayer() {
+export function PublicLayer() {
 	return (
 		<>
 			<div
@@ -65,11 +63,11 @@ function PublicLayer() {
 	)
 }
 
-function ProtectedLayer() {
+export function ProtectedLayer() {
 	return (
 		<div
 			className={cn(
-				'pointer-events-none absolute inset-0 h-svh',
+				'pointer-events-none absolute inset-0 z-0 h-svh',
 				'[-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_0%,transparent_100%)]',
 				'[-webkit-mask-repeat:no-repeat]',
 				'[-webkit-mask-size:100%_100%]'
@@ -90,14 +88,14 @@ function ProtectedLayer() {
 	)
 }
 
-interface DotProps {
+type DotProps = {
 	className: string
 	bg: string
 	shadow: string
 	anim: string
 }
 
-function Dot({ className, bg, shadow, anim }: DotProps) {
+export function Dot({ className, bg, shadow, anim }: DotProps) {
 	return (
 		<div
 			className={cn('absolute rounded-full', className)}

@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 
 import { buildSupportMessage, type SupportReport } from '@/shared/lib/utils'
 import type { ButtonProps } from '@/shared/ui/primitives/button'
@@ -6,7 +6,7 @@ import { TelegramFeedbackButton } from '@/shared/ui/telegram-feedback-button'
 
 import { useCurrentModule } from '../hooks'
 
-interface ModuleFeedbackButtonProps {
+type ModuleFeedbackButtonProps = {
 	url?: string
 	report: Omit<SupportReport, 'url' | 'module' | 'code'> & {
 		module?: string
@@ -17,7 +17,7 @@ interface ModuleFeedbackButtonProps {
 	size?: ButtonProps['size']
 }
 
-function ModuleFeedbackButton({
+export function ModuleFeedbackButton({
 	url,
 	variant,
 	className,
@@ -38,5 +38,3 @@ function ModuleFeedbackButton({
 		<TelegramFeedbackButton className={className} size={size} variant={variant} message={message} />
 	)
 }
-
-export { ModuleFeedbackButton }

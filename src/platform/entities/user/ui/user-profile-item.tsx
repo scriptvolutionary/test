@@ -1,4 +1,4 @@
-import * as React from 'react'
+﻿import * as React from 'react'
 
 import { Avatar, AvatarFallback } from '@/shared/ui/primitives/avatar'
 import { Skeleton } from '@/shared/ui/primitives/skeleton'
@@ -9,7 +9,7 @@ type UserLike = Partial<User> | null | undefined
 
 type UserProfileItemVariant = 'menu' | 'label'
 
-interface UserProfileItemProps {
+type UserProfileItemProps = {
 	user?: UserLike
 	isLoading?: boolean
 	variant?: UserProfileItemVariant
@@ -28,7 +28,7 @@ function useUserProfileItemView(user: UserLike) {
 	}, [user])
 }
 
-function UserProfileItem({ user, isLoading, variant = 'menu' }: UserProfileItemProps) {
+export function UserProfileItem({ user, isLoading, variant = 'menu' }: UserProfileItemProps) {
 	const { title, subtitle, initials, role, id } = useUserProfileItemView(user)
 
 	if (isLoading) return <UserProfileItemSkeleton variant={variant} />
@@ -56,7 +56,7 @@ function UserProfileItem({ user, isLoading, variant = 'menu' }: UserProfileItemP
 	)
 }
 
-function UserProfileItemSkeleton({ variant }: { variant: UserProfileItemVariant }) {
+export function UserProfileItemSkeleton({ variant }: { variant: UserProfileItemVariant }) {
 	if (variant === 'label') {
 		return (
 			<div className='space-y-1'>
@@ -77,4 +77,4 @@ function UserProfileItemSkeleton({ variant }: { variant: UserProfileItemVariant 
 	)
 }
 
-export { UserProfileItem, type UserProfileItemVariant }
+export { type UserProfileItemVariant }
