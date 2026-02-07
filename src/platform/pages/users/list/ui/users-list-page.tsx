@@ -1,31 +1,60 @@
-﻿import { Link } from '@tanstack/react-router'
+﻿import { useQuery } from '@tanstack/react-query'
+import { Link, useSearch } from '@tanstack/react-router'
 import { PlusIcon } from 'lucide-react'
+import React from 'react'
 
 import { Button } from '@/shared/ui/primitives/button'
 
+import { columns as userColumns, usersListQueryOptions } from '@/platform/entities/user'
+import { EntityList } from '@/platform/widgets/entity-list'
+
 export function UsersListPageComponent() {
+	const search = useSearch({ from: '/platform/users/' })
+
+	const page = Number(search.page)
+	const perPage = Number(search.per_page)
+
+	const queryParams = React.useMemo(
+		() => ({
+			...search,
+			page,
+			per_page: perPage
+		}),
+		[search, page, perPage]
+	)
+
+	const query = useQuery(usersListQueryOptions(queryParams))
+
+	const items = query.data?.data ?? []
+	const meta = query.data?.metadata?.pagination
+
+	const pageCount = meta?.last_page ?? 0
+
+	const columns = React.useMemo(() => userColumns, [])
+
 	return (
-		<div className='mx-auto flex w-full max-w-350 flex-1 flex-col gap-4'>
-			<div className='flex flex-wrap items-start justify-between gap-3'>
-				<div className='space-y-1'>
-					<h1 className='font-semibold text-lg'>Пользователи</h1>
-					<p className='text-muted-foreground text-sm'>
-						Управление доступом, ролями и статусами пользователей платформы.
-					</p>
-				</div>
-				<div className='flex flex-wrap items-center gap-2'>
-					<Button
-						size='sm'
-						nativeButton={false}
-						render={
-							<Link to='/platform/users/new'>
-								<PlusIcon />
-								Добавить
-							</Link>
-						}
-					/>
-				</div>
-			</div>
-		</div>
+		<EntityList
+			title='Пользователи'
+			description='Управление доступом, ролями и статусами пользователей платформы.'
+			action={
+				<Button
+					nativeButton={false}
+					render={
+						<Link to='/platform/users/new'>
+							<PlusIcon />
+							Добавить
+						</Link>
+					}
+				/>
+			}
+			data={items}
+			columns={columns}
+			isLoading={query.isFetching}
+			emptyText='Пользователи не найдены'
+			getRowId={(row) => String(row.id)}
+			page={page}
+			perPage={perPage}
+			pageCount={pageCount}
+		/>
 	)
 }

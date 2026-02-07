@@ -1,7 +1,7 @@
 ﻿import { MailIcon } from 'lucide-react'
 import * as React from 'react'
 
-import { InputGroup, InputGroupAddon, InputGroupInput } from './primitives/input-group'
+import { InputGroup, InputGroupAddon, InputGroupInput } from '../primitives/input-group'
 
 type Props = Omit<
 	React.ComponentProps<typeof InputGroupInput>,

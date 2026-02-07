@@ -2,8 +2,8 @@
 import * as React from 'react'
 
 import { AsyncButton } from '@/shared/ui/async-button'
-import { EmailInput } from '@/shared/ui/email-input'
-import { PasswordInput } from '@/shared/ui/password-input'
+import { EmailInput } from '@/shared/ui/inputs/email'
+import { PasswordInput } from '@/shared/ui/inputs/password'
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/shared/ui/primitives/field'
 
 import { useLoginMutation } from '../model/login.mutation'

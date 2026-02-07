@@ -6,12 +6,39 @@ import { cn } from '@/shared/lib/utils'
 type PendingIndicatorProps = {
 	force?: boolean
 	minVisibleMs?: number
+
+	/**
+	 * Не показывать глобальный оверлей, если во время pending не меняется pathname.
+	 * Типичный случай: меняются только search-параметры (page/per_page).
+	 */
+	ignoreSamePathnamePending?: boolean
 }
 
-export function PendingIndicator({ force = false, minVisibleMs = 300 }: PendingIndicatorProps) {
-	const pending = useRouterState({ select: (s) => s.status === 'pending' })
+export function PendingIndicator({
+	force = false,
+	minVisibleMs = 300,
+	ignoreSamePathnamePending = true
+}: PendingIndicatorProps) {
+	const { status, pathname } = useRouterState({
+		select: (s) => ({
+			status: s.status,
+			pathname: s.location.pathname
+		})
+	})
 
-	const active = force || pending
+	const pending = status === 'pending'
+
+	// pathname последнего "устоявшегося" состояния (когда pending === false)
+	const settledPathnameRef = React.useRef(pathname)
+
+	React.useEffect(() => {
+		if (!pending) settledPathnameRef.current = pathname
+	}, [pending, pathname])
+
+	const isSamePathnamePending =
+		ignoreSamePathnamePending && pending && pathname === settledPathnameRef.current
+
+	const active = force || (pending && !isSamePathnamePending)
 
 	const [mounted, setMounted] = React.useState(active)
 	const [visible, setVisible] = React.useState(active)

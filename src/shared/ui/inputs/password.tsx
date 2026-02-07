@@ -1,13 +1,13 @@
 ﻿import { EyeIcon, EyeOffIcon, LockIcon } from 'lucide-react'
 import * as React from 'react'
 
-import { cn } from '../lib/utils'
+import { cn } from '../../lib/utils'
 import {
 	InputGroup,
 	InputGroupAddon,
 	InputGroupButton,
 	InputGroupInput
-} from './primitives/input-group'
+} from '../primitives/input-group'
 
 type Props = Omit<React.ComponentProps<typeof InputGroupInput>, 'type'> & {
 	defaultShow?: boolean

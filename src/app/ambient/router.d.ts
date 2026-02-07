@@ -1,3 +1,5 @@
+import '@tanstack/react-router'
+
 import { router } from '@/app/router'
 
 declare module '@tanstack/react-router' {

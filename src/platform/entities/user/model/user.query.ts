@@ -11,7 +11,7 @@ export const usersListQueryOptions = createListQueryOptions({
 	queryFn: (params: UsersListParams) => fetchUsers(params)
 })
 
-export const usersOptionsQueryOptions = createListQueryOptions({
+export const usersSelectQueryOptions = createListQueryOptions({
 	getKey: (p) => userKeys.list(p),
 	queryFn: (params: UsersListParams) => fetchUsers(params)
 })

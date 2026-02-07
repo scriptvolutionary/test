@@ -2,9 +2,16 @@
 
 import { cn } from '@/shared/lib/utils'
 
-export function Table({ className, ...props }: React.ComponentProps<'table'>) {
+export function Table({
+	className,
+	containerClassName,
+	...props
+}: React.ComponentProps<'table'> & { containerClassName?: string }) {
 	return (
-		<div data-slot='table-container' className='relative w-full overflow-x-auto'>
+		<div
+			data-slot='table-container'
+			className={cn('relative w-full overflow-x-auto', containerClassName)}
+		>
 			<table
 				data-slot='table'
 				className={cn('w-full caption-bottom text-sm', className)}
@@ -43,7 +50,7 @@ export function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
 		<tr
 			data-slot='table-row'
 			className={cn(
-				'border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted',
+				'border-muted/50 border-b transition-all hover:bg-muted/50 data-[state=selected]:bg-muted',
 				className
 			)}
 			{...props}
@@ -56,7 +63,7 @@ export function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
 		<th
 			data-slot='table-head'
 			className={cn(
-				'h-10 whitespace-nowrap px-2 text-left align-middle font-medium text-foreground [&:has([role=checkbox])]:pr-0',
+				'h-10 whitespace-nowrap px-2 text-left align-middle font-medium text-foreground transition-all [&:has([role=checkbox])]:pr-0',
 				className
 			)}
 			{...props}

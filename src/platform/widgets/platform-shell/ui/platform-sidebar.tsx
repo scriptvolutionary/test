@@ -50,7 +50,7 @@ export function PlatformSidebar() {
 				<SidebarGroup>
 					<SidebarGroupLabel>Платформа</SidebarGroupLabel>
 					<SidebarGroupContent>
-						<SidebarMenu>
+						<SidebarMenu className='space-y-1'>
 							{platformMenuItems.map((item) => (
 								<SidebarMenuItem key={item.id}>
 									<SidebarMenuButton

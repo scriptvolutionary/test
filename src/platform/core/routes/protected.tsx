@@ -1,9 +1,10 @@
-﻿import { createRoute, Outlet } from '@tanstack/react-router'
+import { createRoute, Outlet, redirect } from '@tanstack/react-router'
+import z from 'zod'
 
 import { defineHead, defineHeadFn } from '@/shared/lib/seo'
 
-import { PlatformShell } from '@/platform/widgets/platform-shell'
 import { UsersListPageComponent } from '@/platform/pages/users/list'
+import { PlatformShell } from '@/platform/widgets/platform-shell'
 
 import { rootRoute } from '.'
 import { requireModule } from './guards/module'
@@ -27,292 +28,7 @@ export const platformIndexRoute = createRoute({
 	path: '/',
 	staticData: { crumb: 'Главная' },
 	head: defineHead({ title: 'Платформа · Главная' }),
-	component: () => (
-		<div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-			<div>
-				<>platform route</>
-			</div>
-		</div>
-	)
+	component: () => <>platform route</>
 })
 
 /* =========================================
@@ -334,7 +50,29 @@ export const platformUsersRoute = createRoute({
 export const platformUsersIndexRoute = createRoute({
 	getParentRoute: () => platformUsersRoute,
 	path: '/',
-	beforeLoad: requirePermission({ route: 'users', method: 'GET' }),
+	validateSearch: z.object({
+		search: z.string().optional(),
+		page: z.coerce.number().int().min(1).optional(),
+		per_page: z.coerce.number().int().min(1).optional()
+	}),
+	beforeLoad: async (ctx) => {
+		await requirePermission({ route: 'users', method: 'GET' })(ctx)
+
+		const nextPage = ctx.search.page ?? 1
+		const nextPerPage = ctx.search.per_page ?? 30
+		const needsDefaults = ctx.search.page == null || ctx.search.per_page == null
+
+		if (needsDefaults) {
+			throw redirect({
+				to: '.',
+				search: {
+					...ctx.search,
+					page: nextPage,
+					per_page: nextPerPage
+				}
+			})
+		}
+	},
 	staticData: { crumb: 'Список' },
 	head: defineHead({ title: 'Пользователи · Список' }),
 	component: UsersListPageComponent
